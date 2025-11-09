@@ -46,11 +46,11 @@ The repository includes a ready-to-run Docker Compose setup that provisions Word
    docker compose up -d --build
    ```
 
-3. Visit `http://localhost:8080` (or the port from `.env`) to finish the WordPress install wizard.
+3. Visit `http://localhost:8088` (or the port from `.env`) to finish the WordPress install wizard.
 
 ### Services
 
-- `wordpress`: Custom image based on `wordpress:6.7.1-php8.2-apache` that installs dependencies, compiles assets, and copies the theme into `/usr/src/wordpress/wp-content/themes/hpp-timber`.
+- `wordpress`: Custom image based on `wordpress:6.7.1-php8.2-apache` that installs dependencies, compiles assets, and copies the theme into `/usr/src/wordpress/wp-content/themes/hpp-timber`. Exposed on port 8088 by default.
 - `db`: MySQL 8.0 with persistent storage in the `db_data` volume.
 
 Persistent data lives in the named volumes `wordpress_data` (WordPress core + uploads) and `db_data` (database). Local uploads are also mirrored to `./wp-data/uploads`.
