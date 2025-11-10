@@ -17,6 +17,13 @@ class HPPTheme extends \Timber\Site {
         add_theme_support('title-tag');
         add_theme_support('post-thumbnails');
         add_theme_support('menus');
+        add_theme_support('custom-logo', [
+            'height' => 512,
+            'width' => 512,
+            'flex-height' => true,
+            'flex-width' => true,
+        ]);
+        add_theme_support('site-icon');
 
         register_nav_menus([
             'main_menu' => __('Main Menu', 'hppry'),
