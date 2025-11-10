@@ -6,7 +6,7 @@ ARG THEME_DIR=/usr/src/wordpress/wp-content/themes/hpp-timber
 
 # Install Node.js, npm, and other tooling required for building assets
 RUN apt-get update \
-    && apt-get install -y git unzip curl gnupg ca-certificates \
+    && apt-get install -y git unzip curl gnupg ca-certificates rsync \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && apt-get clean \
@@ -14,6 +14,9 @@ RUN apt-get update \
 
 # Provide composer binary
 COPY --from=composer_stage /usr/bin/composer /usr/local/bin/composer
+
+# Ensure the theme sync script runs on container startup
+COPY docker/wordpress/copy-theme.sh /docker-entrypoint.d/10-copy-theme.sh
 
 # Copy theme sources into the image
 COPY . ${THEME_DIR}
@@ -33,6 +36,9 @@ RUN rm -rf ${THEME_DIR}/docker \
     ${THEME_DIR}/.dockerignore
 
 WORKDIR /var/www/html
+
+# Make sure the copy script is executable
+RUN chmod +x /docker-entrypoint.d/10-copy-theme.sh
 
 # Ensure uploads directory exists with correct permissions
 RUN mkdir -p /var/www/html/wp-content/uploads \
