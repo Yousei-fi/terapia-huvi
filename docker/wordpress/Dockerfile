@@ -15,9 +15,6 @@ RUN apt-get update \
 # Provide composer binary
 COPY --from=composer_stage /usr/bin/composer /usr/local/bin/composer
 
-# Ensure the theme sync script runs on container startup
-COPY docker/wordpress/copy-theme.sh /docker-entrypoint.d/10-copy-theme.sh
-
 # Copy theme sources into the image
 COPY . ${THEME_DIR}
 
@@ -37,10 +34,16 @@ RUN rm -rf ${THEME_DIR}/docker \
 
 WORKDIR /var/www/html
 
-# Make sure the copy script is executable
-RUN chmod +x /docker-entrypoint.d/10-copy-theme.sh
+# Copy entrypoint wrapper + theme sync helper
+COPY docker/wordpress/copy-theme.sh /usr/local/bin/copy-theme.sh
+COPY docker/wordpress/with-theme-entrypoint.sh /usr/local/bin/with-theme-entrypoint.sh
 
 # Ensure uploads directory exists with correct permissions
 RUN mkdir -p /var/www/html/wp-content/uploads \
     && chown -R www-data:www-data /usr/src/wordpress/wp-content \
-    && chown -R www-data:www-data /var/www/html/wp-content
+    && chown -R www-data:www-data /var/www/html/wp-content \
+    && chmod +x /usr/local/bin/copy-theme.sh \
+    && chmod +x /usr/local/bin/with-theme-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/with-theme-entrypoint.sh"]
+CMD ["apache2-foreground"]
