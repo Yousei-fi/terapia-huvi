@@ -1,6 +1,48 @@
-<footer class="bg-gray-100 border-t border-gray-200">
-  <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600">
-    <p>&copy; {{ "now"|date("Y") }} {{ site.name }}. All rights reserved.</p>
+<footer class="bg-brand-charcoal text-brand-white">
+  <div class="mx-auto max-w-6xl px-4 py-12">
+    <div class="grid gap-10 md:grid-cols-4">
+      <div class="space-y-4">
+        <div class="flex items-center gap-3 text-lg font-semibold">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange text-sm font-bold text-brand-white shadow-lg shadow-brand-orange/40">HP</span>
+          <span>{{ site.name }}</span>
+        </div>
+        <p class="text-sm text-white/70">We advocate for humane drug policies, support communities, and create safer futures through evidence-based change.</p>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">Contact</h3>
+        <ul class="mt-4 space-y-2 text-sm text-white/70">
+          <li><a href="mailto:info@hppry.fi" class="transition hover:text-white">info@hppry.fi</a></li>
+          <li>Hämeentie 34, 00530 Helsinki</li>
+          <li><a href="tel:+358401234567" class="transition hover:text-white">+358 40 123 4567</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">Key links</h3>
+        <ul class="mt-4 space-y-2 text-sm text-white/70">
+          <li><a href="/missio" class="transition hover:text-white">Our mission</a></li>
+          <li><a href="/toiminta" class="transition hover:text-white">Programmes</a></li>
+          <li><a href="/vaikuta" class="transition hover:text-white">Advocacy</a></li>
+          <li><a href="/lahjoita" class="transition hover:text-white">Donate</a></li>
+        </ul>
+      </div>
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">Stay in touch</h3>
+        <p class="text-sm text-white/70">Receive monthly updates on policy changes, community stories, and volunteer opportunities.</p>
+        <form class="space-y-3">
+          <label class="sr-only" for="footer-email">Email address</label>
+          <input id="footer-email" type="email" name="email" placeholder="you@example.com" class="w-full rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none focus:ring-2 focus:ring-white/60">
+          <button type="submit" class="btn-primary w-full justify-center">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
+      <p>&copy; {{ "now"|date("Y") }} {{ site.name }}. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="https://www.facebook.com" class="transition hover:text-white">Facebook</a>
+        <a href="https://www.instagram.com" class="transition hover:text-white">Instagram</a>
+        <a href="https://www.linkedin.com" class="transition hover:text-white">LinkedIn</a>
+      </div>
+    </div>
   </div>
 </footer>
 

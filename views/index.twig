@@ -1,14 +1,208 @@
 {% extends "base.twig" %}
 
 {% block content %}
-<div class="max-w-4xl mx-auto py-10">
-  <h1 class="text-3xl font-bold mb-6">{{ site.name }}</h1>
-  {% for post in posts %}
-    <article class="mb-8">
-      <h2 class="text-xl font-semibold"><a href="{{ post.link }}">{{ post.title }}</a></h2>
-      <p>{{ post.excerpt }}</p>
-    </article>
-  {% endfor %}
-</div>
+<section class="relative overflow-hidden bg-brand-charcoal text-brand-white">
+  <div class="absolute inset-0 bg-hero-pattern opacity-40"></div>
+  <div class="absolute inset-0 bg-accent-glow opacity-40"></div>
+  <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="grid gap-12 md:grid-cols-[1.1fr,0.9fr] md:items-center">
+      <div class="space-y-6">
+        <span class="eyebrow text-white/70">Together for humane drug policy</span>
+        <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Building safer communities with empathy, evidence, and action</h2>
+        <p class="text-base text-white/80 md:text-lg">HPPRy joins people with lived experience, professionals, and decision-makers to ensure drug policy protects human dignity. We focus on harm reduction, services for families, and legislation that saves lives.</p>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="/liity" class="btn-primary">Get involved</a>
+          <a href="/lahjoita" class="btn-secondary">Support our work</a>
+        </div>
+        <dl class="grid gap-4 pt-4 text-sm uppercase tracking-[0.2em] text-white/70 sm:grid-cols-3">
+          <div class="rounded-2xl bg-white/10 p-4 backdrop-blur">
+            <dt class="text-xs">Advocacy wins</dt>
+            <dd class="mt-2 text-3xl font-semibold text-white">28</dd>
+          </div>
+          <div class="rounded-2xl bg-white/10 p-4 backdrop-blur">
+            <dt class="text-xs">People supported</dt>
+            <dd class="mt-2 text-3xl font-semibold text-white">5.2K</dd>
+          </div>
+          <div class="rounded-2xl bg-white/10 p-4 backdrop-blur">
+            <dt class="text-xs">Volunteer network</dt>
+            <dd class="mt-2 text-3xl font-semibold text-white">320</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="relative">
+        <div class="rounded-3xl bg-white/10 p-6 shadow-lg shadow-brand-orange/20 backdrop-blur">
+          <h3 class="text-xl font-semibold text-white">Voices from the community</h3>
+          <p class="mt-3 text-sm text-white/80">“When policy becomes personal, HPPRy listens first. They helped us design peer-led support that respects everyone involved.”</p>
+          <p class="mt-4 text-xs uppercase tracking-[0.3em] text-white/60">Anni, peer advocate</p>
+        </div>
+        <div class="absolute -bottom-10 -left-6 hidden h-32 w-32 rounded-full bg-white/20 blur-3xl md:block"></div>
+        <div class="absolute -top-12 -right-6 hidden h-40 w-40 rounded-full bg-brand-orange/40 blur-3xl md:block"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="relative bg-white py-16 md:py-20">
+  <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-orange/40 via-brand-orange to-brand-orange/40"></div>
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="grid gap-10 md:grid-cols-[1fr,0.6fr] md:items-center">
+      <div>
+        <span class="eyebrow">Our mission</span>
+        <h2 class="section-heading">We put humanity at the heart of drug policy</h2>
+        <p class="section-copy">From local outreach to national legislation, HPPRy stands with people whose voices are often left out. We coordinate experts, create peer-led services, and highlight evidence that transforms outdated systems.</p>
+        <div class="mt-8 grid gap-6 sm:grid-cols-2">
+          <div class="rounded-3xl border border-brand-orange/20 bg-brand-cloud p-6">
+            <h3 class="text-lg font-semibold text-slate-900">Policy influence</h3>
+            <p class="mt-2 text-sm text-slate-600">Briefings, citizen initiatives, and coalition-building to promote humane legislation.</p>
+          </div>
+          <div class="rounded-3xl border border-brand-orange/20 bg-brand-cloud p-6">
+            <h3 class="text-lg font-semibold text-slate-900">Community care</h3>
+            <p class="mt-2 text-sm text-slate-600">Workshops, peer networks, and crisis response for individuals and families.</p>
+          </div>
+        </div>
+      </div>
+      <div class="rounded-3xl bg-brand-orange/10 p-8 shadow-lg shadow-brand-orange/20">
+        <h3 class="text-xl font-semibold text-brand-orange">Upcoming focus 2026</h3>
+        <ul class="mt-6 space-y-4 text-sm text-slate-700">
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/20 text-brand-orange">1</span>
+            <span>Launch a national harm reduction awareness tour with local partners.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/20 text-brand-orange">2</span>
+            <span>Co-create guidelines for compassionate services with municipalities.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/20 text-brand-orange">3</span>
+            <span>Grow our peer expert network to every major region in Finland.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-brand-cloud py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="md:max-w-2xl">
+      <span class="eyebrow">What we focus on</span>
+      <h2 class="section-heading">Amplifying dignity, health, and community power</h2>
+      <p class="section-copy">Each programme is co-designed with people who have lived experience. We invest in change that is compassionate, scalable, and rooted in science.</p>
+    </div>
+    {% set pillars = [
+      {
+        'title': 'Harm reduction hubs',
+        'copy': 'Mobile services and safe spaces that connect people with support, supplies, and healthcare partners.',
+      },
+      {
+        'title': 'Family resilience',
+        'copy': 'Peer-led circles and counselling resources that help families navigate substance use with empathy.',
+      },
+      {
+        'title': 'Policy watch',
+        'copy': 'Monitoring legislation, publishing policy briefs, and mobilising rapid response action when rights are at stake.',
+      },
+    ] %}
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      {% for pillar in pillars %}
+        <div class="flex h-full flex-col rounded-3xl border border-brand-orange/10 bg-white p-6 shadow-sm shadow-brand-orange/10">
+          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-orange/15 text-brand-orange">
+            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 6v12" />
+              <path d="M6 12h12" />
+            </svg>
+          </div>
+          <h3 class="mt-6 text-lg font-semibold text-slate-900">{{ pillar.title }}</h3>
+          <p class="mt-3 text-sm text-slate-600">{{ pillar.copy }}</p>
+          <div class="mt-auto pt-6">
+            <a href="/toiminta" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80">
+              <span>Explore the work</span>
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="md:flex md:items-end md:justify-between">
+      <div class="md:max-w-xl">
+        <span class="eyebrow">Latest updates</span>
+        <h2 class="section-heading">Stories from our movement</h2>
+        <p class="section-copy">News from the field, policy insights, and volunteer highlights. Browse the latest to see how the movement grows.</p>
+      </div>
+      <a href="/blogi" class="btn-primary mt-6 md:mt-0">All updates</a>
+    </div>
+    {% if posts %}
+      <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {% for post in posts %}
+          {{ include('card.twig', {
+            title: post.title,
+            link: post.link,
+            meta: post.date('j.n.Y'),
+            content: post.preview(30),
+            image: post.thumbnail ? post.thumbnail.src('large') : null,
+          }) }}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="mt-10 text-base text-slate-600">Stories are on the way. Check back soon or follow us on social media for updates.</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="relative overflow-hidden bg-gradient-to-br from-brand-orange via-[#f89b4a] to-[#ffb56b] py-16 text-brand-white md:py-20">
+  <div class="absolute inset-0 bg-hero-pattern opacity-40"></div>
+  <div class="absolute inset-0 bg-accent-glow opacity-40"></div>
+  <div class="relative mx-auto max-w-6xl px-4">
+    <div class="grid gap-8 md:grid-cols-[1fr,0.7fr] md:items-center">
+      <div>
+        <span class="eyebrow text-white/80">Take the next step</span>
+        <h2 class="section-heading text-white">Volunteer, donate, or partner with HPPRy</h2>
+        <p class="mt-4 text-base text-white/85 md:text-lg">Whether you bring time, knowledge, or resources, you help us make sure Finnish drug policy centres dignity and health. Let’s collaborate on solutions that last.</p>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a href="/vapaaehtoiset" class="btn-secondary">Become a volunteer</a>
+          <a href="mailto:kumppanit@hppry.fi" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
+            <span>Email our partnerships team</span>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="rounded-3xl bg-white/10 p-6 shadow-lg shadow-brand-orange/20 backdrop-blur">
+        <h3 class="text-xl font-semibold text-white">“When we centre compassion, everyone wins.”</h3>
+        <p class="mt-3 text-sm text-white/80">— Oskari, HPPRy volunteer since 2018</p>
+        <ul class="mt-6 space-y-3 text-sm text-white/75">
+          <li class="flex items-start gap-3">
+            <svg class="mt-0.5 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            <span>Training for new volunteers every month</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="mt-0.5 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            <span>Partner projects with NGOs, municipalities, and researchers</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="mt-0.5 h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            <span>Transparent reporting on impact and finances</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
 

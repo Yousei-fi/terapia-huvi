@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-$timber = new \Timber\Timber();
+\Timber\Timber::init();
 
 class HPPTheme extends \Timber\Site {
     public function __construct() {

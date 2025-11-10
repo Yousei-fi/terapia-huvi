@@ -1,9 +1,40 @@
-<header class="bg-white shadow">
-  <div class="max-w-6xl mx-auto px-4 py-6">
-    <h1 class="text-3xl font-bold text-gray-900">{{ title }}</h1>
-    {% if subtitle %}
-      <p class="text-gray-600 mt-2">{{ subtitle }}</p>
-    {% endif %}
+<header class="relative overflow-hidden bg-gradient-to-br from-brand-orange via-[#f89b4a] to-[#ffb56b] text-brand-white">
+  <div class="absolute inset-0 bg-hero-pattern opacity-90"></div>
+  <div class="absolute inset-0 bg-accent-glow opacity-60"></div>
+  <div class="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 md:flex-row md:items-center md:justify-between md:py-16">
+    <div class="max-w-2xl space-y-4">
+      <span class="eyebrow text-white/80">Humaania Päihdepolitiikkaa ry</span>
+      <h1 class="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{{ title }}</h1>
+      {% if subtitle %}
+        <p class="text-base text-white/90 md:text-lg">{{ subtitle }}</p>
+      {% endif %}
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="/liity" class="btn-secondary">Join the movement</a>
+        <a href="/tietoa" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
+          <span>About the NGO</span>
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14" />
+            <path d="M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div class="grid w-full max-w-sm grid-cols-2 gap-4 md:max-w-none md:grid-cols-2">
+      <div class="rounded-2xl bg-white/15 p-4 text-center shadow-lg shadow-brand-orange/20 backdrop-blur">
+        <p class="text-3xl font-semibold text-white">15+</p>
+        <p class="mt-1 text-xs uppercase tracking-[0.2em] text-white/70">Years advocating</p>
+      </div>
+      <div class="rounded-2xl bg-white/15 p-4 text-center shadow-lg shadow-brand-orange/20 backdrop-blur">
+        <p class="text-3xl font-semibold text-white">3.4K</p>
+        <p class="mt-1 text-xs uppercase tracking-[0.2em] text-white/70">Community voices</p>
+      </div>
+      <div class="rounded-2xl bg-white/15 p-4 text-center shadow-lg shadow-brand-orange/20 backdrop-blur md:col-span-2">
+        <p class="text-3xl font-semibold text-white">120</p>
+        <p class="mt-1 text-xs uppercase tracking-[0.2em] text-white/70">Policy proposals reviewed</p>
+      </div>
+    </div>
   </div>
+  <div class="pointer-events-none absolute -left-20 top-12 hidden h-48 w-48 rounded-full bg-white/25 blur-3xl md:block"></div>
+  <div class="pointer-events-none absolute -bottom-24 -right-12 h-56 w-56 rounded-full bg-white/30 blur-3xl"></div>
 </header>
 

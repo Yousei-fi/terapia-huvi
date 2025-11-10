@@ -2,3 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    @apply bg-brand-sand font-sans text-slate-900 antialiased;
+  }
+
+  a {
+    @apply text-brand-orange transition-colors duration-150;
+  }
+
+  a:hover,
+  a:focus-visible {
+    @apply text-brand-orange/80;
+  }
+
+  ::selection {
+    @apply bg-brand-orange text-brand-white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-orange px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-orange/30 transition duration-150 hover:bg-brand-orange/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-brand-sand;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition duration-150 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal;
+  }
+
+  .section-heading {
+    @apply text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl;
+  }
+
+  .section-copy {
+    @apply mt-3 text-base text-slate-600 md:text-lg;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange/90;
+  }
+}
+

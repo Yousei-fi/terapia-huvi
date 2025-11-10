@@ -2,16 +2,23 @@
 <html {{ site.language_attributes }}>
 <head>
   <meta charset="{{ site.charset }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ function('wp_title', '|', true, 'right') }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   {{ function('wp_head') }}
 </head>
-<body {{ function('body_class') }}>
-  {% include 'header.twig' with { title: site.name, subtitle: site.description } %}
-  {% include 'partials/menu.twig' %}
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-  {% include 'footer.twig' %}
+<body {{ function('body_class', ['bg-brand-sand', 'font-sans', 'antialiased', 'text-slate-900']) }}>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-brand-orange focus:px-5 focus:py-3 focus:text-white">Skip to content</a>
+  <div class="relative flex min-h-screen flex-col overflow-hidden">
+    {% include 'partials/menu.twig' %}
+    {% include 'header.twig' with { title: site.name, subtitle: site.description } %}
+    <main id="main-content" class="flex-1">
+      {% block content %}{% endblock %}
+    </main>
+    {% include 'footer.twig' %}
+  </div>
   {{ function('wp_footer') }}
 </body>
 </html>

@@ -1,8 +1,18 @@
-<article class="bg-white rounded-lg shadow p-6 hover:shadow-md transition">
+<article class="group relative overflow-hidden rounded-3xl bg-white p-6 shadow-lg shadow-brand-orange/10 transition duration-200 hover:-translate-y-1 hover:shadow-xl">
+  {% if image %}
+    <div class="mb-5 overflow-hidden rounded-2xl">
+      <img src="{{ image }}" alt="" class="h-44 w-full object-cover transition duration-300 group-hover:scale-105" loading="lazy">
+    </div>
+  {% endif %}
+
+  {% if eyebrow %}
+    <span class="eyebrow text-brand-orange/80">{{ eyebrow }}</span>
+  {% endif %}
+
   {% if title %}
-    <h3 class="text-xl font-semibold mb-2">
+    <h3 class="mt-2 text-xl font-semibold text-slate-900">
       {% if link %}
-        <a href="{{ link }}" class="text-blue-600 hover:underline">{{ title }}</a>
+        <a href="{{ link }}" class="transition hover:text-brand-orange">{{ title }}</a>
       {% else %}
         {{ title }}
       {% endif %}
@@ -10,13 +20,25 @@
   {% endif %}
 
   {% if meta %}
-    <p class="text-sm text-gray-500 mb-2">{{ meta }}</p>
+    <p class="mt-1 text-sm text-slate-500">{{ meta }}</p>
   {% endif %}
 
   {% if content %}
-    <div class="text-gray-700">
+    <div class="mt-4 text-sm leading-relaxed text-slate-600">
       {{ content }}
     </div>
   {% endif %}
+
+  {% if link %}
+    <div class="mt-6 flex items-center gap-2 text-sm font-semibold text-brand-orange">
+      <span>Read more</span>
+      <svg class="h-4 w-4 transition group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14" />
+        <path d="M13 6l6 6-6 6" />
+      </svg>
+    </div>
+  {% endif %}
+
+  <div class="pointer-events-none absolute inset-0 rounded-3xl border border-white/0 transition group-hover:border-white/60"></div>
 </article>
 

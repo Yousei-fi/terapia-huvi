@@ -17,6 +17,12 @@ services:
       WORDPRESS_TABLE_PREFIX: wp_
       WP_HOME: ${WP_HOME:-http://localhost:8088}
       WP_SITEURL: ${WP_SITEURL:-http://localhost:8088}
+      WORDPRESS_DEBUG: 'true'
+      WORDPRESS_CONFIG_EXTRA: |
+        define( 'WP_DEBUG', true );
+        define( 'WP_DEBUG_DISPLAY', true );
+        define( 'WP_DEBUG_LOG', true );
+        @ini_set( 'display_errors', '1' );
     depends_on:
       db:
         condition: service_healthy
