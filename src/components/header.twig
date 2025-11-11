@@ -45,22 +45,6 @@
     'en': '/en/statutes'
   }
 } %}
-{% set header_links_defaults = {
-  'fi': [
-    { 'title': 'Missio', 'copy': '/missio' },
-    { 'title': 'Teesit', 'copy': '/teesit' },
-    { 'title': 'Tietopyynnöt', 'copy': '/tietopyynnot' },
-    { 'title': 'Tapahtumat', 'copy': '/tapahtumat' }
-  ],
-  'en': [
-    { 'title': 'Mission', 'copy': '/en/mission' },
-    { 'title': 'Principles', 'copy': '/en/principles' },
-    { 'title': 'Information Requests', 'copy': '/en/information-requests' },
-    { 'title': 'Events', 'copy': '/en/events' }
-  ]
-} %}
-{% set header_links = page_field_pairs('frontpage-header', 'links_' ~ lang, header_links_defaults[lang] ?? header_links_defaults.fi) %}
-
 <header class="relative overflow-hidden bg-gradient-to-br from-brand-orange via-[#f89b4a] to-[#ffb56b] text-brand-white">
   <div class="absolute inset-0 bg-hero-pattern opacity-90"></div>
   <div class="absolute inset-0 bg-accent-glow opacity-60"></div>
@@ -82,19 +66,6 @@
           </svg>
         </a>
       </div>
-      {% if header_links %}
-        <div class="mt-6 flex flex-wrap gap-2">
-          {% for link in header_links %}
-            <a href="{{ link.copy }}" class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-white/20">
-              <span>{{ link.title }}</span>
-              <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M5 12h14" />
-                <path d="M13 6l6 6-6 6" />
-              </svg>
-            </a>
-          {% endfor %}
-        </div>
-      {% endif %}
     </div>
     <div class="max-w-xl rounded-3xl bg-white/10 p-6 shadow-lg shadow-brand-orange/20 backdrop-blur">
       <h2 class="text-xl font-semibold text-white">{{ page_field('frontpage-header', 'card_title_' ~ lang, header_defaults.card_title[lang] ?? header_defaults.card_title.fi) }}</h2>

@@ -30,6 +30,8 @@ class HPPTheme extends \Timber\Site {
             return $vars;
         });
         add_action('init', [$this, 'detect_language']);
+        add_action('after_switch_theme', [$this, 'seed_required_pages']);
+        add_action('init', [$this, 'seed_required_pages_once'], 20);
         parent::__construct();
     }
 
@@ -335,6 +337,82 @@ class HPPTheme extends \Timber\Site {
             $slug . '-en',
             $slug,
         ];
+    }
+
+    public function seed_required_pages_once(): void {
+        if (get_option('hpp_seeded_pages')) {
+            return;
+        }
+
+        $this->seed_required_pages();
+        update_option('hpp_seeded_pages', time());
+    }
+
+    public function seed_required_pages(): void {
+        $publicPages = [
+            ['slug' => 'missio', 'title' => __('Missio', 'hppry')],
+            ['slug' => 'tietopyynnot', 'title' => __('Tietopyynnöt', 'hppry')],
+            ['slug' => 'osallistu', 'title' => __('Osallistu', 'hppry')],
+            ['slug' => 'tietosuoja', 'title' => __('Tietosuoja', 'hppry')],
+            ['slug' => 'saannot', 'title' => __('Säännöt', 'hppry')],
+        ];
+
+        $contentPages = [
+            ['slug' => 'frontpage-hero', 'title' => 'Frontpage Hero', 'status' => 'draft'],
+            ['slug' => 'frontpage-hero-en', 'title' => 'Frontpage Hero (EN)', 'status' => 'draft'],
+            ['slug' => 'frontpage-social', 'title' => 'Frontpage Social', 'status' => 'draft'],
+            ['slug' => 'frontpage-social-en', 'title' => 'Frontpage Social (EN)', 'status' => 'draft'],
+            ['slug' => 'frontpage-video', 'title' => 'Frontpage Video', 'status' => 'draft'],
+            ['slug' => 'frontpage-video-en', 'title' => 'Frontpage Video (EN)', 'status' => 'draft'],
+            ['slug' => 'frontpage-facebook', 'title' => 'Frontpage Facebook', 'status' => 'draft'],
+            ['slug' => 'frontpage-facebook-en', 'title' => 'Frontpage Facebook (EN)', 'status' => 'draft'],
+            ['slug' => 'frontpage-news', 'title' => 'Frontpage News', 'status' => 'draft'],
+            ['slug' => 'frontpage-news-en', 'title' => 'Frontpage News (EN)', 'status' => 'draft'],
+            ['slug' => 'frontpage-overview', 'title' => 'Frontpage Overview', 'status' => 'draft'],
+            ['slug' => 'frontpage-overview-en', 'title' => 'Frontpage Overview (EN)', 'status' => 'draft'],
+            ['slug' => 'frontpage-contact', 'title' => 'Frontpage Contact', 'status' => 'draft'],
+            ['slug' => 'frontpage-contact-en', 'title' => 'Frontpage Contact (EN)', 'status' => 'draft'],
+            ['slug' => 'site-navigation', 'title' => 'Site Navigation', 'status' => 'draft'],
+            ['slug' => 'site-footer', 'title' => 'Site Footer', 'status' => 'draft'],
+            ['slug' => 'mission-page', 'title' => 'Mission Page', 'status' => 'draft'],
+            ['slug' => 'mission-page-en', 'title' => 'Mission Page (EN)', 'status' => 'draft'],
+            ['slug' => 'mission-page-activities', 'title' => 'Mission Page Activities', 'status' => 'draft'],
+            ['slug' => 'mission-page-activities-en', 'title' => 'Mission Page Activities (EN)', 'status' => 'draft'],
+            ['slug' => 'mission-page-principles', 'title' => 'Mission Page Principles', 'status' => 'draft'],
+            ['slug' => 'mission-page-principles-en', 'title' => 'Mission Page Principles (EN)', 'status' => 'draft'],
+            ['slug' => 'requests-page', 'title' => 'Information Requests Page', 'status' => 'draft'],
+            ['slug' => 'requests-page-en', 'title' => 'Information Requests Page (EN)', 'status' => 'draft'],
+            ['slug' => 'involvement-page', 'title' => 'Involvement Page', 'status' => 'draft'],
+            ['slug' => 'involvement-page-en', 'title' => 'Involvement Page (EN)', 'status' => 'draft'],
+            ['slug' => 'statutes-page', 'title' => 'Statutes Page', 'status' => 'draft'],
+            ['slug' => 'statutes-page-en', 'title' => 'Statutes Page (EN)', 'status' => 'draft'],
+            ['slug' => 'privacy-page', 'title' => 'Privacy Page', 'status' => 'draft'],
+            ['slug' => 'privacy-page-en', 'title' => 'Privacy Page (EN)', 'status' => 'draft'],
+        ];
+
+        foreach ($publicPages as $page) {
+            $this->create_page_if_missing($page['slug'], $page['title'], 'publish');
+        }
+
+        foreach ($contentPages as $page) {
+            $this->create_page_if_missing($page['slug'], $page['title'], $page['status']);
+        }
+    }
+
+    private function create_page_if_missing(string $slug, string $title, string $status = 'publish'): void {
+        $existing = get_page_by_path($slug, OBJECT, 'page');
+
+        if ($existing instanceof \WP_Post) {
+            return;
+        }
+
+        wp_insert_post([
+            'post_title' => $title,
+            'post_name' => $slug,
+            'post_status' => $status,
+            'post_type' => 'page',
+            'post_content' => '',
+        ]);
     }
 }
 
