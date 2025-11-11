@@ -1,0 +1,9 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  {% include 'partials/requests-page.twig' with {
+    lang: language ?? 'fi',
+    slug: 'requests-page'
+  } %}
+{% endblock %}
+

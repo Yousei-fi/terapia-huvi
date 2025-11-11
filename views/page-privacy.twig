@@ -1,0 +1,10 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  {% set inferred_language = language ?? 'fi' %}
+  {% include 'partials/privacy-page.twig' with {
+    lang: inferred_language == 'fi' ? 'en' : inferred_language,
+    slug: 'privacy-page'
+  } %}
+{% endblock %}
+

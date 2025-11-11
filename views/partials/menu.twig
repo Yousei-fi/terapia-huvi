@@ -1,3 +1,20 @@
+{% set lang = language ?? 'fi' %}
+{% set language_options = languages ?? [] %}
+{% set navigation_defaults = {
+  'cta_label': {
+    'fi': 'Liity mukaan',
+    'en': 'Join the movement'
+  },
+  'cta_url': {
+    'fi': '/osallistu',
+    'en': '/en/get-involved'
+  },
+  'toggle_label': {
+    'fi': 'Avaa valikko',
+    'en': 'Open menu'
+  }
+} %}
+
 <nav class="bg-brand-charcoal text-white shadow-lg shadow-brand-orange/10">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
     <a href="{{ site.url }}" class="flex items-center gap-3 text-base font-semibold tracking-tight">
@@ -7,31 +24,37 @@
     <div class="flex items-center gap-3 md:gap-6">
       {% if menu and menu.items %}
         <div class="hidden items-center gap-6 text-sm font-medium md:flex">
-          <a href="#missio" class="transition hover:text-brand-orange/80 text-white/90">Toimintamme</a>
-          <a href="#teesit" class="transition hover:text-brand-orange/80 text-white/90">Teesit</a>
-          <a href="#tietopyynnot" class="transition hover:text-brand-orange/80 text-white/90">Tietopyynnöt</a>
-          <a href="#osallistu" class="transition hover:text-brand-orange/80 text-white/90">Tue ja osallistu</a>
-          <a href="#yhteystiedot" class="transition hover:text-brand-orange/80 text-white/90">Yhteystiedot</a>
+          {% for item in menu.items %}
+            <a href="{{ item.link }}" class="transition hover:text-brand-orange/80 text-white/90">{{ item.title }}</a>
+          {% endfor %}
         </div>
         <button class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60 md:hidden" type="button" data-nav-toggle aria-expanded="false" aria-controls="primary-navigation">
-          <span class="sr-only">Avaa valikko</span>
+          <span class="sr-only">{{ page_field('site-navigation', 'toggle_label_' ~ lang, navigation_defaults.toggle_label[lang] ?? navigation_defaults.toggle_label.fi) }}</span>
           <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
       {% endif %}
-      <a href="#osallistu" class="btn-primary hidden md:inline-flex">Tue työtä</a>
+      <div class="hidden items-center gap-2 text-xs font-semibold uppercase tracking-wide text-white/80 md:flex">
+        {% for option in language_options %}
+          <a href="{{ option.url }}" class="rounded-full px-3 py-1 transition {{ option.current ? 'bg-white text-brand-charcoal' : 'bg-white/10 text-white hover:bg-white/20' }}">{{ option.code|upper }}</a>
+        {% endfor %}
+      </div>
+      <a href="{{ page_field('site-navigation', 'cta_url_' ~ lang, navigation_defaults.cta_url[lang] ?? navigation_defaults.cta_url.fi) }}" class="btn-primary hidden md:inline-flex">{{ page_field('site-navigation', 'cta_label_' ~ lang, navigation_defaults.cta_label[lang] ?? navigation_defaults.cta_label.fi) }}</a>
     </div>
   </div>
   {% if menu and menu.items %}
     <div class="hidden border-t border-white/10 bg-brand-charcoal/95 backdrop-blur md:hidden" id="primary-navigation" data-nav-panel>
       <div class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 text-base font-medium">
-        <a href="#missio" class="rounded-full px-4 py-2 text-white/90 transition hover:bg-white/10 hover:text-white">Toimintamme</a>
-        <a href="#teesit" class="rounded-full px-4 py-2 text-white/90 transition hover:bg-white/10 hover:text-white">Teesit</a>
-        <a href="#tietopyynnot" class="rounded-full px-4 py-2 text-white/90 transition hover:bg-white/10 hover:text-white">Tietopyynnöt</a>
-        <a href="#osallistu" class="rounded-full px-4 py-2 text-white/90 transition hover:bg-white/10 hover:text-white">Tue ja osallistu</a>
-        <a href="#yhteystiedot" class="rounded-full px-4 py-2 text-white/90 transition hover:bg-white/10 hover:text-white">Yhteystiedot</a>
-        <a href="#osallistu" class="btn-primary mt-2">Tue työtä</a>
+        {% for item in menu.items %}
+          <a href="{{ item.link }}" class="rounded-full px-4 py-2 text-white/90 transition hover:bg-white/10 hover:text-white">{{ item.title }}</a>
+        {% endfor %}
+        <div class="flex items-center gap-2 px-4 py-2">
+          {% for option in language_options %}
+            <a href="{{ option.url }}" class="rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide transition {{ option.current ? 'bg-white text-brand-charcoal' : 'bg-white/10 text-white hover:bg-white/20' }}">{{ option.code|upper }}</a>
+          {% endfor %}
+        </div>
+        <a href="{{ page_field('site-navigation', 'cta_url_' ~ lang, navigation_defaults.cta_url[lang] ?? navigation_defaults.cta_url.fi) }}" class="btn-primary mt-2">{{ page_field('site-navigation', 'cta_label_' ~ lang, navigation_defaults.cta_label[lang] ?? navigation_defaults.cta_label.fi) }}</a>
       </div>
     </div>
   {% endif %}

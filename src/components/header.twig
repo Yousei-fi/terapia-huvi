@@ -1,32 +1,108 @@
+{% set lang = language ?? 'fi' %}
+{% set header_defaults = {
+  'eyebrow': {
+    'fi': 'Humaania Päihdepolitiikkaa ry',
+    'en': 'Human Drug Policy Association'
+  },
+  'primary_cta_label': {
+    'fi': 'Liity jäseneksi',
+    'en': 'Become a member'
+  },
+  'primary_cta_url': {
+    'fi': '/osallistu',
+    'en': '/en/get-involved'
+  },
+  'secondary_cta_label': {
+    'fi': 'Tutustu tietopyyntöihin',
+    'en': 'Explore information requests'
+  },
+  'secondary_cta_url': {
+    'fi': '/tietopyynnot',
+    'en': '/en/information-requests'
+  },
+  'card_title': {
+    'fi': 'Tarvitsemme jokaisen äänen',
+    'en': 'Every voice matters'
+  },
+  'card_copy': {
+    'fi': 'HPP:n toiminta perustuu vapaaehtoisiin, jotka rakentavat inhimillistä päihdepolitiikkaa yhdessä. Tervetuloa mukaan vaikuttamaan, oppimaan ja jakamaan tietoa.',
+    'en': 'Our movement thrives on volunteers who co-create humane drug policy. Join us to influence change, learn together, and share knowledge.'
+  },
+  'card_primary_cta_label': {
+    'fi': 'Tee osasi',
+    'en': 'Get involved'
+  },
+  'card_primary_cta_url': {
+    'fi': '/osallistu',
+    'en': '/en/get-involved'
+  },
+  'card_secondary_cta_label': {
+    'fi': 'Lue säännöt',
+    'en': 'Read our statutes'
+  },
+  'card_secondary_cta_url': {
+    'fi': '/saannot',
+    'en': '/en/statutes'
+  }
+} %}
+{% set header_links_defaults = {
+  'fi': [
+    { 'title': 'Missio', 'copy': '/missio' },
+    { 'title': 'Teesit', 'copy': '/teesit' },
+    { 'title': 'Tietopyynnöt', 'copy': '/tietopyynnot' },
+    { 'title': 'Tapahtumat', 'copy': '/tapahtumat' }
+  ],
+  'en': [
+    { 'title': 'Mission', 'copy': '/en/mission' },
+    { 'title': 'Principles', 'copy': '/en/principles' },
+    { 'title': 'Information Requests', 'copy': '/en/information-requests' },
+    { 'title': 'Events', 'copy': '/en/events' }
+  ]
+} %}
+{% set header_links = page_field_pairs('frontpage-header', 'links_' ~ lang, header_links_defaults[lang] ?? header_links_defaults.fi) %}
+
 <header class="relative overflow-hidden bg-gradient-to-br from-brand-orange via-[#f89b4a] to-[#ffb56b] text-brand-white">
   <div class="absolute inset-0 bg-hero-pattern opacity-90"></div>
   <div class="absolute inset-0 bg-accent-glow opacity-60"></div>
   <div class="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 md:flex-row md:items-center md:justify-between md:py-16">
     <div class="max-w-2xl space-y-4">
       <img src="{{ site.theme.link }}/logo.png" alt="HPP:n logo" class="h-14 w-14 rounded-full border border-white/40 bg-white/80 shadow-lg shadow-brand-orange/30">
-      <span class="eyebrow text-white/80">Humaania Päihdepolitiikkaa ry</span>
+      <span class="eyebrow text-white/80">{{ page_field('frontpage-header', 'eyebrow_' ~ lang, header_defaults.eyebrow[lang] ?? header_defaults.eyebrow.fi) }}</span>
       <h1 class="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{{ title }}</h1>
       {% if subtitle %}
         <p class="text-base text-white/90 md:text-lg">{{ subtitle }}</p>
       {% endif %}
       <div class="flex flex-wrap items-center gap-3">
-        <a href="#osallistu" class="btn-secondary">Liity mukaan</a>
-        <a href="#tietopyynnot" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
-          <span>Lue tietopyynnöistä</span>
+        <a href="{{ page_field('frontpage-header', 'primary_cta_url_' ~ lang, header_defaults.primary_cta_url[lang] ?? header_defaults.primary_cta_url.fi) }}" class="btn-secondary">{{ page_field('frontpage-header', 'primary_cta_label_' ~ lang, header_defaults.primary_cta_label[lang] ?? header_defaults.primary_cta_label.fi) }}</a>
+        <a href="{{ page_field('frontpage-header', 'secondary_cta_url_' ~ lang, header_defaults.secondary_cta_url[lang] ?? header_defaults.secondary_cta_url.fi) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
+          <span>{{ page_field('frontpage-header', 'secondary_cta_label_' ~ lang, header_defaults.secondary_cta_label[lang] ?? header_defaults.secondary_cta_label.fi) }}</span>
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14" />
             <path d="M13 6l6 6-6 6" />
           </svg>
         </a>
       </div>
+      {% if header_links %}
+        <div class="mt-6 flex flex-wrap gap-2">
+          {% for link in header_links %}
+            <a href="{{ link.copy }}" class="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white transition hover:bg-white/20">
+              <span>{{ link.title }}</span>
+              <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
     <div class="max-w-xl rounded-3xl bg-white/10 p-6 shadow-lg shadow-brand-orange/20 backdrop-blur">
-      <h2 class="text-xl font-semibold text-white">Tarvitsemme jokaisen äänen</h2>
-      <p class="mt-3 text-sm text-white/80">HPP:n toiminta perustuu vapaaehtoisiin, jotka rakentavat inhimillistä päihdepolitiikkaa yhdessä. Tervetuloa mukaan vaikuttamaan, oppimaan ja jakamaan tietoa.</p>
+      <h2 class="text-xl font-semibold text-white">{{ page_field('frontpage-header', 'card_title_' ~ lang, header_defaults.card_title[lang] ?? header_defaults.card_title.fi) }}</h2>
+      <p class="mt-3 text-sm text-white/80">{{ page_field('frontpage-header', 'card_copy_' ~ lang, header_defaults.card_copy[lang] ?? header_defaults.card_copy.fi) }}</p>
       <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#osallistu" class="btn-primary">Tee osasi</a>
-        <a href="#saannot" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
-          <span>Tutustu sääntöihin</span>
+        <a href="{{ page_field('frontpage-header', 'card_primary_cta_url_' ~ lang, header_defaults.card_primary_cta_url[lang] ?? header_defaults.card_primary_cta_url.fi) }}" class="btn-primary">{{ page_field('frontpage-header', 'card_primary_cta_label_' ~ lang, header_defaults.card_primary_cta_label[lang] ?? header_defaults.card_primary_cta_label.fi) }}</a>
+        <a href="{{ page_field('frontpage-header', 'card_secondary_cta_url_' ~ lang, header_defaults.card_secondary_cta_url[lang] ?? header_defaults.card_secondary_cta_url.fi) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
+          <span>{{ page_field('frontpage-header', 'card_secondary_cta_label_' ~ lang, header_defaults.card_secondary_cta_label[lang] ?? header_defaults.card_secondary_cta_label.fi) }}</span>
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14" />
             <path d="M13 6l6 6-6 6" />

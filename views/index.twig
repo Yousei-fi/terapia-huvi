@@ -1,205 +1,153 @@
 {% extends "base.twig" %}
 
 {% block content %}
+{% set lang = language ?? 'fi' %}
+
+{% set hero_defaults = {
+  'fi': {
+    'eyebrow': 'Yhdessä humaanin päihdepolitiikan puolesta',
+    'title': 'Rakennamme turvallista päihdepolitiikkaa ihmisarvo edellä',
+    'cta_primary_label': 'Liity jäseneksi',
+    'cta_primary_url': '/osallistu',
+    'cta_secondary_label': 'Lue ajankohtaista',
+    'cta_secondary_url': '#uutiset'
+  },
+  'en': {
+    'eyebrow': 'Together for humane drug policy',
+    'title': 'Building safer drug policy with dignity first',
+    'cta_primary_label': 'Become a member',
+    'cta_primary_url': '/en/get-involved',
+    'cta_secondary_label': 'Latest updates',
+    'cta_secondary_url': '#uutiset'
+  }
+} %}
+{% set hero_body_defaults = {
+  'fi': '<p>HPP on vuonna 2001 perustettu päihdepoliittinen järjestö, joka kokoaa yhteen kokemusasiantuntijat, ammattilaiset ja päättäjät, jotta päihdepolitiikka perustuu tietoon ja vähentää haittoja. Olemme International Drug Policy Consortium -verkoston jäsen ja edistämme haittoja minimoivaa käyttöä, turvaavaa palvelujärjestelmää ja oikeudenmukaista politiikkaa.</p>',
+  'en': '<p>Founded in 2001, HPP brings together lived experts, professionals, and decision-makers to ensure drug policy is evidence-based and harm-reducing. As a member of the International Drug Policy Consortium, we champion informed use, resilient services, and fair policies.</p>'
+} %}
+{% set hero_default = hero_defaults[lang] ?? hero_defaults.fi %}
+{% set hero_body_default = hero_body_defaults[lang] ?? hero_body_defaults.fi %}
+
 <section id="hero" class="relative overflow-hidden bg-brand-charcoal text-brand-white">
   <div class="absolute inset-0 bg-hero-pattern opacity-40"></div>
   <div class="absolute inset-0 bg-accent-glow opacity-40"></div>
   <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-20">
-    <div class="grid gap-12 md:grid-cols-[1.1fr,0.9fr] md:items-center">
-      <div class="space-y-6">
-        <span class="eyebrow text-white/70">Yhdessä humaanin päihdepolitiikan puolesta</span>
-        <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">Rakennamme turvallista päihdepolitiikkaa ihmisarvo edellä</h2>
-        <p class="text-base text-white/80 md:text-lg">HPP on vuonna 2001 perustettu päihdepoliittinen järjestö, joka kokoaa yhteen kokemusasiantuntijat, ammattilaiset ja päättäjät, jotta päihdepolitiikka perustuu tietoon ja vähentää haittoja. Olemme International Drug Policy Consortium -verkoston jäsen ja edistämme haittoja minimoivaa käyttöä, turvaavaa palvelujärjestelmää ja oikeudenmukaista politiikkaa.</p>
-        <div class="flex flex-wrap items-center gap-3">
-          <a href="#osallistu" class="btn-primary">Liity jäseneksi</a>
-          <a href="#uutiset" class="btn-secondary">Lue ajankohtaista</a>
-        </div>
+    <div class="max-w-3xl space-y-6">
+      <span class="eyebrow text-white/70">{{ page_field('frontpage-hero', 'eyebrow_' ~ lang, hero_default.eyebrow) }}</span>
+      <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">{{ page_field('frontpage-hero', 'title_' ~ lang, hero_default.title) }}</h2>
+      <div class="prose prose-invert max-w-none text-base text-white/80 md:text-lg">
+        {{ page_field('frontpage-hero', 'content_' ~ lang, hero_body_default)|raw }}
       </div>
-      <div class="relative">
-        <div class="rounded-3xl bg-white/10 p-6 shadow-lg shadow-brand-orange/20 backdrop-blur">
-          <h3 class="text-xl font-semibold text-white">Äänet yhteisöstä</h3>
-          <p class="mt-3 text-sm text-white/80">“Kun politiikka koskettaa henkilökohtaisesti, HPP pysähtyy kuuntelemaan. Saimme heidän tuellaan luotua vertaistoimintaa, joka kunnioittaa kaikkia osapuolia.”</p>
-          <p class="mt-4 text-xs uppercase tracking-[0.3em] text-white/60">Anni, vertaistoimija</p>
-        </div>
-        <div class="absolute -bottom-10 -left-6 hidden h-32 w-32 rounded-full bg-white/20 blur-3xl md:block"></div>
-        <div class="absolute -top-12 -right-6 hidden h-40 w-40 rounded-full bg-brand-orange/40 blur-3xl md:block"></div>
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="{{ page_field('frontpage-hero', 'cta_primary_url_' ~ lang, hero_default.cta_primary_url) }}" class="btn-primary">{{ page_field('frontpage-hero', 'cta_primary_label_' ~ lang, hero_default.cta_primary_label) }}</a>
+        <a href="{{ page_field('frontpage-hero', 'cta_secondary_url_' ~ lang, hero_default.cta_secondary_url) }}" class="btn-secondary">{{ page_field('frontpage-hero', 'cta_secondary_label_' ~ lang, hero_default.cta_secondary_label) }}</a>
       </div>
     </div>
   </div>
 </section>
 
-<section id="missio" class="relative bg-white py-16 md:py-20">
-  <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-orange/40 via-brand-orange to-brand-orange/40"></div>
-  <div class="mx-auto max-w-6xl px-4">
-    <div class="grid gap-10 md:grid-cols-[1fr,0.6fr] md:items-center">
-      <div>
-        <span class="eyebrow">Missiomme</span>
-        <h2 class="section-heading">Ihmisarvoinen päihdepolitiikka syntyy kuuntelemalla</h2>
-        <p class="section-copy">Teemme vaikuttamistyötä ruohonjuuresta eduskuntaan. Yhdistämme tutkimustiedon ja kokemuksen, jotta palvelut, säädökset ja asenteet tukevat ihmistä – eivät rankaise.</p>
-        <div class="mt-8 grid gap-6 sm:grid-cols-2">
-          <div class="rounded-3xl border border-brand-orange/20 bg-brand-cloud p-6">
-            <h3 class="text-lg font-semibold text-slate-900">Poliittinen vaikuttaminen</h3>
-            <p class="mt-2 text-sm text-slate-600">Laadimme muistioita, kannanottoja ja verkostoyhteistyötä, jotta päätöksenteko perustuu parhaaseen tietoon.</p>
-          </div>
-          <div class="rounded-3xl border border-brand-orange/20 bg-brand-cloud p-6">
-            <h3 class="text-lg font-semibold text-slate-900">Yhteisöjen tukeminen</h3>
-            <p class="mt-2 text-sm text-slate-600">Vahvistamme vertaistukea, kriisiapua ja perheiden palveluita, joissa kohtaaminen on lempeää ja tavoitteellista.</p>
-          </div>
-        </div>
-      </div>
-      <div class="rounded-3xl bg-brand-orange/10 p-8 shadow-lg shadow-brand-orange/20">
-        <h3 class="text-xl font-semibold text-brand-orange">Painopisteet 2026</h3>
-        <ul class="mt-6 space-y-4 text-sm text-slate-700">
-          <li class="flex items-start gap-3">
-            <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/20 text-brand-orange">1</span>
-            <span>Kiertävä haittoja vähentävä tukikiertue yhdessä paikallisten toimijoiden kanssa.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/20 text-brand-orange">2</span>
-            <span>Hyvät käytännöt kunnille: yhteiset pelisäännöt inhimilliseen palveluohjaukseen.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-brand-orange/20 text-brand-orange">3</span>
-            <span>Vertaistoimijoiden koulutusverkosto kaikkiin maakuntiin.</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+{% set social_defaults = {
+  'fi': {
+    'eyebrow': 'Seuraa ja osallistu',
+    'title': 'Suora yhteys yhteisöön',
+    'copy': 'Poimimme näkyville videomme ja sosiaalisen median syötteet, jotta pysyt mukana työssämme.',
+    'youtube_placeholder': 'Video-embed lisätään tähän, kun lisäosa otetaan käyttöön.',
+    'youtube_cta': 'Katso YouTubessa',
+    'facebook_placeholder': 'Facebook-feed lisätään tähän myöhemmin lisäosan avulla.',
+    'facebook_primary': 'Avaa Facebookissa',
+    'facebook_secondary': 'Seuraa myös X:ssä'
+  },
+  'en': {
+    'eyebrow': 'Stay connected',
+    'title': 'Direct line to our community',
+    'copy': 'Watch our latest videos and social feeds to stay close to the work in real time.',
+    'youtube_placeholder': 'The embedded feed will surface here once the integration is enabled.',
+    'youtube_cta': 'Watch on YouTube',
+    'facebook_placeholder': 'The Facebook feed will appear here once the integration is active.',
+    'facebook_primary': 'Open on Facebook',
+    'facebook_secondary': 'Follow us on X'
+  }
+} %}
+{% set social_default = social_defaults[lang] ?? social_defaults.fi %}
 
-<section id="toiminta" class="bg-brand-cloud py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <div class="md:max-w-2xl">
-      <span class="eyebrow">Toimintamme</span>
-      <h2 class="section-heading">Vahvistamme osaamista, hyvinvointia ja yhteisöllisyyttä</h2>
-      <p class="section-copy">Jokainen ohjelmamme syntyy yhteistyössä niiden kanssa, joita päihdepolitiikka koskettaa. Näin luomme ratkaisuja, jotka kestävät arjessa ja päätöksenteossa.</p>
-    </div>
-    {% set pillars = [
-      {
-        'title': 'Haittoja vähentävät palvelut',
-        'copy': 'Liikkuvat yksiköt ja turvalliset kohtaamispaikat, jotka yhdistävät ihmiset tuen, välineiden ja terveyspalvelujen piiriin.',
-      },
-      {
-        'title': 'Perheiden tuki',
-        'copy': 'Vertaistapaamiset ja ohjattu tuki auttavat läheisiä ymmärtämään ja kohtaamaan päihteiden käyttöä rakentavasti.',
-      },
-      {
-        'title': 'Politiikkavaikuttaminen',
-        'copy': 'Seuraamme lainsäädäntöä, julkaisemme muistioita ja käynnistämme julkista keskustelua vaihtoehtoisista malleista.',
-      },
-    ] %}
-    <div class="mt-12 grid gap-8 md:grid-cols-3">
-      {% for pillar in pillars %}
-        <div class="flex h-full flex-col rounded-3xl border border-brand-orange/10 bg-white p-6 shadow-sm shadow-brand-orange/10">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-orange/15 text-brand-orange">
-            <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M12 6v12" />
-              <path d="M6 12h12" />
-            </svg>
-          </div>
-          <h3 class="mt-6 text-lg font-semibold text-slate-900">{{ pillar.title }}</h3>
-          <p class="mt-3 text-sm text-slate-600">{{ pillar.copy }}</p>
-          <div class="mt-auto pt-6">
-            <a href="/toiminta" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80">
-              <span>Tutustu lisää</span>
-              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M5 12h14" />
-                <path d="M13 6l6 6-6 6" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-{% set theses = [
-  'Päihdepolitiikan ja -työn on perustuttava parhaaseen saatavilla olevaan tietoon keinojen vaikuttavuudesta.',
-  'Päihteitä käytetään lähes kaikissa yhteiskunnissa. Koska käyttöä ei voida täysin estää, sitä tulee ohjata vastuulliseen ja haittoja vähentävään suuntaan.',
-  'Päihteiden ongelmakäyttöä on ehkäistävä tunnistamalla ja korjaamalla taustalla vaikuttavia yhteiskunnallisia ja yksilöllisiä tekijöitä.',
-  'Apua tarvitseville on taattava inhimillinen ja tutkitusti vaikuttava hoito sekä kuntoutus, jossa psykososiaalinen tuki täydentää lääkehoitoa.',
-  'On huomioitava, että suurin osa käytöstä ei ole ongelmakäyttöä. Päätöksenteossa on huomioitava myös kohtuullinen käyttö.',
-  'Käyttäjiin kohdistuvaa negatiivista asenneilmapiiriä on purettava, sillä leimaaminen lisää haittoja ja vaikeuttaa avun saantia.',
-  'Päihteiden käytön rangaistavuudesta on luovuttava, koska rangaistukset lisäävät haittoja eivätkä vähennä käyttöä.',
-  'Huumemarkkinoiden jättäminen rikollisille on kestämätön ratkaisu – vaihtoehtoja on tarkasteltava avoimesti.',
-  'Päihdepolitiikan keinojen on kunnioitettava ihmisoikeuksia ja huomioitava globaalit vaikutukset vastuullisesti.',
-  'Etsimme yhdessä eri toimijoiden kanssa keinoja päihdepoliittisen reformin toteuttamiseksi.',
-]%}
-
-<section id="teesit" class="bg-white py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">HPP:n teesit</span>
-    <h2 class="section-heading">Kymmenen periaatetta humaanille päihdepolitiikalle</h2>
-    <p class="section-copy">Teesimme ohjaavat kaikkea toimintaamme vaikuttamisesta palveluiden kehittämiseen. Niiden avulla varmistamme, että muutos perustuu tietoon, ihmisarvoon ja yhteistyöhön.</p>
-    <ol class="mt-10 grid gap-6 md:grid-cols-2">
-      {% for thesis in theses %}
-        <li class="group flex h-full flex-col rounded-3xl border border-brand-orange/15 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10 transition duration-150 hover:-translate-y-1 hover:border-brand-orange/40">
-          <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-orange text-sm font-semibold text-white shadow-lg shadow-brand-orange/30">{{ loop.index }}</span>
-          <p class="mt-4 text-sm leading-relaxed text-slate-700">{{ thesis }}</p>
-        </li>
-      {% endfor %}
-    </ol>
-  </div>
-</section>
-
-<section id="tietopyynnot" class="bg-brand-cloud py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">Tietopyynnöt</span>
-    <h2 class="section-heading">Tehdyt tietopyynnöt ja dokumentoitu tieto</h2>
-    <p class="section-copy">Julkaisemme viranomaisille tekemämme, julkisuuslakiin perustuvat tietopyynnöt ja niihin saadut vastaukset, jotta tieto olisi avoimesti hyödynnettävissä. Päivitämme tietopyyntölistaa sitä mukaa, kun vastauksia valmistuu.</p>
-    <div class="mt-10 grid gap-6 md:grid-cols-2">
-      <article class="rounded-3xl border border-brand-orange/20 bg-white p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">Seuraukset epäillylle ja tuomitulle</h3>
-        <p class="mt-2 text-sm text-slate-600">Turvallisuusselvitysten, rikostaustaotteiden ja rekisterimerkintöjen vaikutukset käyttö- ja huumausainerikoksissa.</p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-600">
-          <li>Huumausaineen käyttörikos turvallisuusselvityksessä (Suojelupoliisi, 2017)</li>
-          <li>Huumausaineen käyttörikos rikostaustaotteessa (Oikeusrekisterikeskus, 2017)</li>
-          <li>Merkinnät poliisin rekistereissä ja lastensuojeluilmoitukset (Poliisihallitus, 2020)</li>
-        </ul>
-      </article>
-      <article class="rounded-3xl border border-brand-orange/20 bg-white p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">Ajoterveys ja turvallisuus</h3>
-        <p class="mt-2 text-sm text-slate-600">Päihteiden vaikutus ajokuntoon, ajokorttiluvat ja poliisin velvollisuudet liikenneturvallisuuden varmistamisessa.</p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-600">
-          <li>Päihteiden vaikutus ajokuntoon (THL, 2018)</li>
-          <li>Ajokieltojen perusteet ja palauttaminen (Poliisihallitus, 2018–2019)</li>
-          <li>Ajoterveyden lausuntomääräykset (Poliisihallitus, 2019)</li>
-        </ul>
-      </article>
-      <article class="rounded-3xl border border-brand-orange/20 bg-white p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">Rikoksen vakavuus ja ohjeistukset</h3>
-        <p class="mt-2 text-sm text-slate-600">Poliisin ja syyttäjän ohjeet, prioriteettilistat sekä oikeuskäytäntö koskien huumausaineiden vaarallisuutta.</p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-600">
-          <li>Poliisin ohjeet huumausaineasioissa (Poliisihallitus, 2018)</li>
-          <li>Huumausaineiden vaarallisuutta koskevat lausunnot (KRP, THL, Fimea, 2017)</li>
-          <li>Prioriteettilistat rikosnimikkeistä (Poliisihallitus, 2019)</li>
-        </ul>
-      </article>
-      <article class="rounded-3xl border border-brand-orange/20 bg-white p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">Tilastot ja selvitykset</h3>
-        <p class="mt-2 text-sm text-slate-600">Tilastokeskuksen, poliisin ja tullin aineistot, jotka valottavat päihdepolitiikan vaikutuksia ja tarpeita.</p>
-        <ul class="mt-4 space-y-2 text-sm text-slate-600">
-          <li>Käyttörikosten määrät ja tekijät (Poliisiammattikorkeakoulu, 2018)</li>
-          <li>Huumetakavarikot aineittain (KRP, 2019)</li>
-          <li>Liikennejuopumustilastot (KRP, 2015–2020)</li>
-        </ul>
-      </article>
-    </div>
-    <p class="mt-10 text-sm text-slate-600">Ajantasaiset tietopyynnöt ja vastaukset julkaistaan tietopyynto.fi-palvelussa. Koko listan saat pyytämällä meiltä: <a href="mailto:hpp@hppry.fi" class="text-brand-orange hover:text-brand-orange/80">hpp@hppry.fi</a>.</p>
-  </div>
-</section>
-
-<section id="uutiset" class="bg-white py-16 md:py-20">
+<section id="social-hub" class="bg-white py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
     <div class="md:flex md:items-end md:justify-between">
       <div class="md:max-w-xl">
-        <span class="eyebrow">Ajankohtaista</span>
-        <h2 class="section-heading">Uutiset ja tarinat liikkeestämme</h2>
-        <p class="section-copy">Kentältä, politiikasta ja vapaaehtoistyöstä kantautuvat kuulumiset kertovat työn vaikutuksesta. Lue uusimmat päivitykset ja tule mukaan muuttamaan suuntaa.</p>
+        <span class="eyebrow">{{ page_field('frontpage-social', 'eyebrow_' ~ lang, social_default.eyebrow) }}</span>
+        <h2 class="section-heading">{{ page_field('frontpage-social', 'title_' ~ lang, social_default.title) }}</h2>
+        <p class="section-copy">{{ page_field('frontpage-social', 'copy_' ~ lang, social_default.copy) }}</p>
       </div>
-      <a href="/blogi" class="btn-primary mt-6 md:mt-0">Kaikki uutiset</a>
+      <div class="mt-6 flex gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500 md:mt-0">
+        <a href="https://www.facebook.com/hppry/" class="inline-flex items-center gap-2 rounded-full bg-brand-charcoal px-4 py-2 text-white transition hover:bg-brand-charcoal/90" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.youtube.com/@hppry" class="inline-flex items-center gap-2 rounded-full bg-brand-orange px-4 py-2 text-white transition hover:bg-brand-orange/90" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div class="mt-12 grid gap-8 lg:grid-cols-2">
+      <article class="rounded-3xl border border-brand-orange/20 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
+        <h3 class="text-lg font-semibold text-slate-900">{{ page_field('frontpage-video', 'title_' ~ lang, social_default.youtube_cta) }}</h3>
+        <p class="mt-3 text-sm text-slate-600">{{ page_field('frontpage-video', 'copy_' ~ lang, social_default.copy) }}</p>
+        <div class="mt-6 rounded-2xl border border-brand-orange/20 bg-white p-4 shadow-inner">
+          <div id="hpp-youtube-feed" class="aspect-video w-full rounded-xl bg-brand-cloud/80 flex items-center justify-center text-sm text-slate-600">
+            <span>{{ page_field('frontpage-video', 'placeholder_text_' ~ lang, social_default.youtube_placeholder) }}</span>
+          </div>
+        </div>
+        <a href="https://www.youtube.com/@hppry" class="btn-primary mt-6 inline-flex" target="_blank" rel="noopener">{{ page_field('frontpage-video', 'cta_label_' ~ lang, social_default.youtube_cta) }}</a>
+      </article>
+      <article class="rounded-3xl border border-brand-orange/20 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
+        <h3 class="text-lg font-semibold text-slate-900">{{ page_field('frontpage-facebook', 'title_' ~ lang, 'Facebook') }}</h3>
+        <p class="mt-3 text-sm text-slate-600">{{ page_field('frontpage-facebook', 'copy_' ~ lang, social_default.copy) }}</p>
+        <div class="mt-6 rounded-2xl border border-brand-orange/20 bg-white p-4 shadow-inner">
+          <div id="hpp-facebook-feed" class="h-72 w-full rounded-xl bg-brand-cloud/60 flex items-center justify-center text-sm text-slate-600">
+            <span>{{ page_field('frontpage-facebook', 'placeholder_text_' ~ lang, social_default.facebook_placeholder) }}</span>
+          </div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="https://www.facebook.com/hppry/" class="btn-secondary" target="_blank" rel="noopener">{{ page_field('frontpage-facebook', 'primary_label_' ~ lang, social_default.facebook_primary) }}</a>
+          <a href="https://twitter.com/HPPry" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80" target="_blank" rel="noopener">
+            <span>{{ page_field('frontpage-facebook', 'secondary_label_' ~ lang, social_default.facebook_secondary) }}</span>
+            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14" />
+              <path d="M13 6l6 6-6 6" />
+            </svg>
+          </a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+{% set news_defaults = {
+  'fi': {
+    'eyebrow': 'Ajankohtaista',
+    'title': 'Uutiset ja tarinat liikkeestämme',
+    'copy': '<p>Kentältä, politiikasta ja vapaaehtoistyöstä kantautuvat kuulumiset kertovat työn vaikutuksesta. Lue uusimmat päivitykset ja tule mukaan muuttamaan suuntaa.</p>',
+    'cta_label': 'Kaikki uutiset',
+    'cta_url': '/blogi',
+    'empty': 'Tarinoita on tulossa pian – seuraa meitä somessa tai liity sähköpostilistalle pysyäksesi ajan tasalla.'
+  },
+  'en': {
+    'eyebrow': 'Latest',
+    'title': 'News and stories from our movement',
+    'copy': '<p>Field updates, policy breakthroughs, and volunteer stories show the impact we create together. Dive into the latest highlights.</p>',
+    'cta_label': 'All articles',
+    'cta_url': '/en/news',
+    'empty': 'Fresh stories are on their way—follow us on social or join our newsletter to stay in the loop.'
+  }
+} %}
+{% set news_default = news_defaults[lang] ?? news_defaults.fi %}
+
+<section id="uutiset" class="bg-brand-charcoal py-16 text-brand-white md:py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="md:flex md:items-end md:justify-between">
+      <div class="md:max-w-xl">
+        <span class="eyebrow text-white/80">{{ page_field('frontpage-news', 'eyebrow_' ~ lang, news_default.eyebrow) }}</span>
+        <h2 class="section-heading text-white">{{ page_field('frontpage-news', 'title_' ~ lang, news_default.title) }}</h2>
+        <div class="prose prose-invert max-w-none text-sm text-white/80">
+          {{ page_field('frontpage-news', 'content_' ~ lang, news_default.copy)|raw }}
+        </div>
+      </div>
+      <a href="{{ page_field('frontpage-news', 'cta_url_' ~ lang, news_default.cta_url) }}" class="btn-secondary mt-6 md:mt-0">{{ page_field('frontpage-news', 'cta_label_' ~ lang, news_default.cta_label) }}</a>
     </div>
     {% if posts %}
       <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -207,149 +155,115 @@
           {{ include('card.twig', {
             title: post.title,
             link: post.link,
-            meta: post.date('j.n.Y'),
+            meta: post.date(lang == 'fi' ? 'j.n.Y' : 'F j, Y'),
             content: post.preview(30),
             image: post.thumbnail ? post.thumbnail.src('large') : null,
           }) }}
         {% endfor %}
       </div>
     {% else %}
-      <p class="mt-10 text-base text-slate-600">Tarinoita on tulossa pian – seuraa meitä somessa tai liity sähköpostilistalle pysyäksesi ajan tasalla.</p>
+      <p class="mt-10 text-base text-white/70">{{ page_field('frontpage-news', 'empty_message_' ~ lang, news_default.empty) }}</p>
     {% endif %}
   </div>
 </section>
 
-<section id="video" class="bg-brand-cloud py-16 md:py-20">
+{% set overview_defaults = {
+  'fi': {
+    'eyebrow': 'Tutustu syvemmin',
+    'title': 'Näin vaikutamme',
+    'cards': [
+      { 'title': 'Missio', 'copy': 'Miten rakennamme yhteiskuntaa, jossa apu on saavutettavaa ja inhimillistä.', 'cta_label': 'Lue lisää', 'cta_url': '/missio' },
+      { 'title': 'Teesit', 'copy': 'Kymmenen periaatetta, jotka ohjaavat humaania päihdepolitiikkaamme.', 'cta_label': 'Tutustu teesihin', 'cta_url': '/teesit' },
+      { 'title': 'Tietopyynnöt', 'copy': 'Avoimuutta viranomaistoimintaan – julkaistut tietopyynnöt ja vastaukset.', 'cta_label': 'Avaa arkisto', 'cta_url': '/tietopyynnot' }
+    ]
+  },
+  'en': {
+    'eyebrow': 'Explore further',
+    'title': 'Where our impact happens',
+    'cards': [
+      { 'title': 'Mission', 'copy': 'See how we build services and policies that centre dignity.', 'cta_label': 'Read the mission', 'cta_url': '/en/mission' },
+      { 'title': 'Principles', 'copy': 'Ten principles that anchor humane drug policy reform.', 'cta_label': 'View the principles', 'cta_url': '/en/principles' },
+      { 'title': 'Information requests', 'copy': 'Transparency in practice—discover our published requests and responses.', 'cta_label': 'Open the archive', 'cta_url': '/en/information-requests' }
+    ]
+  }
+} %}
+{% set overview_default = overview_defaults[lang] ?? overview_defaults.fi %}
+{% set overview_cards = page_field_cards('frontpage-overview', 'cards_' ~ lang, overview_default.cards) %}
+
+<section id="overview" class="bg-white py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">Videot</span>
-    <h2 class="section-heading">YouTube-kanavamme</h2>
-    <p class="section-copy">Upotamme tähän HPP:n YouTube-syötteen, kun lisäosa on asennettu. Sillä välin voit katsoa uusimmat videot YouTube-kanavaltamme.</p>
-    <div class="mt-8 rounded-3xl border border-brand-orange/20 bg-white p-6 shadow-sm shadow-brand-orange/10">
-      <div id="hpp-youtube-feed" class="aspect-video w-full rounded-2xl bg-brand-cloud/80 flex items-center justify-center text-sm text-slate-600">
-        <span>Video-embed lisätään tähän, kun lisäosa otetaan käyttöön.</span>
-      </div>
-      <a href="https://www.youtube.com/@hppry" class="btn-primary mt-6 inline-flex" target="_blank" rel="noopener">Katso YouTubessa</a>
+    <span class="eyebrow">{{ page_field('frontpage-overview', 'eyebrow_' ~ lang, overview_default.eyebrow) }}</span>
+    <h2 class="section-heading">{{ page_field('frontpage-overview', 'title_' ~ lang, overview_default.title) }}</h2>
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      {% for card in overview_cards %}
+        <article class="flex h-full flex-col rounded-3xl border border-brand-orange/10 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10 transition duration-150 hover:-translate-y-1 hover:border-brand-orange/30">
+          <h3 class="text-lg font-semibold text-slate-900">{{ card.title }}</h3>
+          <p class="mt-3 text-sm text-slate-600">{{ card.copy }}</p>
+          <div class="mt-auto pt-6">
+            <a href="{{ card.cta_url }}" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80">
+              <span>{{ card.cta_label }}</span>
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14" />
+                <path d="M13 6l6 6-6 6" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      {% endfor %}
     </div>
   </div>
 </section>
 
-<section id="facebook" class="bg-white py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">Yhteisö</span>
-    <h2 class="section-heading">Facebook-syöte</h2>
-    <p class="section-copy">Facebook-syöte näkyy tässä heti, kun lisäosa on asennettu ja julkaisut on kytketty sivulle.</p>
-    <div class="mt-8 rounded-3xl border border-brand-orange/20 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
-      <div id="hpp-facebook-feed" class="h-64 w-full rounded-2xl bg-white/60 flex items-center justify-center text-sm text-slate-600">
-        <span>Facebook-feed lisätään tähän myöhemmin lisäosan avulla.</span>
-      </div>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="https://www.facebook.com/hppry/" class="btn-secondary" target="_blank" rel="noopener">Avaa Facebookissa</a>
-        <a href="https://twitter.com/HPPry" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80" target="_blank" rel="noopener">
-          <span>Seuraa myös X:ssä</span>
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="M13 6l6 6-6 6" />
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+{% set contact_defaults = {
+  'fi': {
+    'eyebrow': 'Yhteystiedot',
+    'title': 'Ota yhteyttä',
+    'copy': 'Tavoitat meidät nopeiten sähköpostitse. Hallituksen jäsenten osoitteet ovat muodossa etunimi.sukunimi@hppry.fi.',
+    'general_label': 'Yleinen yhteys:',
+    'chair_label': 'Puheenjohtaja:',
+    'vice_label': 'Varapuheenjohtaja:',
+    'board_label': 'Hallituksen jäsenet:',
+    'social_heading': 'Seuraa meitä',
+    'holvi_label': 'Holvi-verkkokauppa'
+  },
+  'en': {
+    'eyebrow': 'Contact',
+    'title': 'Get in touch',
+    'copy': 'Email is the fastest way to reach us. Board members use the format firstname.lastname@hppry.fi.',
+    'general_label': 'General inquiries:',
+    'chair_label': 'Chairperson:',
+    'vice_label': 'Vice Chair:',
+    'board_label': 'Board members:',
+    'social_heading': 'Follow us',
+    'holvi_label': 'Holvi web shop'
+  }
+} %}
+{% set contact_default = contact_defaults[lang] ?? contact_defaults.fi %}
+{% set contact_email = page_field('frontpage-contact', 'general_contact_email_' ~ lang, 'hpp@hppry.fi') %}
 
-<section id="osallistu" class="bg-brand-charcoal py-16 text-brand-white md:py-20">
-  <div class="mx-auto max-w-5xl px-4">
-    <span class="eyebrow text-white/80">Tue ja osallistu</span>
-    <h2 class="section-heading text-white">Humaania päihdepolitiikkaa ry toimii vapaaehtoisvoimin</h2>
-    <div class="mt-6 space-y-4 text-base text-white/85">
-      <p>Katamme toimintamme kulut pääasiassa jäsenmaksuilla, lahjoituksilla ja verkkokaupan myynnillä. Jos pidät parempaa päihdepolitiikkaa tärkeänä, voit tukea työtämme liittymällä jäseneksemme tai hankkimalla tuotteita verkkokaupastamme. Tarjolla on sekä varsinainen että kannatusjäsenyys, alkaen 15 eurosta. Lue kuitenkin ensin yhdistyksen säännöt ja tietosuojaseloste.</p>
-      <p>Yhdistyksen toimintaan osallistuminen ei vaadi jäsenyyttä, mutta vain varsinaisella jäsenellä on oikeus äänestää sääntömääräisissä kokouksissa ja hakea hallitukseen. Jos et pysty osallistumaan käytännön toimintaan, jäsenmaksu auttaa kattamaan kuluja, kuten mediasisällön tuotantoa, tapahtumia, painotuotteita ja verkkosivujen ylläpitoa.</p>
-      <p>Voit auttaa myös osallistumalla suoraan – tarvitsemme kirjoittajia, kuvaajia, graafikoita, verkkosivujen päivittäjiä, some-viestijöitä, tapahtumajärjestäjiä ja keskustelijoita. Osallistumisen ainoa edellytys on halu edistää inhimillistä päihdepolitiikkaa.</p>
-      <p>Jos haluat mukaan, ota yhteyttä: <a href="mailto:hpp@hppry.fi" class="underline decoration-white/50 decoration-2 underline-offset-4 hover:text-white">hpp@hppry.fi</a>. Tapaamme erityisesti Helsingissä, mutta myös etäosallistuminen on mahdollista.</p>
-    </div>
-    <div class="mt-8 flex flex-wrap gap-4">
-      <a href="https://holvi.com/shop/hpp-ry/" class="btn-primary" target="_blank" rel="noopener">Verkkokauppa & jäsenyydet</a>
-      <a href="https://holvi.com/shop/hpp-ry/" class="btn-secondary" target="_blank" rel="noopener">Liity jäseneksi Holvissa</a>
-      <a href="#saannot" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
-        <span>Lue yhdistyksen säännöt</span>
-        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M5 12h14" />
-          <path d="M13 6l6 6-6 6" />
-        </svg>
-      </a>
-    </div>
-    <p class="mt-6 text-sm text-white/70">Tilinumero lahjoituksia varten: <span class="font-semibold text-white">IBAN FI40 7997 7997 1034 99</span>, BIC HOLVFIHH.</p>
-  </div>
-</section>
-
-<section id="saannot" class="bg-white py-16 md:py-20">
+<section id="yhteystiedot" class="bg-brand-charcoal py-16 text-brand-white md:py-20">
   <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">Säännöt</span>
-    <h2 class="section-heading">Yhdistyksen säännöt tiivistettynä</h2>
-    <p class="section-copy">Tutustu yhdistyksen virallisiin sääntöihin ennen jäseneksi liittymistä. Alla on yhteenveto keskeisistä kohdista; täydellinen sääntöteksti löytyy liitetiedostona ja on saatavilla pyynnöstä.</p>
-    <div class="mt-8 grid gap-6 md:grid-cols-2">
-      <div class="rounded-3xl border border-brand-orange/15 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">1–3. Tarkoitus ja jäsenyys</h3>
-        <p class="mt-2 text-sm text-slate-600">HPP:n tarkoitus on vähentää päihteiden käytön haittoja, kehittää palveluja ja edistää tietoon perustuvaa päihdepolitiikkaa. Jäsenyys on avoin kaikille tarkoituksen hyväksyville. Jäsenet voivat olla varsinaisia, kannatus- tai kunniajäseniä.</p>
-      </div>
-      <div class="rounded-3xl border border-brand-orange/15 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">4–7. Hallinto ja kokoukset</h3>
-        <p class="mt-2 text-sm text-slate-600">Hallitus hoitaa yhdistyksen asioita, ja sen toimikausi on kalenterivuosi. Yhdistys pitää kevät- ja syyskokouksen, joissa päätetään taloudesta, toimintasuunnitelmasta ja hallituksen kokoonpanosta.</p>
-      </div>
-      <div class="rounded-3xl border border-brand-orange/15 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">8–9. Kokousten koolle kutsuminen</h3>
-        <p class="mt-2 text-sm text-slate-600">Kokoukset kutsutaan koolle vähintään 14 vuorokautta etukäteen sähköpostitse. Kevät- ja syyskokouksissa käsitellään tilinpäätös, vastuuvapaus, toimintasuunnitelma, budjetti ja hallituksen valinta.</p>
-      </div>
-      <div class="rounded-3xl border border-brand-orange/15 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
-        <h3 class="text-lg font-semibold text-slate-900">10. Sääntömuutokset ja purkaminen</h3>
-        <p class="mt-2 text-sm text-slate-600">Sääntöjen muuttaminen vaatii 3/4 enemmistön. Yhdistyksen purkamisesta päätetään kahdessa peräkkäisessä kokouksessa. Varat käytetään yhdistyksen tarkoituksen mukaisesti.</p>
-      </div>
-    </div>
-    <a href="mailto:hpp@hppry.fi" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80">
-      <span>Pyydä täydelliset säännöt sähköpostitse</span>
-      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M5 12h14" />
-        <path d="M13 6l6 6-6 6" />
-      </svg>
-    </a>
-  </div>
-</section>
-
-<section id="tietosuoja" class="bg-brand-cloud py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">Tietosuoja</span>
-    <h2 class="section-heading">Rekisteriseloste</h2>
-    <p class="section-copy">HPP ylläpitää jäsenistöstään henkilörekisteriä, jota käytetään jäsenyyteen liittyvien oikeuksien varmistamiseen, jäsenmaksujen seurantaan ja viestintään. Tietoja säilytetään suojatuissa järjestelmissä ja poistetaan viimeistään kolmen vuoden kuluttua jäsenyyden päättymisestä.</p>
-    <div class="mt-6 space-y-3 text-sm text-slate-700">
-      <p>Rekisteröidyllä on oikeus tarkastaa, muuttaa ja poistaa tietonsa. Jos haluat asioida tietosuojaan liittyen, lähetä allekirjoitettu pyyntö osoitteeseen <a href="mailto:hpp@hppry.fi" class="text-brand-orange hover:text-brand-orange/80">hpp@hppry.fi</a>.</p>
-      <p>Tietoja ei luovuteta kolmansille osapuolille.</p>
-      <p>Voit pyytää täydellisen tietosuojaselosteen ja lisätiedot sähköpostitse.</p>
-    </div>
-  </div>
-</section>
-
-<section id="yhteystiedot" class="bg-white py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">Yhteystiedot</span>
-    <h2 class="section-heading">Ota yhteyttä</h2>
-    <p class="section-copy">Tavoitat meidät nopeiten sähköpostitse. Hallituksen jäsenten osoitteet ovat muodossa etunimi.sukunimi@hppry.fi.</p>
+    <span class="eyebrow text-white/80">{{ page_field('frontpage-contact', 'eyebrow_' ~ lang, contact_default.eyebrow) }}</span>
+    <h2 class="section-heading text-white">{{ page_field('frontpage-contact', 'title_' ~ lang, contact_default.title) }}</h2>
+    <p class="section-copy text-white/80">{{ page_field('frontpage-contact', 'copy_' ~ lang, contact_default.copy) }}</p>
     <div class="mt-8 grid gap-8 md:grid-cols-2">
-      <div class="space-y-3 text-sm text-slate-700">
-        <p><strong>Yleinen yhteys:</strong> <a href="mailto:hpp@hppry.fi" class="text-brand-orange hover:text-brand-orange/80">hpp@hppry.fi</a></p>
-        <p><strong>Puheenjohtaja:</strong> Timo Pasanen</p>
-        <p><strong>Varapuheenjohtaja:</strong> Tiina Poutiainen</p>
-        <p><strong>Hallituksen jäsenet:</strong> Aleksi Hupli, Miina Kajos, Mikko Neuvo</p>
+      <div class="space-y-3 text-sm text-white/75">
+        <p><strong>{{ page_field('frontpage-contact', 'general_contact_label_' ~ lang, contact_default.general_label) }}</strong> <a href="mailto:{{ contact_email }}" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_email }}</a></p>
+        <p><strong>{{ page_field('frontpage-contact', 'chair_label_' ~ lang, contact_default.chair_label) }}</strong> {{ page_field('frontpage-contact', 'chair_value_' ~ lang, lang == 'fi' ? 'Timo Pasanen' : 'Timo Pasanen') }}</p>
+        <p><strong>{{ page_field('frontpage-contact', 'vice_chair_label_' ~ lang, contact_default.vice_label) }}</strong> {{ page_field('frontpage-contact', 'vice_chair_value_' ~ lang, lang == 'fi' ? 'Tiina Poutiainen' : 'Tiina Poutiainen') }}</p>
+        <p><strong>{{ page_field('frontpage-contact', 'board_members_label_' ~ lang, contact_default.board_label) }}</strong> {{ page_field('frontpage-contact', 'board_members_value_' ~ lang, lang == 'fi' ? 'Aleksi Hupli, Miina Kajos, Mikko Neuvo' : 'Aleksi Hupli, Miina Kajos, Mikko Neuvo') }}</p>
       </div>
       <div class="space-y-4">
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-slate-600">Seuraa meitä</h3>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70">{{ page_field('frontpage-contact', 'social_heading_' ~ lang, contact_default.social_heading) }}</h3>
         <div class="flex flex-wrap gap-3 text-sm font-semibold text-brand-orange">
-          <a href="https://www.facebook.com/hppry/" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://twitter.com/HPPry" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">X (Twitter)</a>
-          <a href="https://www.instagram.com/humaaniapaihdepolitiikkaa/" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">Instagram</a>
-          <a href="https://www.youtube.com/@hppry" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">YouTube</a>
-          <a href="https://www.tiktok.com/@hppry" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">TikTok</a>
+          <a href="https://www.facebook.com/hppry/" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_facebook_label_' ~ lang, lang == 'fi' ? 'Facebook' : 'Facebook') }}</a>
+          <a href="https://twitter.com/HPPry" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_x_label_' ~ lang, lang == 'fi' ? 'X (Twitter)' : 'X (Twitter)') }}</a>
+          <a href="https://www.instagram.com/humaaniapaihdepolitiikkaa/" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_instagram_label_' ~ lang, 'Instagram') }}</a>
+          <a href="https://www.youtube.com/@hppry" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_youtube_label_' ~ lang, 'YouTube') }}</a>
+          <a href="https://www.tiktok.com/@hppry" class="transition hover:text-brand-orange/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_tiktok_label_' ~ lang, 'TikTok') }}</a>
         </div>
         <a href="https://holvi.com/shop/hpp-ry/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80" target="_blank" rel="noopener">
-          <span>Holvi-verkkokauppa</span>
+          <span>{{ page_field('frontpage-contact', 'holvi_label_' ~ lang, contact_default.holvi_label) }}</span>
           <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M5 12h14" />
             <path d="M13 6l6 6-6 6" />

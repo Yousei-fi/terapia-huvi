@@ -1,0 +1,62 @@
+{% set lang = lang ?? language ?? 'fi' %}
+{% set slug = slug ?? 'privacy-page' %}
+{% set privacy_defaults = {
+  'fi': {
+    'eyebrow': 'Tietosuoja',
+    'title': 'Rekisteriseloste',
+    'copy': '<p>HPP ylläpitää jäsenistöstään ja vapaaehtoisistaan rekisteriä, jota käytetään jäsenyyteen liittyvien oikeuksien varmistamiseen, viestintään ja tapahtumien koordinointiin. Tietoja säilytetään suojatuissa järjestelmissä ja poistetaan viimeistään kolmen vuoden kuluttua jäsenyyden päättymisestä.</p>',
+    'rights_heading': 'Rekisteröidyn oikeudet',
+    'rights': [
+      'Oikeus tarkastaa, oikaista ja poistaa omat tietonsa.',
+      'Oikeus rajoittaa käsittelyä sekä vastustaa profilointia.',
+      'Oikeus siirtää tiedot järjestelmästä toiseen.'
+    ],
+    'contact_heading': 'Tietosuojaan liittyvät yhteydenotot',
+    'contact_copy': '<p>Lähetä allekirjoitettu pyyntö osoitteeseen <a href="mailto:hpp@hppry.fi" class="text-brand-orange hover:text-brand-orange/80">hpp@hppry.fi</a>. Käsittelemme pyynnöt kuukauden kuluessa.</p>'
+  },
+  'en': {
+    'eyebrow': 'Privacy',
+    'title': 'Data protection summary',
+    'copy': '<p>HPP maintains a register of members and volunteers to safeguard membership rights, coordinate communications, and organise events. Data is stored securely and deleted no later than three years after membership lapses.</p>',
+    'rights_heading': 'Your rights',
+    'rights': [
+      'Access, rectify, and erase your personal data.',
+      'Restrict processing and object to profiling.',
+      'Request data portability to another system.'
+    ],
+    'contact_heading': 'Contact for privacy matters',
+    'contact_copy': '<p>Send a signed request to <a href="mailto:hpp@hppry.fi" class="text-brand-orange hover:text-brand-orange/80">hpp@hppry.fi</a>. We respond within one month.</p>'
+  }
+} %}
+{% set privacy_data = privacy_defaults[lang] ?? privacy_defaults.fi %}
+{% set rights = page_field_list(slug, 'rights_' ~ lang, privacy_data.rights) %}
+
+<section class="bg-brand-cloud py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <span class="eyebrow">{{ page_field(slug, 'eyebrow_' ~ lang, privacy_data.eyebrow) }}</span>
+    <h1 class="section-heading">{{ page_field(slug, 'title_' ~ lang, privacy_data.title) }}</h1>
+    <div class="prose max-w-none text-slate-700">
+      {{ page_field(slug, 'content_' ~ lang, privacy_data.copy)|raw }}
+    </div>
+    <div class="mt-8 grid gap-8 md:grid-cols-2">
+      <div class="rounded-3xl border border-brand-orange/15 bg-white p-6 shadow-sm shadow-brand-orange/10">
+        <h2 class="text-lg font-semibold text-slate-900">{{ page_field(slug, 'rights_heading_' ~ lang, privacy_data.rights_heading) }}</h2>
+        <ul class="mt-4 space-y-3 text-sm text-slate-700">
+          {% for item in rights %}
+            <li class="flex items-start gap-2">
+              <span class="mt-1 inline-flex h-2.5 w-2.5 flex-shrink-0 rounded-full bg-brand-orange"></span>
+              <span>{{ item }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="rounded-3xl border border-brand-orange/15 bg-white p-6 shadow-sm shadow-brand-orange/10">
+        <h2 class="text-lg font-semibold text-slate-900">{{ page_field(slug, 'contact_heading_' ~ lang, privacy_data.contact_heading) }}</h2>
+        <div class="mt-4 prose max-w-none text-sm text-slate-700">
+          {{ page_field(slug, 'contact_copy_' ~ lang, privacy_data.contact_copy)|raw }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

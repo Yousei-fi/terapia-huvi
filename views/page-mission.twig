@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+{% block content %}
+  {% set inferred_language = language ?? 'fi' %}
+  {% include 'partials/mission-page.twig' with {
+    lang: inferred_language == 'fi' ? 'en' : inferred_language,
+    slug: 'mission-page',
+    activities_slug: 'mission-page-activities',
+    theses_slug: 'mission-page-principles'
+  } %}
+{% endblock %}
+
