@@ -360,24 +360,57 @@ class HPPTheme extends \Timber\Site {
     }
 
     public function seed_required_pages_once(): void {
-        if (get_option('hpp_seeded_pages')) {
-            return;
-        }
+        $seededAt = get_option('hpp_seeded_pages');
+        $needsRefresh = $this->has_missing_required_pages();
 
-        $this->seed_required_pages();
-        update_option('hpp_seeded_pages', time());
+        if (!$seededAt || $needsRefresh) {
+            $this->seed_required_pages();
+            update_option('hpp_seeded_pages', time());
+        }
     }
 
     public function seed_required_pages(): void {
-        $publicPages = [
+        foreach ($this->get_public_page_definitions() as $page) {
+            $this->create_page_if_missing($page['slug'], $page['title'], 'publish');
+            $this->ensure_page_meta_defaults($page['slug']);
+        }
+
+        foreach ($this->get_content_page_definitions() as $page) {
+            $this->create_page_if_missing($page['slug'], $page['title'], $page['status']);
+            $this->ensure_page_meta_defaults($page['slug']);
+        }
+    }
+
+    private function has_missing_required_pages(): bool {
+        foreach (array_merge($this->get_public_page_definitions(), $this->get_content_page_definitions()) as $page) {
+            $existing = get_page_by_path($page['slug'], OBJECT, 'page');
+
+            if (!$existing instanceof \WP_Post) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array<int, array{slug: string, title: string}>
+     */
+    private function get_public_page_definitions(): array {
+        return [
             ['slug' => 'missio', 'title' => __('Missio', 'hppry')],
             ['slug' => 'tietopyynnot', 'title' => __('Tietopyynnöt', 'hppry')],
             ['slug' => 'osallistu', 'title' => __('Osallistu', 'hppry')],
             ['slug' => 'tietosuoja', 'title' => __('Tietosuoja', 'hppry')],
             ['slug' => 'saannot', 'title' => __('Säännöt', 'hppry')],
         ];
+    }
 
-        $contentPages = [
+    /**
+     * @return array<int, array{slug: string, title: string, status: string}>
+     */
+    private function get_content_page_definitions(): array {
+        return [
             ['slug' => 'frontpage-header', 'title' => 'Header Actions', 'status' => 'draft'],
             ['slug' => 'frontpage-hero', 'title' => 'Frontpage Hero', 'status' => 'draft'],
             ['slug' => 'frontpage-social', 'title' => 'Frontpage Social', 'status' => 'draft'],
@@ -389,16 +422,6 @@ class HPPTheme extends \Timber\Site {
             ['slug' => 'site-navigation', 'title' => 'Site Navigation', 'status' => 'draft'],
             ['slug' => 'site-footer', 'title' => 'Site Footer', 'status' => 'draft'],
         ];
-
-        foreach ($publicPages as $page) {
-            $this->create_page_if_missing($page['slug'], $page['title'], 'publish');
-            $this->ensure_page_meta_defaults($page['slug']);
-        }
-
-        foreach ($contentPages as $page) {
-            $this->create_page_if_missing($page['slug'], $page['title'], $page['status']);
-            $this->ensure_page_meta_defaults($page['slug']);
-        }
     }
 
     private function create_page_if_missing(string $slug, string $title, string $status = 'publish'): void {
