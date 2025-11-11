@@ -4,7 +4,7 @@
   {% set inferred_language = language ?? 'fi' %}
   {% include 'partials/statutes-page.twig' with {
     lang: inferred_language == 'fi' ? 'en' : inferred_language,
-    slug: 'statutes-page'
+    slug: 'saannot'
   } %}
 {% endblock %}
 

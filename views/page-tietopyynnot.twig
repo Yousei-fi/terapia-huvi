@@ -3,7 +3,7 @@
 {% block content %}
   {% include 'partials/requests-page.twig' with {
     lang: language ?? 'fi',
-    slug: 'requests-page'
+    slug: post.slug
   } %}
 {% endblock %}
 

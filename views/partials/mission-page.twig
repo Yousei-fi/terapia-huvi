@@ -24,28 +24,28 @@
   }
 } %}
 {% set mission_data = mission_defaults[lang] ?? mission_defaults.fi %}
-{% set slug = slug ?? 'mission-page' %}
+{% set content_slug = slug ?? 'missio' %}
 {% set highlights_default = [
   { 'title': lang == 'fi' ? 'Poliittinen vaikuttaminen' : 'Policy advocacy', 'copy': lang == 'fi' ? 'Laadimme muistioita, kannanottoja ja verkostoyhteistyötä, jotta päätöksenteko perustuu parhaaseen tietoon.' : 'We prepare briefs, statements, and alliances so that decision-making rests on the best available evidence.' },
   { 'title': lang == 'fi' ? 'Yhteisöjen tukeminen' : 'Supporting communities', 'copy': lang == 'fi' ? 'Vahvistamme vertaistukea, kriisiapua ja perheiden palveluita, joissa kohtaaminen on lempeää.' : 'We strengthen peer support, crisis help, and family services built on compassionate encounters.' },
   { 'title': lang == 'fi' ? 'Tutkimus ja tieto' : 'Research and insight', 'copy': lang == 'fi' ? 'Käännämme tutkimustiedon ymmärrettäviksi materiaaleiksi kampanjoihin, koulutuksiin ja päätöksenteon tueksi.' : 'We translate research into accessible materials for campaigns, training, and policy briefs.' }
  ] %}
-{% set highlights = page_field_pairs(slug, 'highlights_' ~ lang, highlights_default) %}
-{% set focus_items = page_field_list(slug, 'focus_items_' ~ lang, mission_data.focus) %}
+{% set highlights = page_field_pairs(content_slug, 'highlights_' ~ lang, highlights_default) %}
+{% set focus_items = page_field_list(content_slug, 'focus_items_' ~ lang, mission_data.focus) %}
 
 <section class="relative bg-white py-16 md:py-20">
   <div class="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand-orange/40 via-brand-orange to-brand-orange/40"></div>
   <div class="mx-auto max-w-6xl px-4">
     <div class="grid gap-12 md:grid-cols-[1fr,0.6fr] md:items-start">
       <div>
-        <span class="eyebrow">{{ page_field(slug, 'eyebrow_' ~ lang, mission_data.eyebrow) }}</span>
-        <h1 class="section-heading">{{ page_field(slug, 'title_' ~ lang, mission_data.title) }}</h1>
+        <span class="eyebrow">{{ page_field(content_slug, 'eyebrow_' ~ lang, mission_data.eyebrow) }}</span>
+        <h1 class="section-heading">{{ page_field(content_slug, 'title_' ~ lang, mission_data.title) }}</h1>
         <div class="prose max-w-none text-slate-700">
-          {{ page_field(slug, 'content_' ~ lang, mission_data.copy)|raw }}
+          {{ page_field(content_slug, 'content_' ~ lang, mission_data.copy)|raw }}
         </div>
       </div>
       <div class="rounded-3xl bg-brand-orange/10 p-8 shadow-lg shadow-brand-orange/20">
-        <h2 class="text-xl font-semibold text-brand-orange">{{ page_field(slug, 'focus_heading_' ~ lang, mission_data.focus_heading) }}</h2>
+        <h2 class="text-xl font-semibold text-brand-orange">{{ page_field(content_slug, 'focus_heading_' ~ lang, mission_data.focus_heading) }}</h2>
         <ul class="mt-6 space-y-4 text-sm text-slate-700">
           {% for item in focus_items %}
             <li class="flex items-start gap-3">
@@ -59,7 +59,6 @@
   </div>
 </section>
 
-{% set activities_slug = activities_slug ?? 'mission-page-activities' %}
 {% set activities_defaults = {
   'fi': {
     'eyebrow': 'Toimintamme',
@@ -82,15 +81,15 @@
   { 'title': lang == 'fi' ? 'Perheiden tuki' : 'Support for families', 'copy': lang == 'fi' ? 'Vertaistapaamiset ja ohjattu tuki auttavat läheisiä kohtaamaan päihteiden käyttöä rakentavasti.' : 'Peer gatherings and guided support help loved ones respond constructively to drug use.' },
   { 'title': lang == 'fi' ? 'Politiikkavaikuttaminen' : 'Policy advocacy', 'copy': lang == 'fi' ? 'Seuraamme lainsäädäntöä, julkaisemme muistioita ja käynnistämme keskusteluja vaihtoehtoisista malleista.' : 'We monitor legislation, publish briefs, and spark dialogue on alternative policy models.' }
  ] %}
-{% set pillars = page_field_pairs(activities_slug, 'pillars_' ~ lang, pillars_default) %}
+{% set pillars = page_field_pairs(content_slug, 'activities_pillars_' ~ lang, pillars_default) %}
 
 <section class="bg-brand-cloud py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
     <div class="md:max-w-2xl">
-      <span class="eyebrow">{{ page_field(activities_slug, 'eyebrow_' ~ lang, activities_data.eyebrow) }}</span>
-      <h2 class="section-heading">{{ page_field(activities_slug, 'title_' ~ lang, activities_data.title) }}</h2>
+      <span class="eyebrow">{{ page_field(content_slug, 'activities_eyebrow_' ~ lang, activities_data.eyebrow) }}</span>
+      <h2 class="section-heading">{{ page_field(content_slug, 'activities_title_' ~ lang, activities_data.title) }}</h2>
       <div class="prose max-w-none text-slate-700">
-        {{ page_field(activities_slug, 'content_' ~ lang, activities_data.copy)|raw }}
+        {{ page_field(content_slug, 'activities_content_' ~ lang, activities_data.copy)|raw }}
       </div>
     </div>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
@@ -108,8 +107,8 @@
       {% endfor %}
     </div>
     <div class="mt-10">
-      <a href="{{ page_field(activities_slug, 'cta_url_' ~ lang, activities_data.cta_url) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80">
-        <span>{{ page_field(activities_slug, 'cta_label_' ~ lang, activities_data.cta_label) }}</span>
+      <a href="{{ page_field(content_slug, 'activities_cta_url_' ~ lang, activities_data.cta_url) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80">
+        <span>{{ page_field(content_slug, 'activities_cta_label_' ~ lang, activities_data.cta_label) }}</span>
         <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M5 12h14" />
           <path d="M13 6l6 6-6 6" />
@@ -119,7 +118,6 @@
   </div>
 </section>
 
-{% set theses_slug = theses_slug ?? 'mission-page-principles' %}
 {% set theses_defaults = {
   'fi': {
     'eyebrow': 'Teesit',
@@ -159,14 +157,14 @@
     'We work with diverse partners to realise meaningful drug policy reform.'
   ]
 %}
-{% set theses = page_field_list(theses_slug, 'theses_' ~ lang, theses_default) %}
+{% set theses = page_field_list(content_slug, 'theses_' ~ lang, theses_default) %}
 
 <section class="bg-white py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">{{ page_field(theses_slug, 'eyebrow_' ~ lang, theses_data.eyebrow) }}</span>
-    <h2 class="section-heading">{{ page_field(theses_slug, 'title_' ~ lang, theses_data.title) }}</h2>
+    <span class="eyebrow">{{ page_field(content_slug, 'eyebrow_' ~ lang, theses_data.eyebrow) }}</span>
+    <h2 class="section-heading">{{ page_field(content_slug, 'title_' ~ lang, theses_data.title) }}</h2>
     <div class="prose max-w-none text-slate-700">
-      {{ page_field(theses_slug, 'content_' ~ lang, theses_data.copy)|raw }}
+      {{ page_field(content_slug, 'content_' ~ lang, theses_data.copy)|raw }}
     </div>
     <ol class="mt-10 grid gap-6 md:grid-cols-2">
       {% for thesis in theses %}

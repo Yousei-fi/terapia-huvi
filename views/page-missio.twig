@@ -3,9 +3,7 @@
 {% block content %}
   {% include 'partials/mission-page.twig' with {
     lang: language ?? 'fi',
-    slug: 'mission-page',
-    activities_slug: 'mission-page-activities',
-    theses_slug: 'mission-page-principles'
+    slug: post.slug
   } %}
 {% endblock %}
 

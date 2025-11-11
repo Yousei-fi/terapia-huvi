@@ -42,13 +42,24 @@
 		};
 
 		const fields = definition.fields.map( ( field ) => {
+			const currentValue = meta[ field.key ];
+			const hasValue =
+				typeof currentValue !== 'undefined' && currentValue !== null && currentValue !== '';
+			const initialValue = hasValue
+				? currentValue
+				: field.value || field.default || '';
+
 			const fieldProps = {
 				key: field.key,
 				label: field.label,
 				help: field.help || undefined,
-				value: meta[ field.key ] ?? '',
+				value: initialValue,
 				onChange: onChange( field.key ),
 			};
+
+			if ( field.default && ! hasValue ) {
+				fieldProps.placeholder = field.default;
+			}
 
 			if ( field.type === 'textarea' ) {
 				if ( field.rows ) {
