@@ -221,14 +221,15 @@
 {% if testimonials_raw %}
   {% for line in testimonials_raw|split('\n') %}
     {% if line|trim %}
-      {% set parts = line|split('::') %}
-      {% if parts|length >= 3 %}
-        {% set testimonials = testimonials|merge([{
-          'name': parts[0]|trim,
-          'rating': parts[1]|trim|number_format(0)|replace({',': ''}),
-          'text': parts[2]|trim
-        }]) %}
-      {% endif %}
+        {% set parts = line|split('::') %}
+        {% if parts|length >= 3 %}
+          {% set rating_num = parts[1]|trim|replace({' ': ''}) %}
+          {% set testimonials = testimonials|merge([{
+            'name': parts[0]|trim,
+            'rating': rating_num,
+            'text': parts[2]|trim
+          }]) %}
+        {% endif %}
     {% endif %}
   {% endfor %}
 {% endif %}
@@ -246,9 +247,9 @@
       {% for testimonial in testimonials %}
         <article class="flex h-full flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
           <div class="mb-4 flex items-center gap-1">
-            {% set rating = testimonial.rating|default(5)|number_format(0)|replace({',': ''})|number_format(0) %}
+            {% set rating = testimonial.rating|default('5')|replace({' ': ''}) %}
             {% for i in 1..5 %}
-              <svg class="h-5 w-5 {% if i <= rating %}text-yellow-400{% else %}text-white/20{% endif %}" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="h-5 w-5 {% if i <= (rating|number_format(0)) %}text-yellow-400{% else %}text-white/20{% endif %}" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
             {% endfor %}
