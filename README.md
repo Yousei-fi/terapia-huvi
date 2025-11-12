@@ -1,6 +1,6 @@
-# HPPRy Timber Theme
+# Terapia Huvi Theme
 
-Custom WordPress theme for Humaania Päihdepolitiikkaa Ry built with Timber (Twig), Tailwind CSS, and Vite.
+Custom WordPress theme for solution-focused therapy (Ratkaisukeskeinen terapia) built with Timber (Twig), Tailwind CSS, and Vite.
 
 ## Local Development
 
@@ -28,7 +28,7 @@ npm run dev
 npm run build
 ```
 
-Copy the theme into `wp-content/themes/hpp-timber` in your WordPress installation and activate it from the WordPress admin.
+Copy the theme into `wp-content/themes/terapia-huvi` in your WordPress installation and activate it from the WordPress admin.
 
 ## Docker Compose Stack
 
@@ -50,7 +50,7 @@ The repository includes a ready-to-run Docker Compose setup that provisions Word
 
 ### Services
 
-- `wordpress`: Custom image based on `wordpress:6.7.1-php8.2-apache` that installs dependencies, compiles assets, and copies the theme into `/usr/src/wordpress/wp-content/themes/hpp-timber`. Exposed on port 8088 by default.
+- `wordpress`: Custom image based on `wordpress:6.7.1-php8.2-apache` that installs dependencies, compiles assets, and copies the theme into `/usr/src/wordpress/wp-content/themes/terapia-huvi`. Exposed on port 8088 by default.
 - `db`: MySQL 8.0 with persistent storage in the `db_data` volume.
 
 Persistent data lives in the named volumes `wordpress_data` (WordPress core + uploads) and `db_data` (database). Local uploads are also mirrored to `./wp-data/uploads`.
@@ -61,11 +61,11 @@ Persistent data lives in the named volumes `wordpress_data` (WordPress core + up
 
   ```bash
   docker compose down
-  docker volume rm hpp-timber_wordpress_data
+  docker volume rm terapia-huvi_wordpress_data
   docker compose up -d --build
   ```
 
-- Do **not** bind-mount the theme over `wp-content/themes/hpp-timber` in production—it's already baked into the image and the mount can block WordPress from copying its core files. For local overrides, create a `docker-compose.override.yml` instead.
+- Do **not** bind-mount the theme over `wp-content/themes/terapia-huvi` in production—it's already baked into the image and the mount can block WordPress from copying its core files. For local overrides, create a `docker-compose.override.yml` instead.
 
 - After WordPress responds successfully over plain HTTP, retrigger Let's Encrypt (e.g. by restarting Traefik or Coolify's proxy) so HTTPS can be reissued.
 

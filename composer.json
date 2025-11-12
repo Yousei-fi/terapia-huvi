@@ -1,13 +1,13 @@
 {
-    "name": "hppry/hpp-timber",
-    "description": "WordPress theme using Timber, Twig, Tailwind, and Vite.",
+    "name": "terapia-huvi/terapia-huvi",
+    "description": "WordPress theme for solution-focused therapy using Timber, Twig, Tailwind, and Vite.",
     "type": "wordpress-theme",
     "require": {
         "timber/timber": "^2.3"
     },
     "autoload": {
         "psr-4": {
-            "Hppry\\": "src/php/"
+            "TerapiaHuvi\\": "src/php/"
         }
     }
 }

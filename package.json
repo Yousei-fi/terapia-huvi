@@ -1,7 +1,7 @@
 {
-  "name": "hpp-timber",
+  "name": "terapia-huvi",
   "version": "1.0.0",
-  "description": "Humaania Päihdepolitiikkaa Ry Timber + Tailwind theme",
+  "description": "Ratkaisukeskeinen terapia WordPress theme built with Timber, Tailwind, and Vite",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -11,9 +11,11 @@
     "wordpress",
     "timber",
     "tailwind",
-    "vite"
+    "vite",
+    "therapy",
+    "terapia"
   ],
-  "author": "HPPRy",
+  "author": "yousei-fi",
   "license": "MIT",
   "type": "module",
   "dependencies": {
