@@ -2,7 +2,7 @@ FROM composer:2 AS composer_stage
 
 FROM wordpress:6.7.1-php8.2-apache
 
-ARG THEME_DIR=/usr/src/wordpress/wp-content/themes/hpp-timber
+ARG THEME_DIR=/usr/src/wordpress/wp-content/themes/terapia-huvi
 
 # Install Node.js, npm, and other tooling required for building assets
 RUN apt-get update \

@@ -8,42 +8,49 @@
   }
 
   body {
-    @apply bg-brand-sand font-sans text-slate-900 antialiased;
+    @apply bg-brand-birch font-sans text-brand-charcoal antialiased;
+    line-height: 1.7;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
   }
 
   a {
-    @apply text-brand-orange transition-colors duration-150;
+    @apply text-brand-wood transition-colors duration-200;
   }
 
   a:hover,
   a:focus-visible {
-    @apply text-brand-orange/80;
+    @apply text-brand-pine;
   }
 
   ::selection {
-    @apply bg-brand-orange text-brand-white;
+    @apply bg-brand-wood text-brand-white;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brand-orange px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-orange/30 transition duration-150 hover:bg-brand-orange/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange focus-visible:ring-offset-2 focus-visible:ring-offset-brand-sand;
+    @apply inline-flex items-center justify-center gap-2 rounded-soft bg-brand-wood px-6 py-3 text-sm font-semibold text-white shadow-soft transition duration-200 hover:bg-brand-wood/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-wood focus-visible:ring-offset-2 focus-visible:ring-offset-brand-birch;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition duration-150 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal;
+    @apply inline-flex items-center justify-center gap-2 rounded-soft border border-white/30 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition duration-200 hover:bg-white/20 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-brand-charcoal;
   }
 
   .section-heading {
-    @apply text-3xl font-semibold tracking-tight text-slate-900 md:text-4xl;
+    @apply text-3xl font-serif font-semibold tracking-tight text-brand-charcoal md:text-4xl;
+    line-height: 1.6;
   }
 
   .section-copy {
-    @apply mt-3 text-base text-slate-600 md:text-lg;
+    @apply mt-3 text-base text-brand-charcoal/80 md:text-lg;
+    line-height: 1.8;
   }
 
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-orange/90;
+    @apply text-xs font-semibold uppercase tracking-[0.2em] text-brand-pine;
   }
 }
 

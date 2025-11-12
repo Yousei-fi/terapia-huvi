@@ -45,12 +45,12 @@
     'en': '/minusta?lang=en'
   }
 } %}
-<header class="relative overflow-hidden bg-gradient-to-br from-brand-orange via-[#f89b4a] to-[#ffb56b] text-brand-white">
+<header class="relative overflow-hidden bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist text-brand-white">
   <div class="absolute inset-0 bg-hero-pattern opacity-90"></div>
   <div class="absolute inset-0 bg-accent-glow opacity-60"></div>
   <div class="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 md:flex-row md:items-center md:justify-between md:py-16">
     <div class="max-w-2xl space-y-4">
-      <img src="{{ site.theme.link }}/logo.png" alt="Terapia logo" class="h-14 w-14 rounded-full border border-white/40 bg-white/80 shadow-lg shadow-brand-orange/30">
+      <img src="{{ site.theme.link }}/logo.svg" alt="TerapiaHuvi logo" class="h-14 w-14 rounded-full border border-white/40 bg-white/80 shadow-soft">
       <span class="eyebrow text-white/80">{{ page_field('frontpage-header', 'eyebrow_' ~ lang, header_defaults.eyebrow[lang] ?? header_defaults.eyebrow.fi) }}</span>
       <h1 class="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{{ title }}</h1>
       {% if subtitle %}

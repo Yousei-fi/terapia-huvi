@@ -1,8 +1,8 @@
 #!/bin/sh
 set -eu
 
-THEME_SOURCE="/usr/src/wordpress/wp-content/themes/hpp-timber"
-THEME_TARGET="/var/www/html/wp-content/themes/hpp-timber"
+THEME_SOURCE="/usr/src/wordpress/wp-content/themes/terapia-huvi"
+THEME_TARGET="/var/www/html/wp-content/themes/terapia-huvi"
 UPLOADS_TARGET="/var/www/html/wp-content/uploads"
 
 # Ensure uploads directory exists with correct ownership

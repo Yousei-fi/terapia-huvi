@@ -2,12 +2,12 @@
 {% set language_options = languages ?? [] %}
 {% set navigation_defaults = {
   'cta_label': {
-    'fi': 'Liity mukaan',
-    'en': 'Join the movement'
+    'fi': 'Varaa aika',
+    'en': 'Book appointment'
   },
   'cta_url': {
-    'fi': '/osallistu',
-    'en': '/en/get-involved'
+    'fi': '#',
+    'en': '#'
   },
   'toggle_label': {
     'fi': 'Avaa valikko',
@@ -15,16 +15,16 @@
   },
   'links': {
     'fi': [
-      { 'title': 'Missio', 'copy': '/missio' },
-      { 'title': 'Tietopyynnöt', 'copy': '/tietopyynnot' },
-      { 'title': 'Osallistu', 'copy': '/osallistu' },
+      { 'title': 'Terapia', 'copy': '/terapia' },
+      { 'title': 'Minusta', 'copy': '/minusta' },
+      { 'title': 'Yhteystiedot', 'copy': '/yhteystiedot' },
       { 'title': 'Tietosuoja', 'copy': '/tietosuoja' }
     ],
     'en': [
-      { 'title': 'Mission', 'copy': '/en/mission' },
-      { 'title': 'Information requests', 'copy': '/en/information-requests' },
-      { 'title': 'Get involved', 'copy': '/en/get-involved' },
-      { 'title': 'Privacy', 'copy': '/en/privacy' }
+      { 'title': 'Therapy', 'copy': '/terapia?lang=en' },
+      { 'title': 'About me', 'copy': '/minusta?lang=en' },
+      { 'title': 'Contact', 'copy': '/yhteystiedot?lang=en' },
+      { 'title': 'Privacy', 'copy': '/tietosuoja?lang=en' }
     ]
   }
 } %}
@@ -64,17 +64,17 @@
 {% endmacro %}
 {% import _self as menu_helpers %}
 
-<nav class="bg-brand-charcoal text-white shadow-lg shadow-brand-orange/10">
+<nav class="bg-brand-charcoal text-white shadow-soft">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:py-4">
     <a href="{{ site.url }}" class="flex items-center gap-3 text-base font-semibold tracking-tight">
-      <img src="{{ site.theme.link }}/logo.png" alt="HPP:n logo" class="h-10 w-10 rounded-full border border-white/40 bg-white/80 object-cover shadow-lg shadow-brand-orange/30">
+      <img src="{{ site.theme.link }}/logo.svg" alt="TerapiaHuvi logo" class="h-10 w-10 rounded-full border border-white/40 bg-white/80 object-cover shadow-soft">
       <span class="hidden sm:inline">{{ site.name }}</span>
     </a>
     <div class="flex items-center gap-3 md:gap-6">
       {% if nav_links %}
         <div class="hidden items-center gap-6 text-sm font-medium md:flex">
           {% for item in nav_links %}
-            <a href="{{ menu_helpers.link_url(item.url|default('#')) }}" class="transition text-white/85 hover:text-brand-orange/80">{{ item.title }}</a>
+            <a href="{{ menu_helpers.link_url(item.url|default('#')) }}" class="transition text-white/85 hover:text-brand-wood">{{ item.title }}</a>
           {% endfor %}
         </div>
       {% endif %}

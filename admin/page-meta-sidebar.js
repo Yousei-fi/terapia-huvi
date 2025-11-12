@@ -78,7 +78,7 @@
 			children.push(
 				createElement(
 					'p',
-					{ className: 'hpp-page-meta-panel__description', key: 'hpp-description' },
+					{ className: 'terapia-huvi-page-meta-panel__description', key: 'terapia-huvi-description' },
 					definition.description
 				)
 			);
@@ -89,15 +89,15 @@
 		return createElement(
 			PluginDocumentSettingPanel,
 			{
-				name: 'hpp-page-meta-panel',
+				name: 'terapia-huvi-page-meta-panel',
 				title: definition.title,
-				className: 'hpp-page-meta-panel',
+				className: 'terapia-huvi-page-meta-panel',
 			},
 			children
 		);
 	};
 
-	registerPlugin( 'hpp-page-meta-sidebar', { render: MetaPanel } );
-} )( window.wp || undefined, window.hppPageMetaConfig || {} );
+	registerPlugin( 'terapia-huvi-page-meta-sidebar', { render: MetaPanel } );
+} )( window.wp || undefined, window.terapiaHuviPageMetaConfig || {} );
 
 

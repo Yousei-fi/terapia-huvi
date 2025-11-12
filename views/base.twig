@@ -6,16 +6,14 @@
   <title>{{ function('wp_title', '|', true, 'right') }}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   {% if not function('has_site_icon') %}
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ site.theme.link }}/logo.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ site.theme.link }}/logo-512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ site.theme.link }}/logo-512.png">
+    <link rel="icon" type="image/svg+xml" href="{{ site.theme.link }}/logo.svg">
   {% endif %}
   {{ function('wp_head') }}
 </head>
-<body {{ function('body_class', ['bg-brand-sand', 'font-sans', 'antialiased', 'text-slate-900']) }}>
-  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-brand-orange focus:px-5 focus:py-3 focus:text-white">Siirry sisältöön</a>
+<body {{ function('body_class', ['bg-brand-birch', 'font-sans', 'antialiased', 'text-brand-charcoal']) }}>
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-soft focus:bg-brand-wood focus:px-5 focus:py-3 focus:text-white">Siirry sisältöön</a>
   <div class="relative flex min-h-screen flex-col overflow-hidden">
     {% include 'partials/menu.twig' %}
     {% include 'header.twig' with { title: site.name, subtitle: site.description } %}

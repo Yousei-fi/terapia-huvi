@@ -42,13 +42,13 @@
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       {% for card in cards %}
-        <article class="rounded-3xl border border-brand-orange/15 bg-brand-cloud p-6 shadow-sm shadow-brand-orange/10">
+        <article class="rounded-3xl border border-brand-wood/15 bg-brand-birch p-6 shadow-sm shadow-brand-wood/10">
           <h2 class="text-lg font-semibold text-slate-900">{{ card.title|default('') }}</h2>
           <p class="mt-2 text-sm text-slate-600">{{ card.copy|default('') }}</p>
         </article>
       {% endfor %}
     </div>
-    <a href="{{ page_field(slug, 'cta_url_' ~ lang, statutes_data.cta_url) }}" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-orange transition hover:text-brand-orange/80">
+    <a href="{{ page_field(slug, 'cta_url_' ~ lang, statutes_data.cta_url) }}" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-brand-wood transition hover:text-brand-wood/80">
       <span>{{ page_field(slug, 'cta_label_' ~ lang, statutes_data.cta_label) }}</span>
       <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M5 12h14" />

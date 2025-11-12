@@ -1,0 +1,38 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stylized spruce cone / wooden ring design -->
+  <defs>
+    <linearGradient id="woodGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A47551;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B6342;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="pineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#708D81;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5A7266;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#woodGradient)" opacity="0.1"/>
+  
+  <!-- Main ring/circle -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#woodGradient)" stroke-width="8" opacity="0.6"/>
+  
+  <!-- Inner decorative elements - stylized spruce cone -->
+  <g transform="translate(256, 256)">
+    <!-- Cone shape -->
+    <path d="M 0,-80 Q -30,-60 -40,-30 Q -35,0 -30,30 Q -20,50 0,60 Q 20,50 30,30 Q 35,0 40,-30 Q 30,-60 0,-80 Z" 
+          fill="url(#pineGradient)" opacity="0.7"/>
+    
+    <!-- Wood grain lines -->
+    <line x1="-60" y1="-40" x2="60" y2="-40" stroke="url(#woodGradient)" stroke-width="2" opacity="0.4"/>
+    <line x1="-50" y1="0" x2="50" y2="0" stroke="url(#woodGradient)" stroke-width="2" opacity="0.4"/>
+    <line x1="-40" y1="40" x2="40" y2="40" stroke="url(#woodGradient)" stroke-width="2" opacity="0.4"/>
+  </g>
+  
+  <!-- Subtle accent dots -->
+  <circle cx="256" cy="100" r="4" fill="#9FBCC1" opacity="0.6"/>
+  <circle cx="412" cy="256" r="4" fill="#9FBCC1" opacity="0.6"/>
+  <circle cx="256" cy="412" r="4" fill="#9FBCC1" opacity="0.6"/>
+  <circle cx="100" cy="256" r="4" fill="#9FBCC1" opacity="0.6"/>
+</svg>
+
