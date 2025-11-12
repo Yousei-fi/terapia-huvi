@@ -417,7 +417,8 @@ class TerapiaHuviTheme extends \Timber\Site {
             ['slug' => 'frontpage-social', 'title' => 'Frontpage Social', 'status' => 'draft'],
             ['slug' => 'frontpage-video', 'title' => 'Frontpage Video', 'status' => 'draft'],
             ['slug' => 'frontpage-facebook', 'title' => 'Frontpage Facebook', 'status' => 'draft'],
-            ['slug' => 'frontpage-news', 'title' => 'Frontpage News', 'status' => 'draft'],
+            ['slug' => 'frontpage-blog', 'title' => 'Frontpage Blog', 'status' => 'draft'],
+            ['slug' => 'frontpage-testimonials', 'title' => 'Frontpage Testimonials', 'status' => 'draft'],
             ['slug' => 'frontpage-overview', 'title' => 'Frontpage Overview', 'status' => 'draft'],
             ['slug' => 'frontpage-contact', 'title' => 'Frontpage Contact', 'status' => 'draft'],
             ['slug' => 'site-navigation', 'title' => 'Site Navigation', 'status' => 'draft'],
@@ -683,9 +684,9 @@ class TerapiaHuviTheme extends \Timber\Site {
             ],
         ];
 
-        $definitions['frontpage-news'] = [
-            'title' => __('News section', 'terapia-huvi'),
-            'description' => __('Heading, description, and fallback message for the news grid.', 'terapia-huvi'),
+        $definitions['frontpage-blog'] = [
+            'title' => __('Blog section', 'terapia-huvi'),
+            'description' => __('Heading, description, and fallback message for the blog grid.', 'terapia-huvi'),
             'fields' => [
                 $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
                 $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
@@ -699,6 +700,18 @@ class TerapiaHuviTheme extends \Timber\Site {
                 $this->make_field('cta_url_en', __('CTA URL (EN)', 'terapia-huvi'), 'text', ['help' => $urlHelp]),
                 $this->make_field('empty_message_fi', __('Empty state message (FI)', 'terapia-huvi'), 'textarea', ['rows' => 3, 'help' => $richHelp]),
                 $this->make_field('empty_message_en', __('Empty state message (EN)', 'terapia-huvi'), 'textarea', ['rows' => 3, 'help' => $richHelp]),
+            ],
+        ];
+        $definitions['frontpage-testimonials'] = [
+            'title' => __('Testimonials section', 'terapia-huvi'),
+            'description' => __('Client testimonials with ratings.', 'terapia-huvi'),
+            'fields' => [
+                $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
+                $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
+                $this->make_field('title_fi', __('Heading (FI)', 'terapia-huvi')),
+                $this->make_field('title_en', __('Heading (EN)', 'terapia-huvi')),
+                $this->make_field('testimonials_fi', __('Testimonials (FI)', 'terapia-huvi'), 'textarea', ['rows' => 8, 'help' => __('Enter one testimonial per line using "Name::Rating::Text". Rating is 1-5.', 'terapia-huvi')]),
+                $this->make_field('testimonials_en', __('Testimonials (EN)', 'terapia-huvi'), 'textarea', ['rows' => 8, 'help' => __('Enter one testimonial per line using "Name::Rating::Text". Rating is 1-5.', 'terapia-huvi')]),
             ],
         ];
 
@@ -1006,19 +1019,35 @@ class TerapiaHuviTheme extends \Timber\Site {
                 'secondary_label_fi' => 'Seuraa myös X:ssä',
                 'secondary_label_en' => 'Follow us on X',
             ],
-            'frontpage-news' => [
-                'eyebrow_fi' => 'Ajankohtaista',
-                'eyebrow_en' => 'Latest',
+            'frontpage-blog' => [
+                'eyebrow_fi' => 'Blogi',
+                'eyebrow_en' => 'Blog',
                 'title_fi' => 'Blogi ja ajatuksia',
                 'title_en' => 'Blog and thoughts',
                 'content_fi' => '<p>Lue ajatuksiani terapiasta, hyvinvoinnista ja elämän haasteista.</p>',
                 'content_en' => '<p>Read my thoughts on therapy, wellbeing, and life challenges.</p>',
-                'cta_label_fi' => 'Kaikki uutiset',
+                'cta_label_fi' => 'Kaikki artikkelit',
                 'cta_label_en' => 'All articles',
                 'cta_url_fi' => '/blogi',
                 'cta_url_en' => '/blogi?lang=en',
                 'empty_message_fi' => 'Artikkeleita on tulossa pian – seuraa minua somessa pysyäksesi ajan tasalla.',
                 'empty_message_en' => 'Articles coming soon—follow me on social media to stay in the loop.',
+            ],
+            'frontpage-testimonials' => [
+                'eyebrow_fi' => 'Asiakkaiden palaute',
+                'eyebrow_en' => 'Client feedback',
+                'title_fi' => 'Mitä asiakkaat sanovat',
+                'title_en' => 'What clients say',
+                'testimonials_fi' => implode("\n", [
+                    'Karel T.::5::Olen ollut Valtterin asiakkaana Tampereella säännöllisesti jo vuosia. Asiakkaan tarpeet kartoitetaan perinpohjaisesti ja tekemisestä välittyy rautainen ammattitaito. Ilmapiiri on rento ja hyvää läppää lentää! Suosittelen ehdottomasti Valtterin palveluita myös muille, hän on taitava terapeutti!',
+                    'Lauri S.::5::Olen pitkään harrastanut erinäistä kuntoilua ja urheilua. Harrastus on kuitenkin aina ollut omapäistä touhua. Hakeuduin Valtterille, kun havahduin selkävaivoihin - varasin hieronnan, mutta sain kokonaisvaltaisen katsauksen ja läpikäynnin. Oli hienoa saada selkeää ohjausta ja yksinkertaisesti hyvin toimivia kehonhuoltoon ja treenaamiseen liittyviä vinkkejä. Kohtaaminen oli kokonaisvaltainen ja erittäin motivoiva!',
+                    'Maria P.::5::Ammattitaitoinen ja asiantunteva terapeutti. Löytää ongelmakohdat ja auttaa löytämään ratkaisuja, sekä antaa vinkkejä, miten näitä haasteita pystyy itse jatkossa lievittämään. Rento, mutta asiallinen palvelu.',
+                ]),
+                'testimonials_en' => implode("\n", [
+                    'Karel T.::5::I have been Valtteri\'s client in Tampere regularly for years. Client needs are thoroughly mapped out and the work shows solid professional expertise. The atmosphere is relaxed and there\'s good banter! I absolutely recommend Valtteri\'s services to others, he is a skilled therapist!',
+                    'Lauri S.::5::I have long been involved in various fitness and sports activities. However, it has always been a bit of a solo effort. I came to Valtteri when I noticed back problems - I booked a massage, but got a comprehensive review and walkthrough. It was great to get clear guidance and simply very effective tips for body care and training. The encounter was comprehensive and very motivating!',
+                    'Maria P.::5::Professional and knowledgeable therapist. Finds problem areas and helps find solutions, and gives tips on how to alleviate these challenges yourself in the future. Relaxed but professional service.',
+                ]),
             ],
             'frontpage-overview' => [
                 'eyebrow_fi' => 'Palvelut',

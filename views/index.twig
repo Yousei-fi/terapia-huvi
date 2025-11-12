@@ -28,7 +28,7 @@
 {% set hero_default = hero_defaults[lang] ?? hero_defaults.fi %}
 {% set hero_body_default = hero_body_defaults[lang] ?? hero_body_defaults.fi %}
 
-<section id="hero" class="relative overflow-hidden bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist text-brand-white">
+<section id="hero" class="relative overflow-hidden text-brand-white">
   <div class="absolute inset-0 bg-hero-pattern opacity-40"></div>
   <div class="absolute inset-0 bg-accent-glow opacity-40"></div>
   <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-20">
@@ -46,50 +46,9 @@
   </div>
 </section>
 
-{% set instagram_defaults = {
+{% set blog_defaults = {
   'fi': {
-    'eyebrow': 'Seuraa minua',
-    'title': 'Instagram',
-    'copy': 'Seuraa minua Instagramissa saadaksesi vinkkejä hyvinvoinnista ja terapiasta.',
-    'placeholder': 'Instagram-feed lisätään tähän myöhemmin.',
-    'cta_label': 'Seuraa Instagramissa'
-  },
-  'en': {
-    'eyebrow': 'Follow me',
-    'title': 'Instagram',
-    'copy': 'Follow me on Instagram for tips on wellbeing and therapy.',
-    'placeholder': 'Instagram feed will be added here later.',
-    'cta_label': 'Follow on Instagram'
-  }
-} %}
-{% set instagram_default = instagram_defaults[lang] ?? instagram_defaults.fi %}
-
-<section id="instagram" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 md:py-20">
-  <div class="mx-auto max-w-4xl px-4">
-    <div class="text-center">
-      <span class="eyebrow text-white/80">{{ page_field('frontpage-instagram', 'eyebrow_' ~ lang, instagram_default.eyebrow) }}</span>
-      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage-instagram', 'title_' ~ lang, instagram_default.title) }}</h2>
-      <p class="section-copy text-white/80 mt-3">{{ page_field('frontpage-instagram', 'copy_' ~ lang, instagram_default.copy) }}</p>
-    </div>
-    <div class="mt-8 rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
-      <div id="instagram-feed" class="grid grid-cols-3 gap-2">
-        {% for i in 1..6 %}
-          <div class="aspect-square rounded-xl bg-white/20 flex items-center justify-center text-xs text-white/60">
-            <span class="sr-only">Instagram post placeholder</span>
-          </div>
-        {% endfor %}
-      </div>
-      <p class="mt-4 text-center text-sm text-white/70">{{ page_field('frontpage-instagram', 'placeholder_text_' ~ lang, instagram_default.placeholder) }}</p>
-      <div class="mt-6 text-center">
-        <a href="#" class="btn-secondary">{{ page_field('frontpage-instagram', 'cta_label_' ~ lang, instagram_default.cta_label) }}</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-{% set news_defaults = {
-  'fi': {
-    'eyebrow': 'Ajankohtaista',
+    'eyebrow': 'Blogi',
     'title': 'Blogi ja ajatuksia',
     'copy': '<p>Lue ajatuksiani terapiasta, hyvinvoinnista ja elämän haasteista.</p>',
     'cta_label': 'Kaikki artikkelit',
@@ -97,7 +56,7 @@
     'empty': 'Artikkeleita on tulossa pian – seuraa minua somessa pysyäksesi ajan tasalla.'
   },
   'en': {
-    'eyebrow': 'Latest',
+    'eyebrow': 'Blog',
     'title': 'Blog and thoughts',
     'copy': '<p>Read my thoughts on therapy, wellbeing, and life challenges.</p>',
     'cta_label': 'All articles',
@@ -105,19 +64,19 @@
     'empty': 'Articles coming soon—follow me on social media to stay in the loop.'
   }
 } %}
-{% set news_default = news_defaults[lang] ?? news_defaults.fi %}
+{% set blog_default = blog_defaults[lang] ?? blog_defaults.fi %}
 
-<section id="uutiset" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 text-brand-white md:py-20">
+<section id="blogi" class="py-16 text-brand-white md:py-20">
   <div class="mx-auto max-w-6xl px-4">
     <div class="md:flex md:items-end md:justify-between">
       <div class="md:max-w-xl">
-        <span class="eyebrow text-white/80">{{ page_field('frontpage-news', 'eyebrow_' ~ lang, news_default.eyebrow) }}</span>
-        <h2 class="section-heading text-white">{{ page_field('frontpage-news', 'title_' ~ lang, news_default.title) }}</h2>
+        <span class="eyebrow text-white/80">{{ page_field('frontpage-blog', 'eyebrow_' ~ lang, blog_default.eyebrow) }}</span>
+        <h2 class="section-heading text-white">{{ page_field('frontpage-blog', 'title_' ~ lang, blog_default.title) }}</h2>
         <div class="prose prose-invert max-w-none text-sm text-white/80">
-          {{ page_field('frontpage-news', 'content_' ~ lang, news_default.copy)|raw }}
+          {{ page_field('frontpage-blog', 'content_' ~ lang, blog_default.copy)|raw }}
         </div>
       </div>
-      <a href="{{ page_field('frontpage-news', 'cta_url_' ~ lang, news_default.cta_url) }}" class="btn-secondary mt-6 md:mt-0">{{ page_field('frontpage-news', 'cta_label_' ~ lang, news_default.cta_label) }}</a>
+      <a href="{{ page_field('frontpage-blog', 'cta_url_' ~ lang, blog_default.cta_url) }}" class="btn-secondary mt-6 md:mt-0">{{ page_field('frontpage-blog', 'cta_label_' ~ lang, blog_default.cta_label) }}</a>
     </div>
     {% if posts %}
       <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -126,13 +85,13 @@
             title: post.title,
             link: post.link,
             meta: post.date(lang == 'fi' ? 'j.n.Y' : 'F j, Y'),
-            content: post.preview(30),
+            content: post.excerpt ? post.excerpt : post.content|striptags|slice(0, 150) ~ '...',
             image: post.thumbnail ? post.thumbnail.src('large') : null,
           }) }}
         {% endfor %}
       </div>
     {% else %}
-      <p class="mt-10 text-base text-white/70">{{ page_field('frontpage-news', 'empty_message_' ~ lang, news_default.empty) }}</p>
+      <p class="mt-10 text-base text-white/70">{{ page_field('frontpage-blog', 'empty_message_' ~ lang, blog_default.empty) }}</p>
     {% endif %}
   </div>
 </section>
@@ -160,7 +119,7 @@
 {% set overview_default = overview_defaults[lang] ?? overview_defaults.fi %}
 {% set overview_cards = page_field_cards('frontpage-overview', 'cards_' ~ lang, overview_default.cards) %}
 
-<section id="overview" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 md:py-20">
+<section id="overview" class="py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
     <span class="eyebrow text-white/80">{{ page_field('frontpage-overview', 'eyebrow_' ~ lang, overview_default.eyebrow) }}</span>
     <h2 class="section-heading text-white">{{ page_field('frontpage-overview', 'title_' ~ lang, overview_default.title) }}</h2>
@@ -209,7 +168,7 @@
 {% set contact_phone = page_field('frontpage-contact', 'contact_phone_' ~ lang, '+358 44 999 2092') %}
 {% set contact_address = page_field('frontpage-contact', 'contact_address_' ~ lang, lang == 'fi' ? 'Aleksanterinkatu 29 B 18, 33100 Tampere' : 'Aleksanterinkatu 29 B 18, 33100 Tampere, Finland') %}
 
-<section id="yhteystiedot" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 text-brand-white md:py-20">
+<section id="yhteystiedot" class="py-16 text-brand-white md:py-20">
   <div class="mx-auto max-w-4xl px-4">
     <div class="text-center">
       <span class="eyebrow text-white/80">{{ page_field('frontpage-contact', 'eyebrow_' ~ lang, contact_default.eyebrow) }}</span>
@@ -232,6 +191,72 @@
     </div>
     <div class="mt-8 text-center">
       <a href="#" class="btn-secondary">Varaa aika vastaanotolleni</a>
+    </div>
+  </div>
+</section>
+
+{% set testimonials_defaults = {
+  'fi': {
+    'eyebrow': 'Asiakkaiden palaute',
+    'title': 'Mitä asiakkaat sanovat',
+    'testimonials': [
+      { 'name': 'Karel T.', 'rating': 5, 'text': 'Olen ollut Valtterin asiakkaana Tampereella säännöllisesti jo vuosia. Asiakkaan tarpeet kartoitetaan perinpohjaisesti ja tekemisestä välittyy rautainen ammattitaito. Ilmapiiri on rento ja hyvää läppää lentää! Suosittelen ehdottomasti Valtterin palveluita myös muille, hän on taitava terapeutti!' },
+      { 'name': 'Lauri S.', 'rating': 5, 'text': 'Olen pitkään harrastanut erinäistä kuntoilua ja urheilua. Harrastus on kuitenkin aina ollut omapäistä touhua. Hakeuduin Valtterille, kun havahduin selkävaivoihin - varasin hieronnan, mutta sain kokonaisvaltaisen katsauksen ja läpikäynnin. Oli hienoa saada selkeää ohjausta ja yksinkertaisesti hyvin toimivia kehonhuoltoon ja treenaamiseen liittyviä vinkkejä. Kohtaaminen oli kokonaisvaltainen ja erittäin motivoiva!' },
+      { 'name': 'Maria P.', 'rating': 5, 'text': 'Ammattitaitoinen ja asiantunteva terapeutti. Löytää ongelmakohdat ja auttaa löytämään ratkaisuja, sekä antaa vinkkejä, miten näitä haasteita pystyy itse jatkossa lievittämään. Rento, mutta asiallinen palvelu.' }
+    ]
+  },
+  'en': {
+    'eyebrow': 'Client feedback',
+    'title': 'What clients say',
+    'testimonials': [
+      { 'name': 'Karel T.', 'rating': 5, 'text': 'I have been Valtteri\'s client in Tampere regularly for years. Client needs are thoroughly mapped out and the work shows solid professional expertise. The atmosphere is relaxed and there\'s good banter! I absolutely recommend Valtteri\'s services to others, he is a skilled therapist!' },
+      { 'name': 'Lauri S.', 'rating': 5, 'text': 'I have long been involved in various fitness and sports activities. However, it has always been a bit of a solo effort. I came to Valtteri when I noticed back problems - I booked a massage, but got a comprehensive review and walkthrough. It was great to get clear guidance and simply very effective tips for body care and training. The encounter was comprehensive and very motivating!' },
+      { 'name': 'Maria P.', 'rating': 5, 'text': 'Professional and knowledgeable therapist. Finds problem areas and helps find solutions, and gives tips on how to alleviate these challenges yourself in the future. Relaxed but professional service.' }
+    ]
+  }
+} %}
+{% set testimonials_data = testimonials_defaults[lang] ?? testimonials_defaults.fi %}
+{% set testimonials_raw = page_field('frontpage-testimonials', 'testimonials_' ~ lang, '') %}
+{% set testimonials = [] %}
+{% if testimonials_raw %}
+  {% for line in testimonials_raw|split('\n') %}
+    {% if line|trim %}
+      {% set parts = line|split('::') %}
+      {% if parts|length >= 3 %}
+        {% set testimonials = testimonials|merge([{
+          'name': parts[0]|trim,
+          'rating': parts[1]|trim|number_format(0)|replace({',': ''}),
+          'text': parts[2]|trim
+        }]) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+{% if testimonials is empty %}
+  {% set testimonials = testimonials_data.testimonials %}
+{% endif %}
+
+<section id="testimonials" class="py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="text-center">
+      <span class="eyebrow text-white/80">{{ page_field('frontpage-testimonials', 'eyebrow_' ~ lang, testimonials_data.eyebrow) }}</span>
+      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage-testimonials', 'title_' ~ lang, testimonials_data.title) }}</h2>
+    </div>
+    <div class="mt-12 grid gap-8 md:grid-cols-3">
+      {% for testimonial in testimonials %}
+        <article class="flex h-full flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+          <div class="mb-4 flex items-center gap-1">
+            {% set rating = testimonial.rating|default(5)|number_format(0)|replace({',': ''})|number_format(0) %}
+            {% for i in 1..5 %}
+              <svg class="h-5 w-5 {% if i <= rating %}text-yellow-400{% else %}text-white/20{% endif %}" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            {% endfor %}
+          </div>
+          <p class="flex-1 text-sm text-white/90 leading-relaxed">{{ testimonial.text|default(testimonial.copy) }}</p>
+          <p class="mt-4 text-sm font-semibold text-white">{{ testimonial.name|default(testimonial.title) }}</p>
+        </article>
+      {% endfor %}
     </div>
   </div>
 </section>
