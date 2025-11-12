@@ -17,12 +17,12 @@
   }
 
   a {
-    @apply text-brand-wood transition-colors duration-200;
+    @apply text-[#F8F5F1] transition-colors duration-200;
   }
 
   a:hover,
   a:focus-visible {
-    @apply text-brand-pine;
+    @apply text-white;
   }
 
   ::selection {
