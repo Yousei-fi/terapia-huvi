@@ -40,7 +40,7 @@
   }
 
   .section-heading {
-    @apply text-3xl font-serif font-semibold tracking-tight text-brand-charcoal md:text-4xl;
+    @apply text-3xl font-serif font-semibold tracking-tight md:text-4xl;
     line-height: 1.6;
   }
 
