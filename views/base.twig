@@ -15,7 +15,6 @@
 <body {{ function('body_class', ['font-sans', 'antialiased', 'text-brand-charcoal']) }}>
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-soft focus:bg-brand-wood focus:px-5 focus:py-3 focus:text-white">Siirry sisältöön</a>
   <div class="relative flex min-h-screen flex-col overflow-hidden bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist">
-    {% include 'partials/menu.twig' %}
     {% include 'header.twig' with { title: site.name, subtitle: site.description } %}
     <main id="main-content" class="flex-1 bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist">
       {% block content %}{% endblock %}
