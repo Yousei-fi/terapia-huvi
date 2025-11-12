@@ -886,34 +886,6 @@ class TerapiaHuviTheme extends \Timber\Site {
             ],
         ];
 
-        $definitions['osallistu'] = [
-            'title' => __('Get involved page', 'terapia-huvi'),
-            'description' => __('Volunteer opportunities and CTA labels.', 'terapia-huvi'),
-            'fields' => [
-                $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
-                $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
-                $this->make_field('title_fi', __('Heading (FI)', 'terapia-huvi')),
-                $this->make_field('title_en', __('Heading (EN)', 'terapia-huvi')),
-                $this->make_field('content_fi', __('Intro text (FI)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $richHelp]),
-                $this->make_field('content_en', __('Intro text (EN)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $richHelp]),
-                $this->make_field('opportunities_fi', __('Opportunities (FI)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $cardHelp]),
-                $this->make_field('opportunities_en', __('Opportunities (EN)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $cardHelp]),
-                $this->make_field('cta_primary_label_fi', __('Primary CTA label (FI)', 'terapia-huvi')),
-                $this->make_field('cta_primary_label_en', __('Primary CTA label (EN)', 'terapia-huvi')),
-                $this->make_field('cta_primary_url_fi', __('Primary CTA URL (FI)', 'terapia-huvi'), 'text', ['help' => $urlHelp]),
-                $this->make_field('cta_primary_url_en', __('Primary CTA URL (EN)', 'terapia-huvi'), 'text', ['help' => $urlHelp]),
-                $this->make_field('cta_secondary_label_fi', __('Secondary CTA label (FI)', 'terapia-huvi')),
-                $this->make_field('cta_secondary_label_en', __('Secondary CTA label (EN)', 'terapia-huvi')),
-                $this->make_field('cta_secondary_url_fi', __('Secondary CTA URL (FI)', 'terapia-huvi'), 'text', ['help' => $urlHelp]),
-                $this->make_field('cta_secondary_url_en', __('Secondary CTA URL (EN)', 'terapia-huvi'), 'text', ['help' => $urlHelp]),
-                $this->make_field('cta_tertiary_label_fi', __('Tertiary CTA label (FI)', 'terapia-huvi')),
-                $this->make_field('cta_tertiary_label_en', __('Tertiary CTA label (EN)', 'terapia-huvi')),
-                $this->make_field('cta_tertiary_url_fi', __('Tertiary CTA URL (FI)', 'terapia-huvi'), 'text', ['help' => $urlHelp]),
-                $this->make_field('cta_tertiary_url_en', __('Tertiary CTA URL (EN)', 'terapia-huvi'), 'text', ['help' => $urlHelp]),
-                $this->make_field('donation_text_fi', __('Donation note (FI)', 'terapia-huvi'), 'textarea', ['rows' => 3, 'help' => $richHelp]),
-                $this->make_field('donation_text_en', __('Donation note (EN)', 'terapia-huvi'), 'textarea', ['rows' => 3, 'help' => $richHelp]),
-            ],
-        ];
 
         $definitions['saannot'] = [
             'title' => __('Statutes summary', 'terapia-huvi'),
