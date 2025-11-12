@@ -1,0 +1,53 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set lang = language ?? 'fi' %}
+{% set pricing_defaults = {
+  'fi': {
+    'eyebrow': 'Hinnasto',
+    'title': 'Hinnasto',
+    'content': '<p>Selkeät hinnat eri palveluille. Varaa aika vastaanotolleni.</p>',
+    'prices': [
+      { 'service': 'Ratkaisukeskeinen terapia 30 min', 'price': '52 €' },
+      { 'service': 'Ratkaisukeskeinen terapia 60 min', 'price': '75 €' },
+      { 'service': 'Ratkaisukeskeinen terapia 90 min', 'price': '90 €' }
+    ]
+  },
+  'en': {
+    'eyebrow': 'Pricing',
+    'title': 'Pricing',
+    'content': '<p>Clear pricing for different services. Book an appointment at my office.</p>',
+    'prices': [
+      { 'service': 'Solution-focused therapy 30 min', 'price': '52 €' },
+      { 'service': 'Solution-focused therapy 60 min', 'price': '75 €' },
+      { 'service': 'Solution-focused therapy 90 min', 'price': '90 €' }
+    ]
+  }
+} %}
+{% set pricing_data = pricing_defaults[lang] ?? pricing_defaults.fi %}
+{% set prices = page_field_pairs('hinnasto', 'prices_' ~ lang, pricing_data.prices) %}
+
+<section class="py-16 md:py-20">
+  <div class="mx-auto max-w-4xl px-4">
+    <div class="text-center">
+      <span class="eyebrow text-white/80">{{ page_field('hinnasto', 'eyebrow_' ~ lang, pricing_data.eyebrow) }}</span>
+      <h1 class="section-heading text-white mt-2">{{ page_field('hinnasto', 'title_' ~ lang, pricing_data.title) }}</h1>
+      <div class="prose prose-invert max-w-none mt-6 text-white/80">
+        {{ page_field('hinnasto', 'content_' ~ lang, pricing_data.content)|raw }}
+      </div>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {% for price in prices %}
+        <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur text-center">
+          <h3 class="text-lg font-semibold text-white mb-2">{{ price.title }}</h3>
+          <p class="text-3xl font-serif font-bold text-white">{{ price.copy }}</p>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="mt-12 text-center">
+      <a href="#" class="btn-secondary">Varaa aika vastaanotolleni</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

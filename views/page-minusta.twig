@@ -1,0 +1,69 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set lang = language ?? 'fi' %}
+{% set about_defaults = {
+  'fi': {
+    'eyebrow': 'Terapeutti',
+    'title': 'Valtteri Huvi – Sinun terapeuttisi Tampereelta',
+    'content': '<p>Olen ratkaisukeskeinen lyhytterapeutti Tampereelta. Työskentelen ihmisten kanssa, jotka haluavat löytää uusia näkökulmia, vahvistaa hyvinvointiaan ja löytää omat vastauksensa elämän kysymyksiin.</p><p>Uskon, että pienetkin muutokset voivat käynnistää suuria prosesseja. Terapiassa keskitymme siihen, mikä toimii – ei siihen, mikä on rikki.</p>',
+    'highlights': [
+      { 'title': 'Koulutus', 'copy': 'Olen suorittanut terapeutin koulutuksen ja erikoistunut ratkaisukeskeiseen lyhytterapiaan.' },
+      { 'title': 'Kokemus', 'copy': 'Työskentelen yksilö-, pari- ja perheterapian parissa.' },
+      { 'title': 'Arvot', 'copy': 'Uskon ihmisten vahvuuksiin ja kykyyn muuttaa elämäänsä. Pienet muutokset voivat käynnistää suuria prosesseja.' }
+    ]
+  },
+  'en': {
+    'eyebrow': 'Therapist',
+    'title': 'Valtteri Huvi – Your therapist from Tampere',
+    'content': '<p>I am a solution-focused brief therapist from Tampere. I work with people who want to find new perspectives, strengthen their wellbeing, and find their own answers to life\'s questions.</p><p>I believe that even small changes can trigger large processes. In therapy, we focus on what works – not on what is broken.</p>',
+    'highlights': [
+      { 'title': 'Education', 'copy': 'I have completed therapist training and specialized in solution-focused brief therapy.' },
+      { 'title': 'Experience', 'copy': 'I work with individual, couple, and family therapy.' },
+      { 'title': 'Values', 'copy': 'I believe in people\'s strengths and ability to change their lives. Small changes can trigger large processes.' }
+    ]
+  }
+} %}
+{% set about_data = about_defaults[lang] ?? about_defaults.fi %}
+{% set highlights = page_field_pairs('minusta', 'highlights_' ~ lang, about_data.highlights) %}
+
+<section class="py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <div class="grid gap-12 md:grid-cols-2 md:items-start">
+      <div>
+        <span class="eyebrow text-white/80">{{ page_field('minusta', 'eyebrow_' ~ lang, about_data.eyebrow) }}</span>
+        <h1 class="section-heading text-white mt-2">{{ page_field('minusta', 'title_' ~ lang, about_data.title) }}</h1>
+        <div class="prose prose-invert max-w-none mt-6 text-white/80">
+          {{ page_field('minusta', 'content_' ~ lang, about_data.content)|raw }}
+        </div>
+        {% if highlights %}
+          <div class="mt-10 space-y-6">
+            {% for highlight in highlights %}
+              <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+                <h3 class="text-lg font-semibold text-white mb-2">{{ highlight.title }}</h3>
+                <p class="text-sm text-white/80">{{ highlight.copy }}</p>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+      <div class="space-y-6">
+        <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+          <div class="aspect-square w-full rounded-2xl bg-white/20 flex items-center justify-center">
+            <span class="text-white/60 text-sm">Terapeutin kuva</span>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+          <div class="aspect-video w-full rounded-2xl bg-white/20 flex items-center justify-center">
+            <span class="text-white/60 text-sm">Toimipisteen kuva</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-12 text-center">
+      <a href="#" class="btn-secondary">Varaa aika vastaanotolleni</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

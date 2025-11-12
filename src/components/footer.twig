@@ -1,56 +1,42 @@
 {% set lang = language ?? 'fi' %}
 {% set footer_defaults = {
   'fi': {
-    'about_text': 'Edistämme humaania päihdepolitiikkaa, tuemme yhteisöjä ja rakennamme turvallisempaa tulevaisuutta tutkittuun tietoon nojaten.',
+    'about_text': 'Ratkaisukeskeinen lyhytterapeutti Tampereelta. Autan sinua löytämään toivoa, voimavaroja ja suuntaa elämään.',
     'contact_heading': 'Yhteystiedot',
-    'contact_email': 'hpp@hppry.fi',
-    'contact_address': 'Hämeentie 34, 00530 Helsinki',
-    'contact_phone': '+358 40 123 4567',
-    'contact_phone_href': 'tel:+358401234567',
-    'links_heading': 'Tärkeimmät sivut',
-    'link_1_label': 'Missiomme',
-    'link_1_url': '/missio',
-    'link_2_label': 'Toiminta',
-    'link_2_url': '/osallistu',
-    'link_3_label': 'Tietopyynnöt',
-    'link_3_url': '/tietopyynnot',
-    'link_4_label': 'Tietosuoja',
-    'link_4_url': '/tietosuoja',
-    'newsletter_heading': 'Pysy ajan tasalla',
-    'newsletter_copy': 'Saat kuukausittain päivityksiä politiikkamuutoksista, yhteisön tarinoista ja vapaaehtoistehtävistä.',
-    'newsletter_label': 'Sähköpostiosoite',
-    'newsletter_placeholder': 'sina@esimerkki.fi',
-    'newsletter_button': 'Tilaa uutiskirje',
-    'social_facebook_label': 'Facebook',
+    'contact_email': 'terapia@terapiahuvi.fi',
+    'contact_address': 'Aleksanterinkatu 29 B 18, 33100 Tampere',
+    'contact_phone': '+358 44 999 2092',
+    'contact_phone_href': 'tel:+358449992092',
+    'links_heading': 'Sivut',
+    'link_1_label': 'Terapia',
+    'link_1_url': '/terapia',
+    'link_2_label': 'Hinnasto',
+    'link_2_url': '/hinnasto',
+    'link_3_label': 'Minusta',
+    'link_3_url': '/minusta',
+    'link_4_label': 'Yhteystiedot',
+    'link_4_url': '/yhteystiedot',
     'social_instagram_label': 'Instagram',
-    'social_linkedin_label': 'LinkedIn',
-    'copyright': 'Kaikki oikeudet pidätetään.'
+    'copyright': '© 2025 TerapiaHuvi'
   },
   'en': {
-    'about_text': 'We advance humane drug policy, support communities, and build safer futures grounded in evidence.',
+    'about_text': 'Solution-focused brief therapist from Tampere. I help you find hope, resources, and direction in life.',
     'contact_heading': 'Contact',
-    'contact_email': 'hpp@hppry.fi',
-    'contact_address': 'Hämeentie 34, 00530 Helsinki, Finland',
-    'contact_phone': '+358 40 123 4567',
-    'contact_phone_href': 'tel:+358401234567',
-    'links_heading': 'Key pages',
-    'link_1_label': 'Mission',
-    'link_1_url': '/en/mission',
-    'link_2_label': 'Get involved',
-    'link_2_url': '/en/get-involved',
-    'link_3_label': 'Information requests',
-    'link_3_url': '/en/information-requests',
-    'link_4_label': 'Privacy',
-    'link_4_url': '/en/privacy',
-    'newsletter_heading': 'Stay in the loop',
-    'newsletter_copy': 'Receive monthly policy updates, community stories, and volunteer opportunities.',
-    'newsletter_label': 'Email address',
-    'newsletter_placeholder': 'you@example.com',
-    'newsletter_button': 'Subscribe',
-    'social_facebook_label': 'Facebook',
+    'contact_email': 'terapia@terapiahuvi.fi',
+    'contact_address': 'Aleksanterinkatu 29 B 18, 33100 Tampere, Finland',
+    'contact_phone': '+358 44 999 2092',
+    'contact_phone_href': 'tel:+358449992092',
+    'links_heading': 'Pages',
+    'link_1_label': 'Therapy',
+    'link_1_url': '/terapia?lang=en',
+    'link_2_label': 'Pricing',
+    'link_2_url': '/hinnasto?lang=en',
+    'link_3_label': 'About me',
+    'link_3_url': '/minusta?lang=en',
+    'link_4_label': 'Contact',
+    'link_4_url': '/yhteystiedot?lang=en',
     'social_instagram_label': 'Instagram',
-    'social_linkedin_label': 'LinkedIn',
-    'copyright': 'All rights reserved.'
+    'copyright': '© 2025 TerapiaHuvi'
   }
 } %}
 {% set footer_data = footer_defaults[lang] ?? footer_defaults.fi %}
@@ -59,48 +45,37 @@
 {% set footer_contact_phone_href = page_field('site-footer', 'contact_phone_href_' ~ lang, footer_data.contact_phone_href) %}
 
 <footer class="bg-brand-charcoal text-brand-white">
-  <div class="mx-auto max-w-6xl px-4 py-12">
-    <div class="grid gap-10 md:grid-cols-4">
-      <div class="space-y-4">
-        <div class="flex items-center gap-3 text-lg font-semibold">
-          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-orange text-sm font-bold text-brand-white shadow-lg shadow-brand-orange/40">HP</span>
-          <span>{{ site.name }}</span>
+  <div class="mx-auto max-w-6xl px-4 py-10">
+    <div class="grid gap-8 md:grid-cols-3">
+      <div class="space-y-3">
+        <div class="flex items-center gap-3">
+          <img src="{{ site.theme.link }}/logo.svg" alt="TerapiaHuvi" class="h-10 w-10 rounded-full">
+          <span class="text-lg font-serif font-semibold">{{ site.name }}</span>
         </div>
-        <p class="text-sm text-white/70">{{ page_field('site-footer', 'about_text_' ~ lang, footer_data.about_text) }}</p>
+        <p class="text-sm text-white/70 leading-relaxed">{{ page_field('site-footer', 'about_text_' ~ lang, footer_data.about_text) }}</p>
       </div>
       <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">{{ page_field('site-footer', 'contact_heading_' ~ lang, footer_data.contact_heading) }}</h3>
-        <ul class="mt-4 space-y-2 text-sm text-white/70">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80 mb-3">{{ page_field('site-footer', 'contact_heading_' ~ lang, footer_data.contact_heading) }}</h3>
+        <ul class="space-y-2 text-sm text-white/70">
           <li><a href="mailto:{{ footer_contact_email }}" class="transition hover:text-white">{{ footer_contact_email }}</a></li>
-          <li>{{ page_field('site-footer', 'contact_address_' ~ lang, footer_data.contact_address) }}</li>
           <li><a href="{{ footer_contact_phone_href }}" class="transition hover:text-white">{{ footer_contact_phone }}</a></li>
+          <li>{{ page_field('site-footer', 'contact_address_' ~ lang, footer_data.contact_address) }}</li>
         </ul>
       </div>
       <div>
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">{{ page_field('site-footer', 'links_heading_' ~ lang, footer_data.links_heading) }}</h3>
-        <ul class="mt-4 space-y-2 text-sm text-white/70">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80 mb-3">{{ page_field('site-footer', 'links_heading_' ~ lang, footer_data.links_heading) }}</h3>
+        <ul class="space-y-2 text-sm text-white/70">
           <li><a href="{{ page_field('site-footer', 'link_1_url_' ~ lang, footer_data.link_1_url) }}" class="transition hover:text-white">{{ page_field('site-footer', 'link_1_label_' ~ lang, footer_data.link_1_label) }}</a></li>
           <li><a href="{{ page_field('site-footer', 'link_2_url_' ~ lang, footer_data.link_2_url) }}" class="transition hover:text-white">{{ page_field('site-footer', 'link_2_label_' ~ lang, footer_data.link_2_label) }}</a></li>
           <li><a href="{{ page_field('site-footer', 'link_3_url_' ~ lang, footer_data.link_3_url) }}" class="transition hover:text-white">{{ page_field('site-footer', 'link_3_label_' ~ lang, footer_data.link_3_label) }}</a></li>
           <li><a href="{{ page_field('site-footer', 'link_4_url_' ~ lang, footer_data.link_4_url) }}" class="transition hover:text-white">{{ page_field('site-footer', 'link_4_label_' ~ lang, footer_data.link_4_label) }}</a></li>
         </ul>
       </div>
-      <div class="space-y-4">
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/80">{{ page_field('site-footer', 'newsletter_heading_' ~ lang, footer_data.newsletter_heading) }}</h3>
-        <p class="text-sm text-white/70">{{ page_field('site-footer', 'newsletter_copy_' ~ lang, footer_data.newsletter_copy) }}</p>
-        <form class="space-y-3">
-          <label class="sr-only" for="footer-email">{{ page_field('site-footer', 'newsletter_label_' ~ lang, footer_data.newsletter_label) }}</label>
-          <input id="footer-email" type="email" name="email" placeholder="{{ page_field('site-footer', 'newsletter_placeholder_' ~ lang, footer_data.newsletter_placeholder) }}" class="w-full rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none focus:ring-2 focus:ring-white/60">
-          <button type="submit" class="btn-primary w-full justify-center">{{ page_field('site-footer', 'newsletter_button_' ~ lang, footer_data.newsletter_button) }}</button>
-        </form>
-      </div>
     </div>
-    <div class="mt-12 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
-      <p>&copy; {{ "now"|date("Y") }} {{ site.name }}. {{ page_field('site-footer', 'copyright_' ~ lang, footer_data.copyright) }}</p>
+    <div class="mt-8 flex flex-col gap-3 border-t border-white/10 pt-6 text-xs text-white/60 md:flex-row md:items-center md:justify-between">
+      <p>{{ page_field('site-footer', 'copyright_' ~ lang, footer_data.copyright) }}</p>
       <div class="flex items-center gap-4">
-        <a href="https://www.facebook.com" class="transition hover:text-white">{{ page_field('site-footer', 'social_facebook_label_' ~ lang, footer_data.social_facebook_label) }}</a>
-        <a href="https://www.instagram.com" class="transition hover:text-white">{{ page_field('site-footer', 'social_instagram_label_' ~ lang, footer_data.social_instagram_label) }}</a>
-        <a href="https://www.linkedin.com" class="transition hover:text-white">{{ page_field('site-footer', 'social_linkedin_label_' ~ lang, footer_data.social_linkedin_label) }}</a>
+        <a href="#" class="transition hover:text-white">{{ page_field('site-footer', 'social_instagram_label_' ~ lang, footer_data.social_instagram_label) }}</a>
       </div>
     </div>
   </div>

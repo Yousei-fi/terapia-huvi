@@ -5,20 +5,20 @@
 
 {% set hero_defaults = {
   'fi': {
-    'eyebrow': 'Yhdessä humaanin päihdepolitiikan puolesta',
-    'title': 'Rakennamme turvallista päihdepolitiikkaa ihmisarvo edellä',
-    'cta_primary_label': 'Liity jäseneksi',
-    'cta_primary_url': '/osallistu',
-    'cta_secondary_label': 'Lue ajankohtaista',
-    'cta_secondary_url': '#uutiset'
+    'eyebrow': 'Ratkaisukeskeinen lyhytterapia',
+    'title': 'Rauhallista muutosta – yksi keskustelu kerrallaan',
+    'cta_primary_label': 'Varaa aika',
+    'cta_primary_url': '#',
+    'cta_secondary_label': 'Lue lisää terapiasta',
+    'cta_secondary_url': '/terapia'
   },
   'en': {
-    'eyebrow': 'Together for humane drug policy',
-    'title': 'Building safer drug policy with dignity first',
-    'cta_primary_label': 'Become a member',
-    'cta_primary_url': '/en/get-involved',
-    'cta_secondary_label': 'Latest updates',
-    'cta_secondary_url': '#uutiset'
+    'eyebrow': 'Solution-focused brief therapy',
+    'title': 'Peaceful change – one conversation at a time',
+    'cta_primary_label': 'Book a session',
+    'cta_primary_url': '#',
+    'cta_secondary_label': 'Learn about therapy',
+    'cta_secondary_url': '/terapia?lang=en'
   }
 } %}
 {% set hero_body_defaults = {
@@ -28,7 +28,7 @@
 {% set hero_default = hero_defaults[lang] ?? hero_defaults.fi %}
 {% set hero_body_default = hero_body_defaults[lang] ?? hero_body_defaults.fi %}
 
-<section id="hero" class="relative overflow-hidden bg-brand-charcoal text-brand-white">
+<section id="hero" class="relative overflow-hidden bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist text-brand-white">
   <div class="absolute inset-0 bg-hero-pattern opacity-40"></div>
   <div class="absolute inset-0 bg-accent-glow opacity-40"></div>
   <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-20">
@@ -46,73 +46,43 @@
   </div>
 </section>
 
-{% set social_defaults = {
+{% set instagram_defaults = {
   'fi': {
-    'eyebrow': 'Seuraa ja osallistu',
-    'title': 'Suora yhteys yhteisöön',
-    'copy': 'Poimimme näkyville videomme ja sosiaalisen median syötteet, jotta pysyt mukana työssämme.',
-    'youtube_placeholder': 'Video-embed lisätään tähän, kun lisäosa otetaan käyttöön.',
-    'youtube_cta': 'Katso YouTubessa',
-    'facebook_placeholder': 'Facebook-feed lisätään tähän myöhemmin lisäosan avulla.',
-    'facebook_primary': 'Avaa Facebookissa',
-    'facebook_secondary': 'Seuraa myös X:ssä'
+    'eyebrow': 'Seuraa minua',
+    'title': 'Instagram',
+    'copy': 'Seuraa minua Instagramissa saadaksesi vinkkejä hyvinvoinnista ja terapiasta.',
+    'placeholder': 'Instagram-feed lisätään tähän myöhemmin.',
+    'cta_label': 'Seuraa Instagramissa'
   },
   'en': {
-    'eyebrow': 'Stay connected',
-    'title': 'Direct line to our community',
-    'copy': 'Watch our latest videos and social feeds to stay close to the work in real time.',
-    'youtube_placeholder': 'The embedded feed will surface here once the integration is enabled.',
-    'youtube_cta': 'Watch on YouTube',
-    'facebook_placeholder': 'The Facebook feed will appear here once the integration is active.',
-    'facebook_primary': 'Open on Facebook',
-    'facebook_secondary': 'Follow us on X'
+    'eyebrow': 'Follow me',
+    'title': 'Instagram',
+    'copy': 'Follow me on Instagram for tips on wellbeing and therapy.',
+    'placeholder': 'Instagram feed will be added here later.',
+    'cta_label': 'Follow on Instagram'
   }
 } %}
-{% set social_default = social_defaults[lang] ?? social_defaults.fi %}
+{% set instagram_default = instagram_defaults[lang] ?? instagram_defaults.fi %}
 
-<section id="social-hub" class="bg-white py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <div class="md:flex md:items-end md:justify-between">
-      <div class="md:max-w-xl">
-        <span class="eyebrow">{{ page_field('frontpage-social', 'eyebrow_' ~ lang, social_default.eyebrow) }}</span>
-        <h2 class="section-heading">{{ page_field('frontpage-social', 'title_' ~ lang, social_default.title) }}</h2>
-        <p class="section-copy">{{ page_field('frontpage-social', 'copy_' ~ lang, social_default.copy) }}</p>
-      </div>
-      <div class="mt-6 flex gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500 md:mt-0">
-        <a href="https://www.facebook.com/hppry/" class="inline-flex items-center gap-2 rounded-full bg-brand-charcoal px-4 py-2 text-white transition hover:bg-brand-charcoal/90" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.youtube.com/@hppry" class="inline-flex items-center gap-2 rounded-full bg-brand-wood px-4 py-2 text-white transition hover:bg-brand-wood/90" target="_blank" rel="noopener">YouTube</a>
-      </div>
+<section id="instagram" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 md:py-20">
+  <div class="mx-auto max-w-4xl px-4">
+    <div class="text-center">
+      <span class="eyebrow text-white/80">{{ page_field('frontpage-instagram', 'eyebrow_' ~ lang, instagram_default.eyebrow) }}</span>
+      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage-instagram', 'title_' ~ lang, instagram_default.title) }}</h2>
+      <p class="section-copy text-white/80 mt-3">{{ page_field('frontpage-instagram', 'copy_' ~ lang, instagram_default.copy) }}</p>
     </div>
-    <div class="mt-12 grid gap-8 lg:grid-cols-2">
-      <article class="rounded-3xl border border-brand-wood/20 bg-brand-birch p-6 shadow-sm shadow-brand-wood/10">
-        <h3 class="text-lg font-semibold text-slate-900">{{ page_field('frontpage-video', 'title_' ~ lang, social_default.youtube_cta) }}</h3>
-        <p class="mt-3 text-sm text-slate-600">{{ page_field('frontpage-video', 'copy_' ~ lang, social_default.copy) }}</p>
-        <div class="mt-6 rounded-2xl border border-brand-wood/20 bg-white p-4 shadow-inner">
-          <div id="hpp-youtube-feed" class="aspect-video w-full rounded-xl bg-brand-birch/80 flex items-center justify-center text-sm text-slate-600">
-            <span>{{ page_field('frontpage-video', 'placeholder_text_' ~ lang, social_default.youtube_placeholder) }}</span>
+    <div class="mt-8 rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+      <div id="instagram-feed" class="grid grid-cols-3 gap-2">
+        {% for i in 1..6 %}
+          <div class="aspect-square rounded-xl bg-white/20 flex items-center justify-center text-xs text-white/60">
+            <span class="sr-only">Instagram post placeholder</span>
           </div>
-        </div>
-        <a href="https://www.youtube.com/@hppry" class="btn-primary mt-6 inline-flex" target="_blank" rel="noopener">{{ page_field('frontpage-video', 'cta_label_' ~ lang, social_default.youtube_cta) }}</a>
-      </article>
-      <article class="rounded-3xl border border-brand-wood/20 bg-brand-birch p-6 shadow-sm shadow-brand-wood/10">
-        <h3 class="text-lg font-semibold text-slate-900">{{ page_field('frontpage-facebook', 'title_' ~ lang, 'Facebook') }}</h3>
-        <p class="mt-3 text-sm text-slate-600">{{ page_field('frontpage-facebook', 'copy_' ~ lang, social_default.copy) }}</p>
-        <div class="mt-6 rounded-2xl border border-brand-wood/20 bg-white p-4 shadow-inner">
-          <div id="hpp-facebook-feed" class="h-72 w-full rounded-xl bg-brand-birch/60 flex items-center justify-center text-sm text-slate-600">
-            <span>{{ page_field('frontpage-facebook', 'placeholder_text_' ~ lang, social_default.facebook_placeholder) }}</span>
-          </div>
-        </div>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="https://www.facebook.com/hppry/" class="btn-secondary" target="_blank" rel="noopener">{{ page_field('frontpage-facebook', 'primary_label_' ~ lang, social_default.facebook_primary) }}</a>
-          <a href="https://twitter.com/HPPry" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-wood transition hover:text-brand-wood/80" target="_blank" rel="noopener">
-            <span>{{ page_field('frontpage-facebook', 'secondary_label_' ~ lang, social_default.facebook_secondary) }}</span>
-            <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="M13 6l6 6-6 6" />
-            </svg>
-          </a>
-        </div>
-      </article>
+        {% endfor %}
+      </div>
+      <p class="mt-4 text-center text-sm text-white/70">{{ page_field('frontpage-instagram', 'placeholder_text_' ~ lang, instagram_default.placeholder) }}</p>
+      <div class="mt-6 text-center">
+        <a href="#" class="btn-secondary">{{ page_field('frontpage-instagram', 'cta_label_' ~ lang, instagram_default.cta_label) }}</a>
+      </div>
     </div>
   </div>
 </section>
@@ -120,24 +90,24 @@
 {% set news_defaults = {
   'fi': {
     'eyebrow': 'Ajankohtaista',
-    'title': 'Uutiset ja tarinat liikkeestämme',
-    'copy': '<p>Kentältä, politiikasta ja vapaaehtoistyöstä kantautuvat kuulumiset kertovat työn vaikutuksesta. Lue uusimmat päivitykset ja tule mukaan muuttamaan suuntaa.</p>',
-    'cta_label': 'Kaikki uutiset',
+    'title': 'Blogi ja ajatuksia',
+    'copy': '<p>Lue ajatuksiani terapiasta, hyvinvoinnista ja elämän haasteista.</p>',
+    'cta_label': 'Kaikki artikkelit',
     'cta_url': '/blogi',
-    'empty': 'Tarinoita on tulossa pian – seuraa meitä somessa tai liity sähköpostilistalle pysyäksesi ajan tasalla.'
+    'empty': 'Artikkeleita on tulossa pian – seuraa minua somessa pysyäksesi ajan tasalla.'
   },
   'en': {
     'eyebrow': 'Latest',
-    'title': 'News and stories from our movement',
-    'copy': '<p>Field updates, policy breakthroughs, and volunteer stories show the impact we create together. Dive into the latest highlights.</p>',
+    'title': 'Blog and thoughts',
+    'copy': '<p>Read my thoughts on therapy, wellbeing, and life challenges.</p>',
     'cta_label': 'All articles',
-    'cta_url': '/en/news',
-    'empty': 'Fresh stories are on their way—follow us on social or join our newsletter to stay in the loop.'
+    'cta_url': '/blogi?lang=en',
+    'empty': 'Articles coming soon—follow me on social media to stay in the loop.'
   }
 } %}
 {% set news_default = news_defaults[lang] ?? news_defaults.fi %}
 
-<section id="uutiset" class="bg-brand-charcoal py-16 text-brand-white md:py-20">
+<section id="uutiset" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 text-brand-white md:py-20">
   <div class="mx-auto max-w-6xl px-4">
     <div class="md:flex md:items-end md:justify-between">
       <div class="md:max-w-xl">
@@ -169,38 +139,38 @@
 
 {% set overview_defaults = {
   'fi': {
-    'eyebrow': 'Tutustu syvemmin',
-    'title': 'Näin vaikutamme',
+    'eyebrow': 'Palvelut',
+    'title': 'Miten voin auttaa',
     'cards': [
-      { 'title': 'Missio', 'copy': 'Miten rakennamme yhteiskuntaa, jossa apu on saavutettavaa ja inhimillistä.', 'cta_label': 'Lue lisää', 'cta_url': '/missio' },
-      { 'title': 'Teesit', 'copy': 'Kymmenen periaatetta, jotka ohjaavat humaania päihdepolitiikkaamme.', 'cta_label': 'Tutustu teesihin', 'cta_url': '/teesit' },
-      { 'title': 'Tietopyynnöt', 'copy': 'Avoimuutta viranomaistoimintaan – julkaistut tietopyynnöt ja vastaukset.', 'cta_label': 'Avaa arkisto', 'cta_url': '/tietopyynnot' }
+      { 'title': 'Terapia', 'copy': 'Ratkaisukeskeinen lyhytterapia auttaa sinua löytämään toivoa ja suuntaa elämään.', 'cta_label': 'Lue lisää', 'cta_url': '/terapia' },
+      { 'title': 'Hinnasto', 'copy': 'Selkeät hinnat eri palveluille. Varaa aika vastaanotolleni.', 'cta_label': 'Katso hinnasto', 'cta_url': '/hinnasto' },
+      { 'title': 'Lahjakortit', 'copy': 'Anna terapeuttinen lahjakortti läheisellesi.', 'cta_label': 'Lue lisää', 'cta_url': '/lahjakortit' }
     ]
   },
   'en': {
-    'eyebrow': 'Explore further',
-    'title': 'Where our impact happens',
+    'eyebrow': 'Services',
+    'title': 'How I can help',
     'cards': [
-      { 'title': 'Mission', 'copy': 'See how we build services and policies that centre dignity.', 'cta_label': 'Read the mission', 'cta_url': '/en/mission' },
-      { 'title': 'Principles', 'copy': 'Ten principles that anchor humane drug policy reform.', 'cta_label': 'View the principles', 'cta_url': '/en/principles' },
-      { 'title': 'Information requests', 'copy': 'Transparency in practice—discover our published requests and responses.', 'cta_label': 'Open the archive', 'cta_url': '/en/information-requests' }
+      { 'title': 'Therapy', 'copy': 'Solution-focused brief therapy helps you find hope and direction in life.', 'cta_label': 'Learn more', 'cta_url': '/terapia?lang=en' },
+      { 'title': 'Pricing', 'copy': 'Clear pricing for different services. Book an appointment at my office.', 'cta_label': 'View pricing', 'cta_url': '/hinnasto?lang=en' },
+      { 'title': 'Gift cards', 'copy': 'Give a therapeutic gift card to someone close to you.', 'cta_label': 'Learn more', 'cta_url': '/lahjakortit?lang=en' }
     ]
   }
 } %}
 {% set overview_default = overview_defaults[lang] ?? overview_defaults.fi %}
 {% set overview_cards = page_field_cards('frontpage-overview', 'cards_' ~ lang, overview_default.cards) %}
 
-<section id="overview" class="bg-white py-16 md:py-20">
+<section id="overview" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow">{{ page_field('frontpage-overview', 'eyebrow_' ~ lang, overview_default.eyebrow) }}</span>
-    <h2 class="section-heading">{{ page_field('frontpage-overview', 'title_' ~ lang, overview_default.title) }}</h2>
+    <span class="eyebrow text-white/80">{{ page_field('frontpage-overview', 'eyebrow_' ~ lang, overview_default.eyebrow) }}</span>
+    <h2 class="section-heading text-white">{{ page_field('frontpage-overview', 'title_' ~ lang, overview_default.title) }}</h2>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {% for card in overview_cards %}
-        <article class="flex h-full flex-col rounded-3xl border border-brand-wood/10 bg-brand-birch p-6 shadow-sm shadow-brand-wood/10 transition duration-150 hover:-translate-y-1 hover:border-brand-wood/30">
-          <h3 class="text-lg font-semibold text-slate-900">{{ card.title }}</h3>
-          <p class="mt-3 text-sm text-slate-600">{{ card.copy }}</p>
+        <article class="flex h-full flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur shadow-soft transition duration-150 hover:-translate-y-1 hover:border-white/30">
+          <h3 class="text-lg font-semibold text-white">{{ card.title }}</h3>
+          <p class="mt-3 text-sm text-white/80">{{ card.copy }}</p>
           <div class="mt-auto pt-6">
-            <a href="{{ card.cta_url }}" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-wood transition hover:text-brand-wood/80">
+            <a href="{{ card.cta_url }}" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
               <span>{{ card.cta_label }}</span>
               <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M5 12h14" />
@@ -218,58 +188,50 @@
   'fi': {
     'eyebrow': 'Yhteystiedot',
     'title': 'Ota yhteyttä',
-    'copy': 'Tavoitat meidät nopeiten sähköpostitse. Hallituksen jäsenten osoitteet ovat muodossa etunimi.sukunimi@hppry.fi.',
-    'general_label': 'Yleinen yhteys:',
-    'chair_label': 'Puheenjohtaja:',
-    'vice_label': 'Varapuheenjohtaja:',
-    'board_label': 'Hallituksen jäsenet:',
-    'social_heading': 'Seuraa meitä',
-    'holvi_label': 'Holvi-verkkokauppa'
+    'copy': 'Ota rohkeasti yhteyttä, jos haluat keskustella terapiasta tai varata ajan.',
+    'general_label': 'Sähköposti:',
+    'phone_label': 'Puhelin:',
+    'address_label': 'Osoite:',
+    'social_heading': 'Seuraa minua'
   },
   'en': {
     'eyebrow': 'Contact',
     'title': 'Get in touch',
-    'copy': 'Email is the fastest way to reach us. Board members use the format firstname.lastname@hppry.fi.',
-    'general_label': 'General inquiries:',
-    'chair_label': 'Chairperson:',
-    'vice_label': 'Vice Chair:',
-    'board_label': 'Board members:',
-    'social_heading': 'Follow us',
-    'holvi_label': 'Holvi web shop'
+    'copy': 'Feel free to reach out if you want to discuss therapy or book an appointment.',
+    'general_label': 'Email:',
+    'phone_label': 'Phone:',
+    'address_label': 'Address:',
+    'social_heading': 'Follow me'
   }
 } %}
 {% set contact_default = contact_defaults[lang] ?? contact_defaults.fi %}
-{% set contact_email = page_field('frontpage-contact', 'general_contact_email_' ~ lang, 'hpp@hppry.fi') %}
+{% set contact_email = page_field('frontpage-contact', 'general_contact_email_' ~ lang, 'terapia@terapiahuvi.fi') %}
+{% set contact_phone = page_field('frontpage-contact', 'contact_phone_' ~ lang, '+358 44 999 2092') %}
+{% set contact_address = page_field('frontpage-contact', 'contact_address_' ~ lang, lang == 'fi' ? 'Aleksanterinkatu 29 B 18, 33100 Tampere' : 'Aleksanterinkatu 29 B 18, 33100 Tampere, Finland') %}
 
-<section id="yhteystiedot" class="bg-brand-charcoal py-16 text-brand-white md:py-20">
-  <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow text-white/80">{{ page_field('frontpage-contact', 'eyebrow_' ~ lang, contact_default.eyebrow) }}</span>
-    <h2 class="section-heading text-white">{{ page_field('frontpage-contact', 'title_' ~ lang, contact_default.title) }}</h2>
-    <p class="section-copy text-white/80">{{ page_field('frontpage-contact', 'copy_' ~ lang, contact_default.copy) }}</p>
-    <div class="mt-8 grid gap-8 md:grid-cols-2">
-      <div class="space-y-3 text-sm text-white/75">
-        <p><strong>{{ page_field('frontpage-contact', 'general_contact_label_' ~ lang, contact_default.general_label) }}</strong> <a href="mailto:{{ contact_email }}" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_email }}</a></p>
-        <p><strong>{{ page_field('frontpage-contact', 'chair_label_' ~ lang, contact_default.chair_label) }}</strong> {{ page_field('frontpage-contact', 'chair_value_' ~ lang, lang == 'fi' ? 'Timo Pasanen' : 'Timo Pasanen') }}</p>
-        <p><strong>{{ page_field('frontpage-contact', 'vice_chair_label_' ~ lang, contact_default.vice_label) }}</strong> {{ page_field('frontpage-contact', 'vice_chair_value_' ~ lang, lang == 'fi' ? 'Tiina Poutiainen' : 'Tiina Poutiainen') }}</p>
-        <p><strong>{{ page_field('frontpage-contact', 'board_members_label_' ~ lang, contact_default.board_label) }}</strong> {{ page_field('frontpage-contact', 'board_members_value_' ~ lang, lang == 'fi' ? 'Aleksi Hupli, Miina Kajos, Mikko Neuvo' : 'Aleksi Hupli, Miina Kajos, Mikko Neuvo') }}</p>
+<section id="yhteystiedot" class="bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist py-16 text-brand-white md:py-20">
+  <div class="mx-auto max-w-4xl px-4">
+    <div class="text-center">
+      <span class="eyebrow text-white/80">{{ page_field('frontpage-contact', 'eyebrow_' ~ lang, contact_default.eyebrow) }}</span>
+      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage-contact', 'title_' ~ lang, contact_default.title) }}</h2>
+      <p class="section-copy text-white/80 mt-3">{{ page_field('frontpage-contact', 'copy_' ~ lang, contact_default.copy) }}</p>
+    </div>
+    <div class="mt-10 grid gap-6 md:grid-cols-2">
+      <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">{{ page_field('frontpage-contact', 'general_contact_label_' ~ lang, contact_default.general_label) }}</h3>
+        <p class="text-lg text-white"><a href="mailto:{{ contact_email }}" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_email }}</a></p>
       </div>
-      <div class="space-y-4">
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70">{{ page_field('frontpage-contact', 'social_heading_' ~ lang, contact_default.social_heading) }}</h3>
-        <div class="flex flex-wrap gap-3 text-sm font-semibold text-brand-wood">
-          <a href="https://www.facebook.com/hppry/" class="transition hover:text-brand-wood/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_facebook_label_' ~ lang, lang == 'fi' ? 'Facebook' : 'Facebook') }}</a>
-          <a href="https://twitter.com/HPPry" class="transition hover:text-brand-wood/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_x_label_' ~ lang, lang == 'fi' ? 'X (Twitter)' : 'X (Twitter)') }}</a>
-          <a href="https://www.instagram.com/humaaniapaihdepolitiikkaa/" class="transition hover:text-brand-wood/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_instagram_label_' ~ lang, 'Instagram') }}</a>
-          <a href="https://www.youtube.com/@hppry" class="transition hover:text-brand-wood/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_youtube_label_' ~ lang, 'YouTube') }}</a>
-          <a href="https://www.tiktok.com/@hppry" class="transition hover:text-brand-wood/80" target="_blank" rel="noopener">{{ page_field('frontpage-contact', 'social_tiktok_label_' ~ lang, 'TikTok') }}</a>
-        </div>
-        <a href="https://holvi.com/shop/hpp-ry/" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-wood transition hover:text-brand-wood/80" target="_blank" rel="noopener">
-          <span>{{ page_field('frontpage-contact', 'holvi_label_' ~ lang, contact_default.holvi_label) }}</span>
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="M13 6l6 6-6 6" />
-          </svg>
-        </a>
+      <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">{{ page_field('frontpage-contact', 'phone_label_' ~ lang, contact_default.phone_label) }}</h3>
+        <p class="text-lg text-white"><a href="tel:+358449992092" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_phone }}</a></p>
       </div>
+    </div>
+    <div class="mt-6 rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur text-center">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-2">{{ page_field('frontpage-contact', 'address_label_' ~ lang, contact_default.address_label) }}</h3>
+      <p class="text-white">{{ contact_address }}</p>
+    </div>
+    <div class="mt-8 text-center">
+      <a href="#" class="btn-secondary">Varaa aika vastaanotolleni</a>
     </div>
   </div>
 </section>

@@ -1,0 +1,55 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set lang = language ?? 'fi' %}
+{% set therapy_defaults = {
+  'fi': {
+    'eyebrow': 'Ratkaisukeskeinen lyhytterapia',
+    'title': 'Mitä on ratkaisukeskeinen lyhytterapia?',
+    'content': '<p>Ratkaisukeskeinen lyhytterapia (SFBT) on käytännönläheinen ja voimavarasuuntautunut menetelmä. Keskustelun kautta autamme sinua tunnistamaan, mikä on sinulle tärkeää ja miten voit edetä sitä kohti. Menneisyyttä käsitellään vain siltä osin kuin se auttaa ymmärtämään toiveitasi ja tavoitteitasi.</p><p>Tyypillisesti tapaamisia on 1–10, riippuen tarpeistasi.</p>',
+    'highlights': [
+      { 'title': 'Vahvuuksien tunnistaminen', 'copy': 'Keskitymme siihen, mikä jo toimii elämässäsi ja miten voimme hyödyntää näitä vahvuuksia.' },
+      { 'title': 'Tulevaisuuteen suuntautuminen', 'copy': 'Tutkimme yhdessä, miltä toivottu tulevaisuus näyttää ja miten sinne päästään.' },
+      { 'title': 'Lyhytkestoisuus', 'copy': 'Ratkaisukeskeinen terapia on yleensä lyhytkestoista ja tehokasta.' }
+    ]
+  },
+  'en': {
+    'eyebrow': 'Solution-focused brief therapy',
+    'title': 'What is solution-focused brief therapy?',
+    'content': '<p>Solution-focused brief therapy (SFBT) is a practical and strength-based method. Through conversation, we help you identify what matters to you and how you can move toward it. The past is addressed only to the extent that it helps understand your hopes and goals.</p><p>Typically, there are 1–10 sessions, depending on your needs.</p>',
+    'highlights': [
+      { 'title': 'Identifying strengths', 'copy': 'We focus on what already works in your life and how we can leverage these strengths.' },
+      { 'title': 'Future orientation', 'copy': 'Together we explore what the desired future looks like and how to get there.' },
+      { 'title': 'Brief duration', 'copy': 'Solution-focused therapy is typically brief and effective.' }
+    ]
+  }
+} %}
+{% set therapy_data = therapy_defaults[lang] ?? therapy_defaults.fi %}
+{% set highlights = page_field_pairs('terapia', 'highlights_' ~ lang, therapy_data.highlights) %}
+
+<section class="py-16 md:py-20">
+  <div class="mx-auto max-w-4xl px-4">
+    <div class="text-center">
+      <span class="eyebrow text-white/80">{{ page_field('terapia', 'eyebrow_' ~ lang, therapy_data.eyebrow) }}</span>
+      <h1 class="section-heading text-white mt-2">{{ page_field('terapia', 'title_' ~ lang, therapy_data.title) }}</h1>
+      <div class="prose prose-invert max-w-none mt-6 text-white/80">
+        {{ page_field('terapia', 'content_' ~ lang, therapy_data.content)|raw }}
+      </div>
+    </div>
+    {% if highlights %}
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {% for highlight in highlights %}
+          <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+            <h3 class="text-lg font-semibold text-white mb-2">{{ highlight.title }}</h3>
+            <p class="text-sm text-white/80">{{ highlight.copy }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="mt-12 text-center">
+      <a href="#" class="btn-secondary">Varaa aika vastaanotolleni</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

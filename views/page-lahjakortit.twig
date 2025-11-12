@@ -1,0 +1,34 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set lang = language ?? 'fi' %}
+{% set gift_defaults = {
+  'fi': {
+    'eyebrow': 'Lahjakortit',
+    'title': 'Lahjakortit',
+    'content': '<p>Anna terapeuttinen lahjakortti läheisellesi. Lahjakortti on henkilökohtainen ja voimassa 12 kuukautta.</p>'
+  },
+  'en': {
+    'eyebrow': 'Gift cards',
+    'title': 'Gift cards',
+    'content': '<p>Give a therapeutic gift card to someone close to you. The gift card is personal and valid for 12 months.</p>'
+  }
+} %}
+{% set gift_data = gift_defaults[lang] ?? gift_defaults.fi %}
+
+<section class="py-16 md:py-20">
+  <div class="mx-auto max-w-3xl px-4">
+    <div class="text-center">
+      <span class="eyebrow text-white/80">{{ page_field('lahjakortit', 'eyebrow_' ~ lang, gift_data.eyebrow) }}</span>
+      <h1 class="section-heading text-white mt-2">{{ page_field('lahjakortit', 'title_' ~ lang, gift_data.title) }}</h1>
+      <div class="prose prose-invert max-w-none mt-6 text-white/80">
+        {{ page_field('lahjakortit', 'content_' ~ lang, gift_data.content)|raw }}
+      </div>
+    </div>
+    <div class="mt-12 text-center">
+      <a href="#" class="btn-secondary">Ota yhteyttä lahjakortista</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+

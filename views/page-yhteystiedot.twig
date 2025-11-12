@@ -1,0 +1,54 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set lang = language ?? 'fi' %}
+{% set contact_defaults = {
+  'fi': {
+    'eyebrow': 'Yhteystiedot',
+    'title': 'Ota yhteyttä',
+    'content': '<p>Ota rohkeasti yhteyttä, jos haluat keskustella terapiasta tai varata ajan.</p>',
+    'email': 'terapia@terapiahuvi.fi',
+    'phone': '+358 44 999 2092',
+    'address': 'Aleksanterinkatu 29 B 18, 33100 Tampere'
+  },
+  'en': {
+    'eyebrow': 'Contact',
+    'title': 'Get in touch',
+    'content': '<p>Feel free to reach out if you want to discuss therapy or book an appointment.</p>',
+    'email': 'terapia@terapiahuvi.fi',
+    'phone': '+358 44 999 2092',
+    'address': 'Aleksanterinkatu 29 B 18, 33100 Tampere, Finland'
+  }
+} %}
+{% set contact_data = contact_defaults[lang] ?? contact_defaults.fi %}
+
+<section class="py-16 md:py-20">
+  <div class="mx-auto max-w-4xl px-4">
+    <div class="text-center">
+      <span class="eyebrow text-white/80">{{ page_field('yhteystiedot', 'eyebrow_' ~ lang, contact_data.eyebrow) }}</span>
+      <h1 class="section-heading text-white mt-2">{{ page_field('yhteystiedot', 'title_' ~ lang, contact_data.title) }}</h1>
+      <div class="prose prose-invert max-w-none mt-6 text-white/80">
+        {{ page_field('yhteystiedot', 'content_' ~ lang, contact_data.content)|raw }}
+      </div>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">Sähköposti</h3>
+        <p class="text-lg text-white"><a href="mailto:{{ contact_data.email }}" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_data.email }}</a></p>
+      </div>
+      <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">Puhelin</h3>
+        <p class="text-lg text-white"><a href="tel:+358449992092" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_data.phone }}</a></p>
+      </div>
+    </div>
+    <div class="mt-6 rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur text-center">
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-2">Osoite</h3>
+      <p class="text-white">{{ contact_data.address }}</p>
+    </div>
+    <div class="mt-8 text-center">
+      <a href="#" class="btn-secondary">Varaa aika vastaanotolleni</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
