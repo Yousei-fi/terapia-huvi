@@ -45,44 +45,41 @@
     'en': '/minusta?lang=en'
   }
 } %}
-<header class="relative overflow-hidden bg-gradient-to-br from-brand-wood via-brand-pine to-brand-mist text-brand-white">
-  <div class="absolute inset-0 bg-hero-pattern opacity-90"></div>
-  <div class="absolute inset-0 bg-accent-glow opacity-60"></div>
-  <div class="relative mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 md:flex-row md:items-center md:justify-between md:py-16">
-    <div class="max-w-2xl space-y-4">
-      <img src="{{ site.theme.link }}/logo.svg" alt="TerapiaHuvi logo" class="h-14 w-14 rounded-full border border-white/40 bg-white/80 shadow-soft">
-      <span class="eyebrow text-white/80">{{ page_field('frontpage-header', 'eyebrow_' ~ lang, header_defaults.eyebrow[lang] ?? header_defaults.eyebrow.fi) }}</span>
-      <h1 class="text-3xl font-semibold leading-tight tracking-tight md:text-4xl">{{ title }}</h1>
-      {% if subtitle %}
-        <p class="text-base text-white/90 md:text-lg">{{ subtitle }}</p>
-      {% endif %}
-      <div class="flex flex-wrap items-center gap-3">
-        <a href="{{ page_field('frontpage-header', 'primary_cta_url_' ~ lang, header_defaults.primary_cta_url[lang] ?? header_defaults.primary_cta_url.fi) }}" class="btn-secondary">{{ page_field('frontpage-header', 'primary_cta_label_' ~ lang, header_defaults.primary_cta_label[lang] ?? header_defaults.primary_cta_label.fi) }}</a>
-        <a href="{{ page_field('frontpage-header', 'secondary_cta_url_' ~ lang, header_defaults.secondary_cta_url[lang] ?? header_defaults.secondary_cta_url.fi) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
-          <span>{{ page_field('frontpage-header', 'secondary_cta_label_' ~ lang, header_defaults.secondary_cta_label[lang] ?? header_defaults.secondary_cta_label.fi) }}</span>
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="M13 6l6 6-6 6" />
-          </svg>
-        </a>
+{% set hero_defaults = {
+  'fi': {
+    'eyebrow': 'Ratkaisukeskeinen lyhytterapia',
+    'title': 'Rauhallista muutosta – yksi keskustelu kerrallaan',
+    'content': 'Ratkaisukeskeinen lyhytterapia auttaa sinua löytämään toivoa, voimavaroja ja suuntaa elämään silloin, kun asiat tuntuvat jumittuneilta. Yhdessä tutkimme, mikä jo toimii elämässäsi ja miten voimme rakentaa siitä eteenpäin.',
+    'cta_primary_label': 'Varaa aika',
+    'cta_primary_url': '#',
+    'cta_secondary_label': 'Lue lisää terapiasta',
+    'cta_secondary_url': '/terapia'
+  },
+  'en': {
+    'eyebrow': 'Solution-focused brief therapy',
+    'title': 'Peaceful change – one conversation at a time',
+    'content': 'Solution-focused brief therapy helps you find hope, resources, and direction in life when things feel stuck. Together we explore what already works in your life and how we can build on that.',
+    'cta_primary_label': 'Book a session',
+    'cta_primary_url': '#',
+    'cta_secondary_label': 'Learn about therapy',
+    'cta_secondary_url': '/terapia?lang=en'
+  }
+} %}
+{% set hero_data = hero_defaults[lang] ?? hero_defaults.fi %}
+
+<header class="relative overflow-hidden text-brand-white">
+  <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-20">
+    <div class="max-w-3xl space-y-6">
+      <span class="eyebrow text-white/70">{{ page_field('frontpage-hero', 'eyebrow_' ~ lang, hero_data.eyebrow) }}</span>
+      <h1 class="text-4xl font-semibold tracking-tight md:text-5xl">{{ page_field('frontpage-hero', 'title_' ~ lang, hero_data.title) }}</h1>
+      <div class="prose prose-invert max-w-none text-base text-white/80 md:text-lg">
+        <p>{{ page_field('frontpage-hero', 'content_' ~ lang, hero_data.content) }}</p>
       </div>
-    </div>
-    <div class="max-w-xl rounded-3xl bg-white/10 p-6 shadow-lg shadow-brand-orange/20 backdrop-blur">
-      <h2 class="text-xl font-semibold text-white">{{ page_field('frontpage-header', 'card_title_' ~ lang, header_defaults.card_title[lang] ?? header_defaults.card_title.fi) }}</h2>
-      <p class="mt-3 text-sm text-white/80">{{ page_field('frontpage-header', 'card_copy_' ~ lang, header_defaults.card_copy[lang] ?? header_defaults.card_copy.fi) }}</p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="{{ page_field('frontpage-header', 'card_primary_cta_url_' ~ lang, header_defaults.card_primary_cta_url[lang] ?? header_defaults.card_primary_cta_url.fi) }}" class="btn-primary">{{ page_field('frontpage-header', 'card_primary_cta_label_' ~ lang, header_defaults.card_primary_cta_label[lang] ?? header_defaults.card_primary_cta_label.fi) }}</a>
-        <a href="{{ page_field('frontpage-header', 'card_secondary_cta_url_' ~ lang, header_defaults.card_secondary_cta_url[lang] ?? header_defaults.card_secondary_cta_url.fi) }}" class="inline-flex items-center gap-2 text-sm font-semibold text-white transition hover:text-white/80">
-          <span>{{ page_field('frontpage-header', 'card_secondary_cta_label_' ~ lang, header_defaults.card_secondary_cta_label[lang] ?? header_defaults.card_secondary_cta_label.fi) }}</span>
-          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M5 12h14" />
-            <path d="M13 6l6 6-6 6" />
-          </svg>
-        </a>
+      <div class="flex flex-wrap items-center gap-3">
+        <a href="{{ page_field('frontpage-hero', 'cta_primary_url_' ~ lang, hero_data.cta_primary_url) }}" class="btn-primary">{{ page_field('frontpage-hero', 'cta_primary_label_' ~ lang, hero_data.cta_primary_label) }}</a>
+        <a href="{{ page_field('frontpage-hero', 'cta_secondary_url_' ~ lang, hero_data.cta_secondary_url) }}" class="btn-secondary">{{ page_field('frontpage-hero', 'cta_secondary_label_' ~ lang, hero_data.cta_secondary_label) }}</a>
       </div>
     </div>
   </div>
-  <div class="pointer-events-none absolute -left-20 top-12 hidden h-48 w-48 rounded-full bg-white/25 blur-3xl md:block"></div>
-  <div class="pointer-events-none absolute -bottom-24 -right-12 h-56 w-56 rounded-full bg-white/30 blur-3xl"></div>
 </header>
 

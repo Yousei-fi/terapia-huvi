@@ -3,49 +3,6 @@
 {% block content %}
 {% set lang = language ?? 'fi' %}
 
-{% set hero_defaults = {
-  'fi': {
-    'eyebrow': 'Ratkaisukeskeinen lyhytterapia',
-    'title': 'Rauhallista muutosta – yksi keskustelu kerrallaan',
-    'cta_primary_label': 'Varaa aika',
-    'cta_primary_url': '#',
-    'cta_secondary_label': 'Lue lisää terapiasta',
-    'cta_secondary_url': '/terapia'
-  },
-  'en': {
-    'eyebrow': 'Solution-focused brief therapy',
-    'title': 'Peaceful change – one conversation at a time',
-    'cta_primary_label': 'Book a session',
-    'cta_primary_url': '#',
-    'cta_secondary_label': 'Learn about therapy',
-    'cta_secondary_url': '/terapia?lang=en'
-  }
-} %}
-{% set hero_body_defaults = {
-  'fi': '<p>Ratkaisukeskeinen lyhytterapia auttaa sinua löytämään toivoa, voimavaroja ja suuntaa elämään silloin, kun asiat tuntuvat jumittuneilta. Yhdessä tutkimme, mikä jo toimii elämässäsi ja miten voimme rakentaa siitä eteenpäin.</p>',
-  'en': '<p>Solution-focused brief therapy helps you find hope, resources, and direction in life when things feel stuck. Together we explore what already works in your life and how we can build on that.</p>'
-} %}
-{% set hero_default = hero_defaults[lang] ?? hero_defaults.fi %}
-{% set hero_body_default = hero_body_defaults[lang] ?? hero_body_defaults.fi %}
-
-<section id="hero" class="relative overflow-hidden text-brand-white">
-  <div class="absolute inset-0 bg-hero-pattern opacity-40"></div>
-  <div class="absolute inset-0 bg-accent-glow opacity-40"></div>
-  <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-20">
-    <div class="max-w-3xl space-y-6">
-      <span class="eyebrow text-white/70">{{ page_field('frontpage-hero', 'eyebrow_' ~ lang, hero_default.eyebrow) }}</span>
-      <h2 class="text-4xl font-semibold tracking-tight md:text-5xl">{{ page_field('frontpage-hero', 'title_' ~ lang, hero_default.title) }}</h2>
-      <div class="prose prose-invert max-w-none text-base text-white/80 md:text-lg">
-        {{ page_field('frontpage-hero', 'content_' ~ lang, hero_body_default)|raw }}
-      </div>
-      <div class="flex flex-wrap items-center gap-3">
-        <a href="{{ page_field('frontpage-hero', 'cta_primary_url_' ~ lang, hero_default.cta_primary_url) }}" class="btn-primary">{{ page_field('frontpage-hero', 'cta_primary_label_' ~ lang, hero_default.cta_primary_label) }}</a>
-        <a href="{{ page_field('frontpage-hero', 'cta_secondary_url_' ~ lang, hero_default.cta_secondary_url) }}" class="btn-secondary">{{ page_field('frontpage-hero', 'cta_secondary_label_' ~ lang, hero_default.cta_secondary_label) }}</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 {% set blog_defaults = {
   'fi': {
     'eyebrow': 'Blogi',
