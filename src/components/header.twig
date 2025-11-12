@@ -38,19 +38,27 @@
   </style>
   <script>
     (function() {
-      const container = document.querySelector('.leaves-container');
-      if (!container) return;
+      function initLeaves() {
+        const container = document.querySelector('.leaves-container');
+        if (!container) return;
+        
+        const colors = ['#A47551', '#708D81', '#9FBCC1', '#B08968'];
+        
+        for (let i = 0; i < 15; i++) {
+          const leaf = document.createElement('div');
+          leaf.classList.add('leaf');
+          leaf.style.left = Math.random() * 100 + '%';
+          leaf.style.animationDuration = (5 + Math.random() * 5) + 's';
+          leaf.style.animationDelay = Math.random() * 5 + 's';
+          leaf.style.background = colors[Math.floor(Math.random() * colors.length)];
+          container.appendChild(leaf);
+        }
+      }
       
-      const colors = ['#A47551', '#708D81', '#9FBCC1', '#B08968'];
-      
-      for (let i = 0; i < 15; i++) {
-        const leaf = document.createElement('div');
-        leaf.classList.add('leaf');
-        leaf.style.left = Math.random() * 100 + '%';
-        leaf.style.animationDuration = (5 + Math.random() * 5) + 's';
-        leaf.style.animationDelay = Math.random() * 5 + 's';
-        leaf.style.background = colors[Math.floor(Math.random() * colors.length)];
-        container.appendChild(leaf);
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initLeaves);
+      } else {
+        initLeaves();
       }
     })();
   </script>
