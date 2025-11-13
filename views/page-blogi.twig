@@ -1,0 +1,27 @@
+{% extends "base.twig" %}
+
+{% block content %}
+{% set lang = language ?? 'fi' %}
+<section class="py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-4">
+    <span class="eyebrow text-white/80">Blogi</span>
+    <h1 class="section-heading text-white mt-2">Kaikki artikkelit</h1>
+    {% if posts %}
+      <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {% for post in posts %}
+          {{ include('card.twig', {
+            title: post.title,
+            link: post.link,
+            meta: post.date(lang == 'fi' ? 'j.n.Y' : 'F j, Y'),
+            content: post.excerpt ? post.excerpt : post.content|striptags|slice(0, 150) ~ '...',
+            image: post.thumbnail ? post.thumbnail.src('large') : null,
+          }) }}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="mt-10 text-base text-white/70">Artikkeleita ei löytynyt.</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
+
