@@ -86,7 +86,7 @@
         {% if language_options %}
           <div class="items-center gap-2 text-xs font-semibold uppercase tracking-wide hidden md:flex">
             {% for option in language_options %}
-              <a href="{{ option.url }}" class="rounded-full border border-white/25 px-3 py-1 transition hover:bg-white/15 {{ option.current ? 'bg-white text-brand-wood' : 'bg-white/5 text-white' }}">{{ option.code|upper }}</a>
+              <a href="{{ option.url }}" class="rounded-full border border-white/25 px-3 py-1 transition hover:bg-white/15 {{ option.current ? 'bg-white text-brand-charcoal' : 'bg-white/5 text-white' }}">{{ option.code|upper }}</a>
             {% endfor %}
           </div>
         {% endif %}
