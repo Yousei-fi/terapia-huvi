@@ -403,6 +403,7 @@ class TerapiaHuviTheme extends \Timber\Site {
             ['slug' => 'minusta', 'title' => __('Minusta', 'terapia-huvi')],
             ['slug' => 'yhteystiedot', 'title' => __('Yhteystiedot', 'terapia-huvi')],
             ['slug' => 'lahjakortit', 'title' => __('Lahjakortit', 'terapia-huvi')],
+            ['slug' => 'blogi', 'title' => __('Blogi', 'terapia-huvi')],
             ['slug' => 'tietosuoja', 'title' => __('Tietosuoja', 'terapia-huvi')],
         ];
     }
