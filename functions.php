@@ -637,6 +637,76 @@ class TerapiaHuviTheme extends \Timber\Site {
             ],
         ];
 
+        $definitions['terapia'] = [
+            'title' => __('Therapy page', 'terapia-huvi'),
+            'description' => __('Content for the therapy page.', 'terapia-huvi'),
+            'fields' => [
+                $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
+                $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
+                $this->make_field('title_fi', __('Heading (FI)', 'terapia-huvi')),
+                $this->make_field('title_en', __('Heading (EN)', 'terapia-huvi')),
+                $this->make_field('content_fi', __('Content (FI)', 'terapia-huvi'), 'textarea', ['rows' => 8, 'help' => $richHelp]),
+                $this->make_field('content_en', __('Content (EN)', 'terapia-huvi'), 'textarea', ['rows' => 8, 'help' => $richHelp]),
+                $this->make_field('highlights_fi', __('Highlights (FI)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $pairHelp]),
+                $this->make_field('highlights_en', __('Highlights (EN)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $pairHelp]),
+            ],
+        ];
+
+        $definitions['hinnasto'] = [
+            'title' => __('Pricing page', 'terapia-huvi'),
+            'description' => __('Content for the pricing page.', 'terapia-huvi'),
+            'fields' => [
+                $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
+                $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
+                $this->make_field('title_fi', __('Heading (FI)', 'terapia-huvi')),
+                $this->make_field('title_en', __('Heading (EN)', 'terapia-huvi')),
+                $this->make_field('content_fi', __('Content (FI)', 'terapia-huvi'), 'textarea', ['rows' => 4, 'help' => $richHelp]),
+                $this->make_field('content_en', __('Content (EN)', 'terapia-huvi'), 'textarea', ['rows' => 4, 'help' => $richHelp]),
+                $this->make_field('prices_fi', __('Prices (FI)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $pairHelp]),
+                $this->make_field('prices_en', __('Prices (EN)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $pairHelp]),
+            ],
+        ];
+
+        $definitions['minusta'] = [
+            'title' => __('About page', 'terapia-huvi'),
+            'description' => __('Content for the about page.', 'terapia-huvi'),
+            'fields' => [
+                $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
+                $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
+                $this->make_field('title_fi', __('Heading (FI)', 'terapia-huvi')),
+                $this->make_field('title_en', __('Heading (EN)', 'terapia-huvi')),
+                $this->make_field('content_fi', __('Content (FI)', 'terapia-huvi'), 'textarea', ['rows' => 8, 'help' => $richHelp]),
+                $this->make_field('content_en', __('Content (EN)', 'terapia-huvi'), 'textarea', ['rows' => 8, 'help' => $richHelp]),
+                $this->make_field('highlights_fi', __('Highlights (FI)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $pairHelp]),
+                $this->make_field('highlights_en', __('Highlights (EN)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $pairHelp]),
+            ],
+        ];
+
+        $definitions['yhteystiedot'] = [
+            'title' => __('Contact page', 'terapia-huvi'),
+            'description' => __('Content for the contact page.', 'terapia-huvi'),
+            'fields' => [
+                $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
+                $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
+                $this->make_field('title_fi', __('Heading (FI)', 'terapia-huvi')),
+                $this->make_field('title_en', __('Heading (EN)', 'terapia-huvi')),
+                $this->make_field('content_fi', __('Content (FI)', 'terapia-huvi'), 'textarea', ['rows' => 4, 'help' => $richHelp]),
+                $this->make_field('content_en', __('Content (EN)', 'terapia-huvi'), 'textarea', ['rows' => 4, 'help' => $richHelp]),
+            ],
+        ];
+
+        $definitions['lahjakortit'] = [
+            'title' => __('Gift cards page', 'terapia-huvi'),
+            'description' => __('Content for the gift cards page.', 'terapia-huvi'),
+            'fields' => [
+                $this->make_field('eyebrow_fi', __('Eyebrow (FI)', 'terapia-huvi')),
+                $this->make_field('eyebrow_en', __('Eyebrow (EN)', 'terapia-huvi')),
+                $this->make_field('title_fi', __('Heading (FI)', 'terapia-huvi')),
+                $this->make_field('title_en', __('Heading (EN)', 'terapia-huvi')),
+                $this->make_field('content_fi', __('Content (FI)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $richHelp]),
+                $this->make_field('content_en', __('Content (EN)', 'terapia-huvi'), 'textarea', ['rows' => 6, 'help' => $richHelp]),
+            ],
+        ];
 
         $definitions['site-navigation'] = [
             'title' => __('Navigation defaults', 'terapia-huvi'),
