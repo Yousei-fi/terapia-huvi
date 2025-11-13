@@ -24,12 +24,12 @@
   }
 } %}
 {% set overview_default = overview_defaults[lang] ?? overview_defaults.fi %}
-{% set overview_cards = page_field_cards('frontpage-overview', 'cards_' ~ lang, overview_default.cards) %}
+{% set overview_cards = page_field_cards('frontpage', 'overview_cards_' ~ lang, overview_default.cards) %}
 
 <section id="overview" class="py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
-    <span class="eyebrow text-white/80">{{ page_field('frontpage-overview', 'eyebrow_' ~ lang, overview_default.eyebrow) }}</span>
-    <h2 class="section-heading text-white">{{ page_field('frontpage-overview', 'title_' ~ lang, overview_default.title) }}</h2>
+    <span class="eyebrow text-white/80">{{ page_field('frontpage', 'overview_eyebrow_' ~ lang, overview_default.eyebrow) }}</span>
+    <h2 class="section-heading text-white">{{ page_field('frontpage', 'overview_title_' ~ lang, overview_default.title) }}</h2>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {% for card in overview_cards %}
         <article class="flex h-full flex-col rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur shadow-soft transition duration-150 hover:-translate-y-1 hover:border-white/30">
@@ -71,29 +71,29 @@
   }
 } %}
 {% set contact_default = contact_defaults[lang] ?? contact_defaults.fi %}
-{% set contact_email = page_field('frontpage-contact', 'general_contact_email_' ~ lang, 'terapia@terapiahuvi.fi') %}
-{% set contact_phone = page_field('frontpage-contact', 'contact_phone_' ~ lang, '+358 44 999 2092') %}
-{% set contact_address = page_field('frontpage-contact', 'contact_address_' ~ lang, lang == 'fi' ? 'Aleksanterinkatu 29 B 18, 33100 Tampere' : 'Aleksanterinkatu 29 B 18, 33100 Tampere, Finland') %}
+{% set contact_email = page_field('frontpage', 'contact_email_' ~ lang, 'terapia@terapiahuvi.fi') %}
+{% set contact_phone = page_field('frontpage', 'contact_phone_' ~ lang, '+358 44 999 2092') %}
+{% set contact_address = page_field('frontpage', 'contact_address_' ~ lang, lang == 'fi' ? 'Aleksanterinkatu 29 B 18, 33100 Tampere' : 'Aleksanterinkatu 29 B 18, 33100 Tampere, Finland') %}
 
 <section id="yhteystiedot" class="py-16 text-brand-white md:py-20">
   <div class="mx-auto max-w-4xl px-4">
     <div class="text-center">
-      <span class="eyebrow text-white/80">{{ page_field('frontpage-contact', 'eyebrow_' ~ lang, contact_default.eyebrow) }}</span>
-      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage-contact', 'title_' ~ lang, contact_default.title) }}</h2>
-      <p class="section-copy text-white/80 mt-3">{{ page_field('frontpage-contact', 'copy_' ~ lang, contact_default.copy) }}</p>
+      <span class="eyebrow text-white/80">{{ page_field('frontpage', 'contact_eyebrow_' ~ lang, contact_default.eyebrow) }}</span>
+      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage', 'contact_title_' ~ lang, contact_default.title) }}</h2>
+      <p class="section-copy text-white/80 mt-3">{{ page_field('frontpage', 'contact_copy_' ~ lang, contact_default.copy) }}</p>
     </div>
     <div class="mt-10 grid gap-6 md:grid-cols-2">
       <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">{{ page_field('frontpage-contact', 'general_contact_label_' ~ lang, contact_default.general_label) }}</h3>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">{{ page_field('frontpage', 'contact_general_label_' ~ lang, contact_default.general_label) }}</h3>
         <p class="text-lg text-white"><a href="mailto:{{ contact_email }}" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_email }}</a></p>
       </div>
       <div class="rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur">
-        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">{{ page_field('frontpage-contact', 'phone_label_' ~ lang, contact_default.phone_label) }}</h3>
+        <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-4">{{ page_field('frontpage', 'contact_phone_label_' ~ lang, contact_default.phone_label) }}</h3>
         <p class="text-lg text-white"><a href="tel:+358449992092" class="underline decoration-white/40 decoration-2 underline-offset-4 hover:text-white">{{ contact_phone }}</a></p>
       </div>
     </div>
     <div class="mt-6 rounded-3xl border border-white/20 bg-white/10 p-6 backdrop-blur text-center">
-      <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-2">{{ page_field('frontpage-contact', 'address_label_' ~ lang, contact_default.address_label) }}</h3>
+      <h3 class="text-sm font-semibold uppercase tracking-wide text-white/70 mb-2">{{ page_field('frontpage', 'contact_address_label_' ~ lang, contact_default.address_label) }}</h3>
       <p class="text-white">{{ contact_address }}</p>
     </div>
     <div class="mt-8 text-center">
@@ -123,7 +123,7 @@
   }
 } %}
 {% set testimonials_data = testimonials_defaults[lang] ?? testimonials_defaults.fi %}
-{% set testimonials_raw = page_field('frontpage-testimonials', 'testimonials_' ~ lang, '') %}
+{% set testimonials_raw = page_field('frontpage', 'testimonials_' ~ lang, '') %}
 {% set testimonials = [] %}
 {% if testimonials_raw %}
   {% for line in testimonials_raw|split('\n') %}
@@ -147,8 +147,8 @@
 <section id="testimonials" class="py-16 md:py-20">
   <div class="mx-auto max-w-6xl px-4">
     <div class="text-center">
-      <span class="eyebrow text-white/80">{{ page_field('frontpage-testimonials', 'eyebrow_' ~ lang, testimonials_data.eyebrow) }}</span>
-      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage-testimonials', 'title_' ~ lang, testimonials_data.title) }}</h2>
+      <span class="eyebrow text-white/80">{{ page_field('frontpage', 'testimonials_eyebrow_' ~ lang, testimonials_data.eyebrow) }}</span>
+      <h2 class="section-heading text-white mt-2">{{ page_field('frontpage', 'testimonials_title_' ~ lang, testimonials_data.title) }}</h2>
     </div>
     <div class="mt-12 grid gap-8 md:grid-cols-3">
       {% for testimonial in testimonials %}
@@ -194,13 +194,13 @@
   <div class="mx-auto max-w-6xl px-4">
     <div class="md:flex md:items-end md:justify-between">
       <div class="md:max-w-xl">
-        <span class="eyebrow text-white/80">{{ page_field('frontpage-blog', 'eyebrow_' ~ lang, blog_default.eyebrow) }}</span>
-        <h2 class="section-heading text-white">{{ page_field('frontpage-blog', 'title_' ~ lang, blog_default.title) }}</h2>
+        <span class="eyebrow text-white/80">{{ page_field('frontpage', 'blog_eyebrow_' ~ lang, blog_default.eyebrow) }}</span>
+        <h2 class="section-heading text-white">{{ page_field('frontpage', 'blog_title_' ~ lang, blog_default.title) }}</h2>
         <div class="prose prose-invert max-w-none text-sm text-white/80">
-          {{ page_field('frontpage-blog', 'content_' ~ lang, blog_default.copy)|raw }}
+          {{ page_field('frontpage', 'blog_content_' ~ lang, blog_default.copy)|raw }}
         </div>
       </div>
-      <a href="{{ page_field('frontpage-blog', 'cta_url_' ~ lang, blog_default.cta_url) }}" class="btn-secondary mt-6 md:mt-0">{{ page_field('frontpage-blog', 'cta_label_' ~ lang, blog_default.cta_label) }}</a>
+      <a href="{{ page_field('frontpage', 'blog_cta_url_' ~ lang, blog_default.cta_url) }}" class="btn-secondary mt-6 md:mt-0">{{ page_field('frontpage', 'blog_cta_label_' ~ lang, blog_default.cta_label) }}</a>
     </div>
     {% if posts %}
       <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -215,7 +215,7 @@
         {% endfor %}
       </div>
     {% else %}
-      <p class="mt-10 text-base text-white/70">{{ page_field('frontpage-blog', 'empty_message_' ~ lang, blog_default.empty) }}</p>
+      <p class="mt-10 text-base text-white/70">{{ page_field('frontpage', 'blog_empty_message_' ~ lang, blog_default.empty) }}</p>
     {% endif %}
   </div>
 </section>
