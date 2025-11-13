@@ -17,7 +17,7 @@
     'link_4_label': 'Yhteystiedot',
     'link_4_url': '/yhteystiedot',
     'social_instagram_label': 'Instagram',
-    'copyright': '© 2025 TerapiaHuvi'
+    'copyright': '© 2025 Valtteri Huvi'
   },
   'en': {
     'about_text': 'Solution-focused brief therapist from Tampere. I help you find hope, resources, and direction in life.',
@@ -36,7 +36,7 @@
     'link_4_label': 'Contact',
     'link_4_url': '/yhteystiedot?lang=en',
     'social_instagram_label': 'Instagram',
-    'copyright': '© 2025 TerapiaHuvi'
+    'copyright': '© 2025 Valtteri Huvi'
   }
 } %}
 {% set footer_data = footer_defaults[lang] ?? footer_defaults.fi %}
@@ -44,13 +44,13 @@
 {% set footer_contact_phone = page_field('site-footer', 'contact_phone_' ~ lang, footer_data.contact_phone) %}
 {% set footer_contact_phone_href = page_field('site-footer', 'contact_phone_href_' ~ lang, footer_data.contact_phone_href) %}
 
-<footer class="text-brand-white">
+<footer class="bg-brand-mist text-brand-white">
   <div class="mx-auto max-w-6xl px-4 py-10">
     <div class="grid gap-8 md:grid-cols-3">
       <div class="space-y-3">
         <div class="flex items-center gap-3">
-          <img src="{{ site.theme.link }}/logo.svg" alt="TerapiaHuvi" class="h-10 w-10 rounded-full">
-          <span class="text-lg font-serif font-semibold">{{ site.name }}</span>
+          <img src="{{ site.theme.link }}/logo.svg" alt="Valtteri Huvi" class="h-10 w-10 rounded-full">
+          <span class="text-lg font-serif font-semibold">Valtteri Huvi</span>
         </div>
         <p class="text-sm text-white/70 leading-relaxed">{{ page_field('site-footer', 'about_text_' ~ lang, footer_data.about_text) }}</p>
       </div>
